@@ -3,260 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uttam Singh — Data Analyst</title>
-<meta name="description" content="Uttam Singh — Data Analyst building ETL pipelines, dashboards, and applied-AI automation.">
+<title>Uttam Singh — Data Analyst & AI Engineer</title>
+<meta name="description" content="Uttam Singh — Data Analyst building ETL pipelines, AI automation, RAG systems and production-grade analytics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #EDF1EE;
-    --bg-grid: #DCE3DD;
-    --surface: #FFFFFF;
-    --ink: #142621;
-    --ink-soft: #54635C;
-    --ink-faint: #8B968F;
-    --teal: #1F6F5C;
-    --teal-deep: #123F33;
-    --amber: #D98E2C;
-    --line: #CBD2C9;
-    --radius: 10px;
-    --max: 1080px;
-    --mono: 'JetBrains Mono', monospace;
-    --display: 'Space Grotesk', sans-serif;
-    --body: 'Inter', sans-serif;
-  }
+:root{
+  --bg:#EDF1EE; --bg-grid:#DCE3DD; --surface:#FFFFFF;
+  --ink:#142621; --ink-soft:#54635C; --ink-faint:#8B968F;
+  --teal:#1F6F5C; --teal-deep:#123F33; --teal-light:#E8F3EF;
+  --amber:#D98E2C; --amber-light:#FDF4E7;
+  --line:#CBD2C9; --radius:10px;
+  --max:1100px;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Space Grotesk',sans-serif;
+  --body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:linear-gradient(var(--bg-grid) 1px,transparent 1px) 0 0/100% 28px,
+             linear-gradient(90deg,var(--bg-grid) 1px,transparent 1px) 0 0/28px 100%,
+             var(--bg);
+  background-attachment:fixed;
+  color:var(--ink); font-family:var(--body); line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
 
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+/* NAV */
+header.site{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(8px);
+  background:rgba(237,241,238,0.88);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:15px 28px;max-width:var(--max);margin:0 auto;}
+.nav .mark{font-family:var(--mono);font-size:14px;letter-spacing:.04em;display:flex;align-items:center;gap:8px;}
+.nav .mark .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block;}
+.nav ul{display:flex;gap:24px;list-style:none;}
+.nav ul a{font-size:13.5px;color:var(--ink-soft);transition:color .15s;}
+.nav ul a:hover{color:var(--teal-deep);}
+.btn{font-family:var(--mono);font-size:13px;padding:9px 18px;border-radius:6px;border:1px solid var(--ink);transition:all .15s;display:inline-flex;align-items:center;gap:7px;cursor:pointer;}
+.btn.primary{background:var(--ink);color:var(--bg);}
+.btn.primary:hover{background:var(--teal-deep);border-color:var(--teal-deep);}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+.btn.ghost:hover{border-color:var(--ink);}
+@media(max-width:860px){.nav ul{display:none;}}
 
-  body{
-    background:
-      linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/100% 28px,
-      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px) 0 0/28px 100%,
-      var(--bg);
-    background-attachment: fixed;
-    color: var(--ink);
-    font-family: var(--body);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
+/* HERO */
+.hero{padding:78px 0 50px;}
+.eyebrow{font-family:var(--mono);font-size:12px;color:var(--teal-deep);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--amber);}
+h1.title{font-family:var(--display);font-weight:600;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05;letter-spacing:-.01em;max-width:780px;}
+h1.title .accent{color:var(--teal);}
+.hero p.lede{margin-top:20px;max-width:580px;font-size:16.5px;color:var(--ink-soft);}
+.hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
+.kpi-strip{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);}
+.kpi{padding:20px 4px 16px;border-right:1px solid var(--line);}
+.kpi:last-child{border-right:none;}
+.kpi .num{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--teal-deep);display:flex;align-items:baseline;gap:2px;}
+.kpi .num .suffix{font-size:.52em;color:var(--amber);}
+.kpi .label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;margin-top:5px;}
+@media(max-width:760px){.kpi-grid{grid-template-columns:repeat(2,1fr);}.kpi:nth-child(2){border-right:none;}.kpi:nth-child(5){border-right:none;}}
 
-  a{ color: inherit; text-decoration: none; }
-  img, svg{ display:block; max-width:100%; }
+/* SECTIONS */
+section{padding:70px 0;border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:10px;}
+.sec-head h2{font-family:var(--display);font-size:clamp(1.4rem,2.8vw,1.9rem);font-weight:600;}
+.sec-no{font-family:var(--mono);font-size:12px;color:var(--ink-faint);}
 
-  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+/* EXPERIENCE PIPELINE */
+.role-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+.role-title{font-family:var(--display);font-size:1.25rem;font-weight:600;}
+.role-org{color:var(--ink-soft);margin-top:2px;font-size:15px;}
+.role-date{font-family:var(--mono);font-size:13px;color:var(--ink-faint);white-space:nowrap;}
+.pipeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.pipeline-line{position:absolute;top:17px;left:0;right:0;height:2px;z-index:0;}
+.pipeline-line svg{width:100%;height:2px;display:block;}
+.pipeline-line path{stroke:var(--amber);stroke-width:2;fill:none;stroke-dasharray:4 6;}
+.stage{position:relative;z-index:1;padding-right:20px;}
+.stage-tag{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.stage-num{width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;flex-shrink:0;}
+.stage-name{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-deep);font-weight:500;}
+.stage p{font-size:14px;color:var(--ink-soft);}
+.stage strong{color:var(--ink);font-weight:600;}
+@media(max-width:880px){
+  .pipeline{grid-template-columns:1fr;gap:26px;}
+  .pipeline-line{display:none;}
+  .stage{padding-right:0;padding-left:20px;border-left:2px dashed var(--line);}
+}
 
-  :focus-visible{ outline: 2px solid var(--teal); outline-offset: 3px; }
+/* FILTERS */
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.filter-btn{font-family:var(--mono);font-size:11.5px;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer;transition:all .15s;}
+.filter-btn:hover,.filter-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink);}
 
-  /* ---------- NAV ---------- */
-  header.site{
-    position: sticky; top:0; z-index: 50;
-    backdrop-filter: blur(8px);
-    background: rgba(237,241,238,0.86);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 16px 28px; max-width: var(--max); margin:0 auto;
-  }
-  .nav .mark{
-    font-family: var(--mono); font-size: 14px; letter-spacing: 0.04em;
-    color: var(--ink); display:flex; align-items:center; gap:8px;
-  }
-  .nav .mark .dot{ width:7px; height:7px; border-radius:50%; background: var(--amber); display:inline-block; }
-  .nav ul{ display:flex; gap: 28px; list-style:none; }
-  .nav ul a{ font-size: 14px; color: var(--ink-soft); transition: color .15s; }
-  .nav ul a:hover{ color: var(--teal-deep); }
-  .nav-toggle{ display:none; }
+/* PROJECT GRID */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.proj-grid{grid-template-columns:1fr;}}
 
-  @media (max-width: 720px){
-    .nav ul{ display:none; }
-  }
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px -14px rgba(20,38,33,.22);}
+.card[data-hidden="true"]{display:none;}
 
-  /* ---------- HERO ---------- */
-  .hero{ padding: 84px 0 56px; }
-  .eyebrow{
-    font-family: var(--mono); font-size: 12.5px; color: var(--teal-deep);
-    letter-spacing: 0.12em; text-transform: uppercase;
-    display:flex; align-items:center; gap:10px; margin-bottom: 22px;
-  }
-  .eyebrow::before{ content:''; width:24px; height:1px; background: var(--amber); }
+.card-img{height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg);}
+.card-img svg{width:100%;height:100%;}
+.card-body{padding:20px;flex:1;display:flex;flex-direction:column;}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.card h3{font-family:var(--display);font-size:.97rem;font-weight:600;flex:1;}
+.card-year{font-family:var(--mono);font-size:11px;color:var(--ink-faint);white-space:nowrap;}
+.card-domain{font-family:var(--mono);font-size:11px;color:var(--teal-deep);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;}
+.card .metrics{display:flex;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
+.metric{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);}
+.metric b{color:var(--amber);}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px;flex:1;}
+.card ul li{font-size:13.5px;color:var(--ink-soft);padding-left:13px;position:relative;}
+.card ul li::before{content:'›';position:absolute;left:0;color:var(--amber);font-family:var(--mono);}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;}
+.tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--ink-soft);}
 
-  h1.title{
-    font-family: var(--display); font-weight: 600;
-    font-size: clamp(2.4rem, 6vw, 4.2rem);
-    line-height: 1.04; letter-spacing: -0.01em;
-    color: var(--ink); max-width: 760px;
-  }
-  h1.title .accent{ color: var(--teal); }
+/* SKILLS */
+.skills-outer{display:grid;grid-template-columns:1fr 1fr;gap:36px 60px;}
+@media(max-width:760px){.skills-outer{grid-template-columns:1fr;}}
+.skill-group .group-label{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.skill-group .group-label::after{content:'';flex:1;height:1px;background:var(--line);}
+.chip-row{display:flex;gap:7px;flex-wrap:wrap;}
+.chip{font-size:13px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:var(--surface);color:var(--ink);}
 
-  .hero p.lede{
-    margin-top: 22px; max-width: 560px; font-size: 17px; color: var(--ink-soft);
-  }
+/* CURRENTLY LEARNING */
+.learning-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:760px){.learning-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.learning-grid{grid-template-columns:1fr;}}
+.learn-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:flex;align-items:flex-start;gap:12px;}
+.learn-icon{width:32px;height:32px;border-radius:6px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+.learn-title{font-family:var(--display);font-size:.88rem;font-weight:600;margin-bottom:2px;}
+.learn-sub{font-size:12.5px;color:var(--ink-soft);}
+.progress-bar{margin-top:10px;height:3px;background:var(--line);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:2px;transition:width .4s ease;}
 
-  .hero-cta{ display:flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
-  .btn{
-    font-family: var(--mono); font-size: 13.5px;
-    padding: 11px 20px; border-radius: 6px; border: 1px solid var(--ink);
-    transition: all .15s ease; display:inline-flex; align-items:center; gap:8px;
-  }
-  .btn.primary{ background: var(--ink); color: var(--bg); }
-  .btn.primary:hover{ background: var(--teal-deep); border-color: var(--teal-deep); }
-  .btn.ghost{ background: transparent; color: var(--ink); border-color: var(--line); }
-  .btn.ghost:hover{ border-color: var(--ink); }
+/* EDU */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:760px){.edu-grid{grid-template-columns:1fr;}}
+.edu-card{border-left:2px solid var(--amber);padding-left:18px;}
+.edu-card h4{font-family:var(--display);font-size:1rem;font-weight:600;margin-bottom:4px;}
+.edu-sub{color:var(--ink-soft);font-size:13.5px;}
+.edu-date{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);margin-top:6px;}
 
-  /* KPI ticker */
-  .kpi-strip{
-    margin-top: 64px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  }
-  .kpi-grid{
-    display:grid; grid-template-columns: repeat(4, 1fr);
-  }
-  .kpi{
-    padding: 22px 4px 18px; border-right: 1px solid var(--line);
-  }
-  .kpi:last-child{ border-right:none; }
-  .kpi .num{
-    font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.1rem);
-    color: var(--teal-deep); display:flex; align-items:baseline; gap:2px;
-  }
-  .kpi .num .suffix{ font-size: 0.55em; color: var(--amber); }
-  .kpi .label{
-    font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
-    text-transform: uppercase; letter-spacing: 0.04em; margin-top: 6px;
-  }
-  @media (max-width: 720px){
-    .kpi-grid{ grid-template-columns: repeat(2, 1fr); }
-    .kpi:nth-child(2){ border-right:none; }
-  }
+/* FOOTER */
+footer.contact{padding:70px 0 44px;}
+.contact-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;}
+.contact h2{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3.5vw,2.4rem);max-width:500px;}
+.contact-links{display:flex;flex-direction:column;gap:10px;}
+.contact-links a{font-family:var(--mono);font-size:13.5px;color:var(--ink-soft);border-bottom:1px solid transparent;padding-bottom:2px;}
+.contact-links a:hover{color:var(--teal-deep);border-color:var(--teal-deep);}
+.foot-bottom{margin-top:50px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);}
 
-  /* ---------- SECTION SCAFFOLD ---------- */
-  section{ padding: 76px 0; border-bottom: 1px solid var(--line); }
-  section:last-of-type{ border-bottom: none; }
-  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 44px; flex-wrap: wrap; gap: 10px; }
-  .sec-head h2{
-    font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600;
-  }
-  .sec-head .sec-no{ font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); }
-
-  /* ---------- PIPELINE / EXPERIENCE ---------- */
-  .role-meta{ display:flex; justify-content:space-between; flex-wrap:wrap; gap: 10px; margin-bottom: 40px; }
-  .role-meta .role-title{ font-family: var(--display); font-size: 1.3rem; font-weight: 600; }
-  .role-meta .role-org{ color: var(--ink-soft); margin-top: 2px; }
-  .role-meta .role-date{ font-family: var(--mono); font-size: 13px; color: var(--ink-faint); white-space: nowrap; }
-
-  .pipeline{
-    position: relative;
-    display:grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-  }
-  .pipeline-line{
-    position:absolute; top: 17px; left: 0; right:0; height: 2px; z-index:0;
-  }
-  .pipeline-line svg{ width:100%; height:2px; display:block; }
-  .pipeline-line path{
-    stroke: var(--amber); stroke-width:2; fill:none;
-    stroke-dasharray: 4 6;
-  }
-
-  .stage{ position:relative; z-index:1; padding-right: 22px; }
-  .stage .stage-tag{
-    display:flex; align-items:center; gap:10px; margin-bottom: 14px;
-  }
-  .stage .stage-num{
-    width: 34px; height:34px; border-radius:50%; background: var(--surface);
-    border: 1px solid var(--ink); display:flex; align-items:center; justify-content:center;
-    font-family: var(--mono); font-size: 12px; flex-shrink:0;
-  }
-  .stage .stage-name{
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--teal-deep); font-weight:500;
-  }
-  .stage p{ font-size: 14.5px; color: var(--ink-soft); }
-  .stage strong{ color: var(--ink); font-weight: 600; }
-
-  @media (max-width: 880px){
-    .pipeline{ grid-template-columns: 1fr; gap: 28px; }
-    .pipeline-line{ display:none; }
-    .stage{ padding-right:0; padding-left: 22px; border-left: 2px dashed var(--line); }
-  }
-
-  /* ---------- PROJECTS ---------- */
-  .proj-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-  @media (max-width: 780px){ .proj-grid{ grid-template-columns: 1fr; } }
-
-  .card{
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 26px; transition: transform .18s ease, box-shadow .18s ease;
-  }
-  .card:hover{ transform: translateY(-3px); box-shadow: 0 10px 28px -14px rgba(20,38,33,0.25); }
-
-  .card .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap: 10px; }
-  .card h3{ font-family: var(--display); font-size: 1.08rem; font-weight: 600; max-width: 80%; }
-  .card .card-year{ font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
-
-  .card .metrics{ display:flex; gap: 16px; margin: 14px 0 16px; flex-wrap:wrap; }
-  .card .metric{ font-family: var(--mono); font-size: 12px; color: var(--teal-deep); }
-  .card .metric b{ color: var(--amber); font-size: 13px; }
-
-  .card ul{ list-style:none; display:flex; flex-direction:column; gap: 8px; margin-bottom: 16px; }
-  .card ul li{ font-size: 14px; color: var(--ink-soft); padding-left: 14px; position:relative; }
-  .card ul li::before{ content:'›'; position:absolute; left:0; color: var(--amber); font-family: var(--mono); }
-
-  .tags{ display:flex; gap: 7px; flex-wrap:wrap; }
-  .tag{
-    font-family: var(--mono); font-size: 11px; padding: 4px 9px; border-radius: 4px;
-    background: var(--bg); border: 1px solid var(--line); color: var(--ink-soft);
-  }
-
-  /* ---------- SKILLS ---------- */
-  .skills-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
-  @media (max-width: 780px){ .skills-grid{ grid-template-columns: 1fr; } }
-  .skill-group .group-label{
-    font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing:0.05em;
-    color: var(--ink-faint); margin-bottom: 12px; display:flex; align-items:center; gap:8px;
-  }
-  .skill-group .group-label::after{ content:''; flex:1; height:1px; background: var(--line); }
-  .chip-row{ display:flex; gap:8px; flex-wrap:wrap; }
-  .chip{
-    font-size: 13.5px; padding: 7px 13px; border-radius: 20px;
-    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-  }
-
-  /* ---------- EDU / CERTS ---------- */
-  .edu-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-  @media (max-width: 780px){ .edu-grid{ grid-template-columns: 1fr; } }
-  .edu-card{ border-left: 2px solid var(--amber); padding-left: 20px; }
-  .edu-card h4{ font-family: var(--display); font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
-  .edu-card .edu-sub{ color: var(--ink-soft); font-size: 14px; }
-  .edu-card .edu-date{ font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-top: 6px; }
-
-  /* ---------- CONTACT / FOOTER ---------- */
-  footer.contact{ padding: 76px 0 50px; }
-  .contact-grid{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap: 30px; }
-  .contact h2{
-    font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.6rem);
-    max-width: 540px;
-  }
-  .contact .contact-links{ display:flex; flex-direction:column; gap: 10px; align-items:flex-start; }
-  .contact .contact-links a{
-    font-family: var(--mono); font-size: 14px; color: var(--ink-soft);
-    border-bottom: 1px solid transparent; padding-bottom: 2px;
-  }
-  .contact .contact-links a:hover{ color: var(--teal-deep); border-color: var(--teal-deep); }
-  .foot-bottom{
-    margin-top: 56px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    font-family: var(--mono); font-size: 12px; color: var(--ink-faint);
-  }
-
-  /* reveal-on-scroll */
-  .reveal{ opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.is-visible{ opacity: 1; transform: translateY(0); }
-
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ opacity:1; transform:none; transition:none; }
-    html{ scroll-behavior:auto; }
-  }
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
 </style>
 </head>
 <body>
@@ -268,295 +180,791 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#learning">Learning</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="btn ghost" href="#contact" style="padding:8px 16px;">Say hi</a>
+    <a class="btn primary" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank">Resume ↗</a>
   </nav>
 </header>
 
 <main id="top">
 
-  <section class="hero wrap">
-    <div class="eyebrow">Data Analyst — Mumbai, India</div>
-    <h1 class="title">I turn messy spreadsheets into <span class="accent">pipelines that run themselves.</span></h1>
-    <p class="lede">Uttam Singh. I build ETL pipelines, automation, and applied-AI tooling that cut manual work and raise reporting accuracy — currently at Jewelex India, processing 100,000+ records a month.</p>
-    <div class="hero-cta">
-      <a class="btn primary" href="#projects">View projects →</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn ghost" href="https://github.com/uttam4027" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
+<!-- HERO -->
+<section class="hero wrap">
+  <div class="eyebrow">Data Analyst &amp; AI Engineer — Mumbai, India</div>
+  <h1 class="title">I build pipelines,<br><span class="accent">automations &amp; AI systems</span><br>that replace manual work.</h1>
+  <p class="lede">Uttam Singh. From ETL pipelines and RAG chatbots to computer-vision search and GenAI agents — I ship production-grade data &amp; AI applications with measurable time and efficiency gains.</p>
+  <div class="hero-cta">
+    <a class="btn primary" href="#projects">View projects →</a>
+    <a class="btn ghost" href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn ghost" href="https://github.com/uttam4027" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
 
-    <div class="kpi-strip reveal">
-      <div class="kpi-grid">
-        <div class="kpi">
-          <div class="num" data-count="98" data-suffix="%"><span class="val">0</span><span class="suffix">%</span></div>
-          <div class="label">Reporting accuracy</div>
-        </div>
-        <div class="kpi">
-          <div class="num" data-count="70" data-suffix="%"><span class="val">0</span><span class="suffix">%</span></div>
-          <div class="label">Faster processing</div>
-        </div>
-        <div class="kpi">
-          <div class="num" data-count="30" data-suffix="+ hrs"><span class="val">0</span><span class="suffix">+ hrs</span></div>
-          <div class="label">Manual work cut / week</div>
-        </div>
-        <div class="kpi">
-          <div class="num" data-count="100" data-suffix="K+"><span class="val">0</span><span class="suffix">K+</span></div>
-          <div class="label">Records processed / mo.</div>
-        </div>
+  <div class="kpi-strip reveal">
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="num" data-count="99" data-suffix="%"><span class="val">0</span><span class="suffix">%</span></div>
+        <div class="label">Cycle-time reduction</div>
+      </div>
+      <div class="kpi">
+        <div class="num" data-count="98" data-suffix="%"><span class="val">0</span><span class="suffix">%</span></div>
+        <div class="label">Reporting accuracy</div>
+      </div>
+      <div class="kpi">
+        <div class="num" data-count="400" data-suffix="K+"><span class="val">0</span><span class="suffix">K+</span></div>
+        <div class="label">Images indexed</div>
+      </div>
+      <div class="kpi">
+        <div class="num" data-count="76" data-suffix="%"><span class="val">0</span><span class="suffix">%</span></div>
+        <div class="label">LLM token reduction</div>
+      </div>
+      <div class="kpi">
+        <div class="num" data-count="9" data-suffix=""><span class="val">0</span><span class="suffix"></span></div>
+        <div class="label">AI apps shipped</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="experience" class="wrap reveal">
-    <div class="sec-head">
-      <h2>Experience</h2>
-      <span class="sec-no">01 / Pipeline</span>
+<!-- EXPERIENCE -->
+<section id="experience" class="wrap reveal">
+  <div class="sec-head">
+    <h2>Experience</h2>
+    <span class="sec-no">01 / Pipeline</span>
+  </div>
+  <div class="role-meta">
+    <div>
+      <div class="role-title">Data Analyst &amp; AI Automation Engineer</div>
+      <div class="role-org">Jewelex India Pvt Ltd — Mumbai, India</div>
+    </div>
+    <div class="role-date">Jul 2024 — Present</div>
+  </div>
+  <div class="pipeline">
+    <div class="pipeline-line">
+      <svg preserveAspectRatio="none" viewBox="0 0 100 2"><path d="M0,1 L100,1"/></svg>
+    </div>
+    <div class="stage">
+      <div class="stage-tag"><div class="stage-num">01</div><div class="stage-name">Analytics</div></div>
+      <p>Built ETL pipelines on <strong>MS SQL Server &amp; Python</strong>, processing <strong>100K+ records/month</strong> and cutting processing time by <strong>70%</strong>, with Power BI dashboards for C-suite decisions.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-tag"><div class="stage-num">02</div><div class="stage-name">AI Systems</div></div>
+      <p>Shipped <strong>9 production AI applications</strong> — RAG chatbots, computer-vision search, GenAI agents, and document-intelligence pipelines — converting manual workflows into automated systems.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-tag"><div class="stage-num">03</div><div class="stage-name">Automation</div></div>
+      <p>Reduced a <strong>1–2 week GST compliance process to 10–20 minutes</strong> (~99.7% cycle-time cut). Automated price monitoring, newsletter research, HR onboarding and competitive intelligence.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-tag"><div class="stage-num">04</div><div class="stage-name">Impact</div></div>
+      <p>Delivered <strong>40–80 person-hours saved per cycle</strong>, <strong>76% LLM token reduction</strong> in agent pipelines, and a <strong>400K+ image vector search</strong> index for near-real-time similarity retrieval.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="wrap reveal">
+  <div class="sec-head">
+    <h2>Projects</h2>
+    <span class="sec-no">02 / Builds</span>
+  </div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">All (9)</button>
+    <button class="filter-btn" data-filter="ai">AI / GenAI</button>
+    <button class="filter-btn" data-filter="automation">Automation</button>
+    <button class="filter-btn" data-filter="analytics">Analytics</button>
+    <button class="filter-btn" data-filter="vision">Computer Vision</button>
+  </div>
+
+  <div class="proj-grid">
+
+    <!-- 1 DEMAND PLANNING -->
+    <div class="card" data-categories="analytics ai">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- grid lines -->
+          <line x1="40" y1="20" x2="40" y2="130" stroke="#CBD2C9" stroke-width="1"/>
+          <line x1="40" y1="130" x2="300" y2="130" stroke="#CBD2C9" stroke-width="1"/>
+          <line x1="40" y1="100" x2="300" y2="100" stroke="#E5EAE6" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="40" y1="70" x2="300" y2="70" stroke="#E5EAE6" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="40" y1="40" x2="300" y2="40" stroke="#E5EAE6" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- actual demand bars -->
+          <rect x="55" y="85" width="16" height="45" fill="#1F6F5C" rx="2"/>
+          <rect x="90" y="65" width="16" height="65" fill="#1F6F5C" rx="2"/>
+          <rect x="125" y="75" width="16" height="55" fill="#1F6F5C" rx="2"/>
+          <rect x="160" y="55" width="16" height="75" fill="#1F6F5C" rx="2"/>
+          <rect x="195" y="80" width="16" height="50" fill="#1F6F5C" rx="2"/>
+          <!-- forecast line -->
+          <polyline points="63,83 98,64 133,56 168,48 203,62 238,42 273,38" fill="none" stroke="#D98E2C" stroke-width="2.5" stroke-dasharray="5,3"/>
+          <!-- future shaded -->
+          <rect x="225" y="20" width="75" height="110" fill="#D98E2C" fill-opacity="0.07" rx="2"/>
+          <line x1="225" y1="20" x2="225" y2="130" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <rect x="230" y="38" width="16" height="92" fill="#D98E2C" fill-opacity="0.4" rx="2"/>
+          <rect x="265" y="28" width="16" height="102" fill="#D98E2C" fill-opacity="0.4" rx="2"/>
+          <!-- labels -->
+          <text x="228" y="17" font-family="monospace" font-size="8" fill="#D98E2C">forecast →</text>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">Demand Planning &amp; Inventory</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>Demand Planning &amp; Inventory Management</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Supply Chain · Forecasting</div>
+        <div class="metrics">
+          <span class="metric"><b>6</b> demand buckets</span>
+          <span class="metric"><b>WAPE/WMAPE</b> scoring</span>
+        </div>
+        <ul>
+          <li>SKU classification across 6 demand-history buckets (FM, MM, SM, New, NM) with frequency &amp; variability segmentation.</li>
+          <li>Evaluated SARIMA, Holt-Winters, XGBoost, ETS, SES, Croston &amp; Moving Average per SKU type.</li>
+          <li>Seasonality analysis, forecast confidence scoring &amp; customer-level demand forecasting.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">SARIMA</span><span class="tag">XGBoost</span></div>
+      </div>
     </div>
 
-    <div class="role-meta">
+    <!-- 2 WHITE SPACE -->
+    <div class="card" data-categories="analytics">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- heatmap grid -->
+          <g transform="translate(28,18)">
+            <!-- col headers -->
+            <text x="20" y="10" font-family="monospace" font-size="7" fill="#8B968F">R1</text>
+            <text x="55" y="10" font-family="monospace" font-size="7" fill="#8B968F">R2</text>
+            <text x="90" y="10" font-family="monospace" font-size="7" fill="#8B968F">R3</text>
+            <text x="125" y="10" font-family="monospace" font-size="7" fill="#8B968F">R4</text>
+            <text x="160" y="10" font-family="monospace" font-size="7" fill="#8B968F">R5</text>
+            <!-- row 1 -->
+            <text x="0" y="28" font-family="monospace" font-size="7" fill="#8B968F">$-$K</text>
+            <rect x="14" y="16" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.8"/>
+            <rect x="49" y="16" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.5"/>
+            <rect x="84" y="16" width="30" height="20" fill="#EDF1EE" rx="2" stroke="#CBD2C9" stroke-width="1"/>
+            <rect x="119" y="16" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.3"/>
+            <rect x="154" y="16" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.9"/>
+            <!-- row 2 -->
+            <text x="0" y="50" font-family="monospace" font-size="7" fill="#8B968F">$K-$5K</text>
+            <rect x="14" y="40" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.3"/>
+            <rect x="49" y="40" width="30" height="20" fill="#EDF1EE" rx="2" stroke="#CBD2C9" stroke-width="1"/>
+            <rect x="84" y="40" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.7"/>
+            <rect x="119" y="40" width="30" height="20" fill="#EDF1EE" rx="2" stroke="#D98E2C" stroke-width="2"/>
+            <text x="126" y="54" font-family="monospace" font-size="9" fill="#D98E2C" font-weight="bold">!</text>
+            <rect x="154" y="40" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.2"/>
+            <!-- row 3 -->
+            <text x="0" y="74" font-family="monospace" font-size="7" fill="#8B968F">$5K+</text>
+            <rect x="14" y="64" width="30" height="20" fill="#EDF1EE" rx="2" stroke="#D98E2C" stroke-width="2"/>
+            <text x="21" y="78" font-family="monospace" font-size="9" fill="#D98E2C" font-weight="bold">!</text>
+            <rect x="49" y="64" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.6"/>
+            <rect x="84" y="64" width="30" height="20" fill="#EDF1EE" rx="2" stroke="#D98E2C" stroke-width="2"/>
+            <text x="91" y="78" font-family="monospace" font-size="9" fill="#D98E2C" font-weight="bold">!</text>
+            <rect x="119" y="64" width="30" height="20" fill="#1F6F5C" rx="2" opacity="0.4"/>
+            <rect x="154" y="64" width="30" height="20" fill="#EDF1EE" rx="2" stroke="#CBD2C9" stroke-width="1"/>
+            <!-- legend -->
+            <rect x="200" y="20" width="10" height="10" fill="#1F6F5C" rx="1"/>
+            <text x="214" y="29" font-family="monospace" font-size="7" fill="#54635C">Present</text>
+            <rect x="200" y="36" width="10" height="10" fill="#EDF1EE" stroke="#D98E2C" stroke-width="1.5" rx="1"/>
+            <text x="214" y="45" font-family="monospace" font-size="7" fill="#D98E2C">Gap !</text>
+          </g>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">White Space &amp; Competitive Intelligence</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>White Space &amp; Competitive Intelligence Dashboard</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Market Intelligence · Product Analytics</div>
+        <div class="metrics">
+          <span class="metric"><b>10+</b> product attributes</span>
+          <span class="metric"><b>Multi-retailer</b> analysis</span>
+        </div>
+        <ul>
+          <li>Multi-dimensional dashboard comparing retailer assortments across price bands, diamond weight, categories &amp; collections.</li>
+          <li>Automated Excel &amp; PowerPoint report generation for assortment-gap identification.</li>
+          <li>SKU-level drill-down with product images &amp; dynamic pivot filters.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">OpenPyXL</span><span class="tag">python-pptx</span><span class="tag">JavaScript</span></div>
+      </div>
+    </div>
+
+    <!-- 3 GST -->
+    <div class="card" data-categories="automation">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- stack of docs left -->
+          <rect x="30" y="40" width="64" height="82" rx="4" fill="#fff" stroke="#CBD2C9" stroke-width="1.5"/>
+          <rect x="36" y="46" width="64" height="82" rx="4" fill="#fff" stroke="#CBD2C9" stroke-width="1.5"/>
+          <rect x="42" y="52" width="64" height="82" rx="4" fill="#fff" stroke="#1F6F5C" stroke-width="1.5"/>
+          <text x="55" y="82" font-family="monospace" font-size="8" fill="#1F6F5C">INV</text>
+          <line x1="52" y1="90" x2="98" y2="90" stroke="#CBD2C9" stroke-width="1"/>
+          <line x1="52" y1="97" x2="88" y2="97" stroke="#CBD2C9" stroke-width="1"/>
+          <line x1="52" y1="104" x2="92" y2="104" stroke="#CBD2C9" stroke-width="1"/>
+          <!-- arrow -->
+          <path d="M118,93 L148,93" stroke="#D98E2C" stroke-width="2.5" marker-end="url(#arr)"/>
+          <defs><marker id="arr" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#D98E2C"/></marker></defs>
+          <!-- gear icon -->
+          <circle cx="133" cy="93" r="10" fill="#D98E2C" fill-opacity=".12" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="127" y="97" font-size="10" font-family="monospace" fill="#D98E2C">⚙</text>
+          <!-- output doc right -->
+          <rect x="158" y="55" width="68" height="88" rx="4" fill="#fff" stroke="#1F6F5C" stroke-width="2"/>
+          <rect x="163" y="62" width="38" height="4" rx="1" fill="#1F6F5C" opacity=".6"/>
+          <rect x="163" y="70" width="55" height="3" rx="1" fill="#CBD2C9"/>
+          <rect x="163" y="76" width="50" height="3" rx="1" fill="#CBD2C9"/>
+          <rect x="163" y="82" width="44" height="3" rx="1" fill="#CBD2C9"/>
+          <rect x="163" y="90" width="55" height="3" rx="1" fill="#CBD2C9"/>
+          <rect x="163" y="96" width="48" height="3" rx="1" fill="#CBD2C9"/>
+          <!-- checkmark -->
+          <circle cx="212" cy="115" r="10" fill="#1F6F5C"/>
+          <polyline points="207,115 211,119 218,111" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <!-- time labels -->
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">1–2 weeks</text>
+          <rect x="162" y="138" width="54" height="10" rx="2" fill="#1F6F5C" fill-opacity=".12"/>
+          <text x="165" y="146" font-family="monospace" font-size="8" fill="#1F6F5C">10–20 min</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>GST Compliance Document Automation</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Finance · Compliance Automation</div>
+        <div class="metrics">
+          <span class="metric"><b>~99.7%</b> cycle-time cut</span>
+          <span class="metric"><b>40–80 hrs</b> saved/cycle</span>
+          <span class="metric"><b>500+</b> records/mo</span>
+        </div>
+        <ul>
+          <li>End-to-end tool that validates Excel data, matches Invoice &amp; ICE Gate PDFs, merges and compresses into portal-compliant batches (&lt;5 MB).</li>
+          <li>Reduced a 1–2 week manual process to 10–20 minutes — handled solo instead of requiring multiple people.</li>
+          <li>Smart DPI optimization, error logs, and batch-wise dashboard for status tracking.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">PyMuPDF</span><span class="tag">OpenCV</span><span class="tag">SQLite</span><span class="tag">Pandas</span></div>
+      </div>
+    </div>
+
+    <!-- 4 HR ONBOARDING -->
+    <div class="card" data-categories="ai automation">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- person circle -->
+          <circle cx="80" cy="65" r="28" fill="#fff" stroke="#1F6F5C" stroke-width="1.5"/>
+          <circle cx="80" cy="57" r="11" fill="#1F6F5C" opacity=".8"/>
+          <path d="M55,90 Q80,75 105,90" fill="#1F6F5C" opacity=".8"/>
+          <!-- scan line animation -->
+          <rect x="52" y="37" width="56" height="56" rx="4" fill="none" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <!-- arrows -->
+          <path d="M115,65 L150,65" stroke="#D98E2C" stroke-width="2" marker-end="url(#arr2)"/>
+          <defs><marker id="arr2" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#D98E2C"/></marker></defs>
+          <!-- AI box -->
+          <rect x="155" y="50" width="50" height="30" rx="5" fill="#1F6F5C"/>
+          <text x="165" y="61" font-family="monospace" font-size="7" fill="#fff">AI</text>
+          <text x="159" y="71" font-family="monospace" font-size="7" fill="#fff">Extract</text>
+          <text x="164" y="79" font-family="monospace" font-size="7" fill="#fff">+OCR</text>
+          <path d="M205,65 L238,65" stroke="#D98E2C" stroke-width="2" marker-end="url(#arr3)"/>
+          <defs><marker id="arr3" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#D98E2C"/></marker></defs>
+          <!-- form stack -->
+          <rect x="240" y="42" width="50" height="12" rx="2" fill="#fff" stroke="#CBD2C9" stroke-width="1"/>
+          <rect x="240" y="57" width="50" height="12" rx="2" fill="#fff" stroke="#CBD2C9" stroke-width="1"/>
+          <rect x="240" y="72" width="50" height="12" rx="2" fill="#fff" stroke="#1F6F5C" stroke-width="1.5"/>
+          <text x="243" y="50" font-family="monospace" font-size="7" fill="#8B968F">DB sync</text>
+          <text x="243" y="65" font-family="monospace" font-size="7" fill="#8B968F">Validate</text>
+          <text x="243" y="80" font-family="monospace" font-size="7" fill="#1F6F5C">Form gen</text>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">HR Onboarding — AI Document Intelligence</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>HR Onboarding Documentation Application</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">HR · AI Document Intelligence</div>
+        <div class="metrics">
+          <span class="metric"><b>Manual → Auto</b> workflow</span>
+          <span class="metric"><b>0</b> manual re-entry</span>
+        </div>
+        <ul>
+          <li>AI-based document data extraction via OpenAI/Gemini Vision with OCR fallback; auto photo detection &amp; cropping.</li>
+          <li>MSSQL database sync, field validation, and auto-generated joining &amp; statutory forms.</li>
+          <li>Provider flexibility (OpenAI / Gemini) and dynamic data sync when HR edits information.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">OpenAI Vision</span><span class="tag">PyMuPDF</span><span class="tag">OpenCV</span><span class="tag">MSSQL</span></div>
+      </div>
+    </div>
+
+    <!-- 5 IMAGE SIMILARITY -->
+    <div class="card" data-categories="ai vision">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- query image -->
+          <rect x="20" y="30" width="70" height="70" rx="6" fill="#fff" stroke="#1F6F5C" stroke-width="2"/>
+          <ellipse cx="55" cy="58" rx="16" ry="9" fill="#1F6F5C" opacity=".25"/>
+          <ellipse cx="55" cy="65" rx="12" ry="7" fill="#1F6F5C" opacity=".4"/>
+          <polygon points="43,82 55,58 67,82" fill="#1F6F5C" opacity=".5"/>
+          <text x="30" y="115" font-family="monospace" font-size="8" fill="#1F6F5C">query</text>
+          <!-- vector arrow -->
+          <path d="M97,65 L128,65" stroke="#D98E2C" stroke-width="2" marker-end="url(#vArr)"/>
+          <defs><marker id="vArr" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#D98E2C"/></marker></defs>
+          <text x="99" y="60" font-family="monospace" font-size="7" fill="#D98E2C">DINOv2</text>
+          <text x="99" y="69" font-family="monospace" font-size="7" fill="#D98E2C">+Qdrant</text>
+          <!-- results -->
+          <rect x="133" y="22" width="48" height="48" rx="4" fill="#fff" stroke="#1F6F5C" stroke-width="2"/>
+          <ellipse cx="157" cy="40" rx="12" ry="7" fill="#1F6F5C" opacity=".35"/>
+          <polygon points="148,62 157,40 166,62" fill="#1F6F5C" opacity=".5"/>
+          <text x="140" y="80" font-family="monospace" font-size="7" fill="#1F6F5C">98%</text>
+
+          <rect x="188" y="28" width="44" height="44" rx="4" fill="#fff" stroke="#1F6F5C" stroke-width="1.5" opacity=".8"/>
+          <ellipse cx="210" cy="43" rx="10" ry="6" fill="#1F6F5C" opacity=".3"/>
+          <polygon points="202,62 210,43 218,62" fill="#1F6F5C" opacity=".4"/>
+          <text x="196" y="82" font-family="monospace" font-size="7" fill="#8B968F">91%</text>
+
+          <rect x="239" y="34" width="40" height="40" rx="4" fill="#fff" stroke="#1F6F5C" stroke-width="1" opacity=".6"/>
+          <ellipse cx="259" cy="47" rx="9" ry="5" fill="#1F6F5C" opacity=".25"/>
+          <polygon points="252,65 259,47 266,65" fill="#1F6F5C" opacity=".35"/>
+          <text x="245" y="84" font-family="monospace" font-size="7" fill="#8B968F">85%</text>
+
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">Image Similarity Search — 400K+ images indexed</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>Jewellery Image Similarity Search</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Computer Vision · Vector Search</div>
+        <div class="metrics">
+          <span class="metric"><b>400K+</b> images indexed</span>
+          <span class="metric"><b>DINOv2</b> embeddings</span>
+        </div>
+        <ul>
+          <li>Upload-to-results: DINOv2 visual embeddings + Qdrant vector search for near-real-time SKU-level similarity retrieval.</li>
+          <li>Multi-view analysis, shape fingerprinting for structural matching, and similarity-score-based ranking.</li>
+          <li>Eliminated manual image-by-image catalogue searching across 400K+ product images.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">DINOv2</span><span class="tag">Qdrant</span><span class="tag">Streamlit</span><span class="tag">OpenCV</span></div>
+      </div>
+    </div>
+
+    <!-- 6 METAL RATES -->
+    <div class="card" data-categories="automation ai">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- clock -->
+          <circle cx="50" cy="65" r="28" fill="#fff" stroke="#CBD2C9" stroke-width="1.5"/>
+          <circle cx="50" cy="65" r="2" fill="#1F6F5C"/>
+          <line x1="50" y1="65" x2="50" y2="47" stroke="#1F6F5C" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="50" y1="65" x2="64" y2="72" stroke="#D98E2C" stroke-width="2" stroke-linecap="round"/>
+          <text x="33" y="105" font-family="monospace" font-size="7" fill="#8B968F">every 4 hrs</text>
+          <!-- arrow -->
+          <path d="M83,65 L105,65" stroke="#D98E2C" stroke-width="2" marker-end="url(#mArr)"/>
+          <defs><marker id="mArr" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#D98E2C"/></marker></defs>
+          <!-- rate chart -->
+          <rect x="108" y="32" width="110" height="72" rx="4" fill="#fff" stroke="#CBD2C9"/>
+          <polyline points="118,85 130,72 142,76 154,60 166,68 178,55 190,50 202,58" fill="none" stroke="#1F6F5C" stroke-width="2"/>
+          <text x="114" y="42" font-family="monospace" font-size="7" fill="#D98E2C">Au $—/oz</text>
+          <text x="114" y="51" font-family="monospace" font-size="6" fill="#8B968F">Ag $—/oz</text>
+          <!-- excel -->
+          <rect x="232" y="40" width="58" height="24" rx="3" fill="#1F6F5C"/>
+          <text x="238" y="56" font-family="monospace" font-size="8" fill="#fff">📊 Excel</text>
+          <!-- email -->
+          <rect x="232" y="74" width="58" height="24" rx="3" fill="#fff" stroke="#1F6F5C" stroke-width="1.5"/>
+          <text x="238" y="90" font-family="monospace" font-size="8" fill="#1F6F5C">✉ Email</text>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">Metal Rate Extraction &amp; Auto-Email</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>Metal Rate Extraction &amp; Automation</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Sales Support · Process Automation</div>
+        <div class="metrics">
+          <span class="metric"><b>4-hr</b> schedule</span>
+          <span class="metric"><b>Multi-source</b> monitoring</span>
+        </div>
+        <ul>
+          <li>Automated precious-metal price monitoring every 4 hours using Playwright + OpenAI Vision for AI-based rate extraction.</li>
+          <li>Auto-generates Excel reports and emails them to the Sales team with no manual intervention.</li>
+          <li>Dashboard for latest rates, run history &amp; error logging.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Playwright</span><span class="tag">OpenAI Vision</span><span class="tag">APScheduler</span><span class="tag">Flask</span><span class="tag">SMTP</span></div>
+      </div>
+    </div>
+
+    <!-- 7 RAG CHATBOT -->
+    <div class="card" data-categories="ai">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- doc icon -->
+          <rect x="22" y="28" width="52" height="68" rx="4" fill="#fff" stroke="#CBD2C9" stroke-width="1.5"/>
+          <rect x="28" y="38" width="30" height="3" rx="1" fill="#1F6F5C" opacity=".6"/>
+          <rect x="28" y="46" width="38" height="2" rx="1" fill="#CBD2C9"/>
+          <rect x="28" y="52" width="34" height="2" rx="1" fill="#CBD2C9"/>
+          <rect x="28" y="58" width="36" height="2" rx="1" fill="#CBD2C9"/>
+          <text x="25" y="108" font-family="monospace" font-size="7" fill="#8B968F">Guideline</text>
+          <text x="27" y="116" font-family="monospace" font-size="7" fill="#8B968F">Docs</text>
+          <!-- qdrant -->
+          <rect x="86" y="48" width="52" height="30" rx="5" fill="#D98E2C" fill-opacity=".15" stroke="#D98E2C" stroke-width="1.5"/>
+          <text x="89" y="60" font-family="monospace" font-size="7" fill="#D98E2C">Qdrant</text>
+          <text x="89" y="70" font-family="monospace" font-size="7" fill="#D98E2C">Vectors</text>
+          <!-- arrows -->
+          <path d="M76,62 L82,62" stroke="#D98E2C" stroke-width="1.5" marker-end="url(#rArr)"/>
+          <defs><marker id="rArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#D98E2C"/></marker></defs>
+          <path d="M140,62 L158,62" stroke="#1F6F5C" stroke-width="1.5" marker-end="url(#rArr2)"/>
+          <defs><marker id="rArr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1F6F5C"/></marker></defs>
+          <!-- chat bubbles -->
+          <rect x="162" y="25" width="130" height="26" rx="8" fill="#1F6F5C"/>
+          <text x="172" y="37" font-family="monospace" font-size="7.5" fill="#fff">What's the guide for SKU A?</text>
+          <polygon points="170,51 178,51 170,43" fill="#1F6F5C"/>
+          <rect x="162" y="58" width="130" height="36" rx="8" fill="#fff" stroke="#1F6F5C" stroke-width="1.5"/>
+          <text x="172" y="71" font-family="monospace" font-size="7" fill="#1F6F5C">Based on guideline v3, p.12:</text>
+          <text x="172" y="81" font-family="monospace" font-size="7" fill="#54635C">min weight = 2.4g ...</text>
+          <text x="172" y="91" font-family="monospace" font-size="7" fill="#D98E2C">[source: workbook-v3.xlsx]</text>
+          <polygon points="170,58 178,58 170,66" fill="#fff" stroke="#1F6F5C" stroke-width="1"/>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">RAG Chatbot — LlamaIndex + Qdrant</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>PD Smart Assistant — RAG Chatbot</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Product Development · RAG / LLM</div>
+        <div class="metrics">
+          <span class="metric"><b>Top-5</b> semantic retrieval</span>
+          <span class="metric"><b>Token-efficient</b> RAG</span>
+        </div>
+        <ul>
+          <li>RAG chatbot over indexed product-guideline workbooks — ask in natural language, get answers with source citations.</li>
+          <li>Incremental indexing skips unchanged files; top-5 retrieval avoids sending full datasets per query.</li>
+          <li>Admin panel, user auth, chat history &amp; customer-to-group matching for relevant guideline retrieval.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">LlamaIndex</span><span class="tag">OpenAI</span><span class="tag">Qdrant</span><span class="tag">Flask</span><span class="tag">SQLite</span></div>
+      </div>
+    </div>
+
+    <!-- 8 NEWSLETTER AGENT -->
+    <div class="card" data-categories="ai automation">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- email icon -->
+          <rect x="20" y="38" width="56" height="42" rx="4" fill="#fff" stroke="#CBD2C9" stroke-width="1.5"/>
+          <polyline points="20,42 48,60 76,42" fill="none" stroke="#1F6F5C" stroke-width="1.5"/>
+          <text x="24" y="92" font-family="monospace" font-size="7" fill="#8B968F">Outlook</text>
+          <!-- langgraph fan-out -->
+          <path d="M80,59 L108,40" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <path d="M80,59 L108,59" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <path d="M80,59 L108,78" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <rect x="108" y="28" width="44" height="24" rx="3" fill="#1F6F5C" opacity=".9"/>
+          <text x="112" y="39" font-family="monospace" font-size="7" fill="#fff">Browse</text>
+          <text x="112" y="48" font-family="monospace" font-size="7" fill="#fff">Product</text>
+          <rect x="108" y="47" width="44" height="24" rx="3" fill="#1F6F5C" opacity=".7"/>
+          <text x="112" y="58" font-family="monospace" font-size="7" fill="#fff">LLM</text>
+          <text x="112" y="67" font-family="monospace" font-size="7" fill="#fff">Enrich</text>
+          <rect x="108" y="66" width="44" height="24" rx="3" fill="#1F6F5C" opacity=".5"/>
+          <text x="112" y="77" font-family="monospace" font-size="7" fill="#fff">Dedup</text>
+          <text x="112" y="86" font-family="monospace" font-size="7" fill="#fff">Store</text>
+          <!-- merge arrow -->
+          <path d="M154,40 L178,59" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <path d="M154,59 L178,59" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <path d="M154,78 L178,59" stroke="#D98E2C" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <!-- output -->
+          <rect x="180" y="38" width="58" height="42" rx="4" fill="#fff" stroke="#1F6F5C" stroke-width="1.5"/>
+          <rect x="186" y="46" width="38" height="3" rx="1" fill="#1F6F5C" opacity=".6"/>
+          <rect x="186" y="53" width="44" height="2" rx="1" fill="#CBD2C9"/>
+          <rect x="186" y="58" width="40" height="2" rx="1" fill="#CBD2C9"/>
+          <rect x="186" y="63" width="44" height="2" rx="1" fill="#CBD2C9"/>
+          <text x="183" y="92" font-family="monospace" font-size="7" fill="#1F6F5C">CSV/Excel</text>
+          <!-- token badge -->
+          <rect x="248" y="38" width="60" height="42" rx="4" fill="#D98E2C" fill-opacity=".1" stroke="#D98E2C" stroke-width="1"/>
+          <text x="252" y="57" font-family="monospace" font-size="8" fill="#D98E2C" font-weight="bold">76%</text>
+          <text x="252" y="68" font-family="monospace" font-size="7" fill="#D98E2C">token</text>
+          <text x="252" y="76" font-family="monospace" font-size="7" fill="#D98E2C">saved</text>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">Newsletter Agent — LangGraph fan-out</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>Newsletter Product Research Agent</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Market Intelligence · Agentic AI</div>
+        <div class="metrics">
+          <span class="metric"><b>76%</b> token reduction</span>
+          <span class="metric"><b>4-hr</b> auto-schedule</span>
+        </div>
+        <ul>
+          <li>LangGraph fan-out agent scans Outlook newsletters every 4 hours, browses product pages &amp; extracts structured data.</li>
+          <li>Restructured LLM enrichment to use structured data first — cut context from ~2,500 to ~600 tokens (76% reduction).</li>
+          <li>New product deduplication, SQLite storage, Excel/CSV reports &amp; run-monitoring dashboard.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">Playwright</span><span class="tag">MS Graph API</span><span class="tag">OpenAI</span><span class="tag">Flask</span></div>
+      </div>
+    </div>
+
+    <!-- 9 RAPNET -->
+    <div class="card" data-categories="automation analytics">
+      <div class="card-img">
+        <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="150" fill="#EDF1EE"/>
+          <!-- diamond shape -->
+          <polygon points="160,28 210,60 160,110 110,60" fill="#fff" stroke="#1F6F5C" stroke-width="2"/>
+          <polygon points="160,28 210,60 160,65" fill="#1F6F5C" opacity=".2"/>
+          <polygon points="110,60 160,65 160,110" fill="#1F6F5C" opacity=".3"/>
+          <polygon points="160,28 210,60 160,65" fill="none" stroke="#1F6F5C" stroke-width=".8"/>
+          <polygon points="110,60 160,60 160,65" fill="#1F6F5C" opacity=".15"/>
+          <!-- data table right -->
+          <rect x="225" y="32" width="78" height="80" rx="4" fill="#fff" stroke="#CBD2C9" stroke-width="1"/>
+          <rect x="225" y="32" width="78" height="14" rx="4" fill="#1F6F5C"/>
+          <text x="228" y="43" font-family="monospace" font-size="7" fill="#fff">Carat  Shape  $</text>
+          <text x="228" y="55" font-family="monospace" font-size="7" fill="#54635C">0.30   RD    —</text>
+          <text x="228" y="64" font-family="monospace" font-size="7" fill="#54635C">0.50   PR    —</text>
+          <text x="228" y="73" font-family="monospace" font-size="7" fill="#54635C">0.70   OV    —</text>
+          <text x="228" y="82" font-family="monospace" font-size="7" fill="#54635C">1.00   CU    —</text>
+          <text x="228" y="91" font-family="monospace" font-size="7" fill="#54635C">1.50   EM    —</text>
+          <!-- arrow -->
+          <path d="M212,69 L222,69" stroke="#D98E2C" stroke-width="2" marker-end="url(#dArr)"/>
+          <defs><marker id="dArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#D98E2C"/></marker></defs>
+          <text x="42" y="145" font-family="monospace" font-size="8" fill="#8B968F">Diamond Data Extraction &amp; Automation</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3>Diamond Data Extraction &amp; Automation</h3>
+          <span class="card-year">2024</span>
+        </div>
+        <div class="card-domain">Product Analytics · Data Automation</div>
+        <div class="metrics">
+          <span class="metric"><b>Structured</b> output</span>
+          <span class="metric"><b>Repeatable</b> pipeline</span>
+        </div>
+        <ul>
+          <li>Automated extraction and processing of diamond product information from industry platforms.</li>
+          <li>Structured data collection pipeline replacing manual, repetitive catalogue research.</li>
+          <li>Output ready for downstream pricing analysis and inventory reporting.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">Pandas</span><span class="tag">Excel</span><span class="tag">Automation</span></div>
+      </div>
+    </div>
+
+  </div><!-- proj-grid -->
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="wrap reveal">
+  <div class="sec-head">
+    <h2>Technical Skills</h2>
+    <span class="sec-no">03 / Stack</span>
+  </div>
+  <div class="skills-outer">
+    <div class="skill-group">
+      <div class="group-label">Languages</div>
+      <div class="chip-row">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">VBA</span><span class="chip">DAX</span><span class="chip">JavaScript</span><span class="chip">JSON</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="group-label">Data &amp; BI Tools</div>
+      <div class="chip-row">
+        <span class="chip">Power BI</span><span class="chip">MS SQL Server</span><span class="chip">MySQL</span><span class="chip">Advanced Excel</span><span class="chip">Tableau</span><span class="chip">Power Query</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="group-label">AI / GenAI</div>
+      <div class="chip-row">
+        <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">LlamaIndex</span><span class="chip">RAG</span><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">HuggingFace</span><span class="chip">FAISS</span><span class="chip">Qdrant</span><span class="chip">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="group-label">Computer Vision &amp; ML</div>
+      <div class="chip-row">
+        <span class="chip">PyTorch</span><span class="chip">DINOv2</span><span class="chip">OpenCV</span><span class="chip">Pillow</span><span class="chip">Embeddings</span><span class="chip">Vector Search</span><span class="chip">SARIMA</span><span class="chip">XGBoost</span><span class="chip">NLP</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="group-label">Libraries</div>
+      <div class="chip-row">
+        <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Requests</span><span class="chip">Openpyxl</span><span class="chip">PyMuPDF</span><span class="chip">python-docx</span><span class="chip">ReportLab</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="group-label">Automation &amp; Infra</div>
+      <div class="chip-row">
+        <span class="chip">Flask</span><span class="chip">Streamlit</span><span class="chip">Power Automate</span><span class="chip">Playwright</span><span class="chip">APScheduler</span><span class="chip">MS Graph API</span><span class="chip">MCP Server</span><span class="chip">Git/GitHub</span><span class="chip">SQLite</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENTLY LEARNING -->
+<section id="learning" class="wrap reveal">
+  <div class="sec-head">
+    <h2>Currently Learning</h2>
+    <span class="sec-no">04 / In Progress</span>
+  </div>
+  <p style="color:var(--ink-soft);font-size:15px;margin-bottom:28px;">Working through a structured 28-week FAANG-benchmarked study path to deepen analytics engineering and product-sense skills.</p>
+  <div class="learning-grid">
+    <div class="learn-card">
+      <div class="learn-icon">🗄️</div>
       <div>
-        <div class="role-title">Data Analyst</div>
-        <div class="role-org">Jewelex India Pvt Ltd — Mumbai, India</div>
-      </div>
-      <div class="role-date">Jul 2024 — Present</div>
-    </div>
-
-    <div class="pipeline">
-      <div class="pipeline-line">
-        <svg preserveAspectRatio="none" viewBox="0 0 100 2"><path d="M0,1 L100,1"/></svg>
-      </div>
-
-      <div class="stage">
-        <div class="stage-tag">
-          <div class="stage-num">01</div>
-          <div class="stage-name">Extract</div>
-        </div>
-        <p>Built enterprise ETL pipelines on <strong>MS SQL Server &amp; Python</strong>, processing <strong>100,000+ records monthly</strong> and cutting processing time by <strong>70%</strong>.</p>
-      </div>
-
-      <div class="stage">
-        <div class="stage-tag">
-          <div class="stage-num">02</div>
-          <div class="stage-name">Transform</div>
-        </div>
-        <p>Delivered interactive <strong>Power BI dashboards</strong> for C-suite executives, lifting reporting accuracy from 85% to <strong>98%</strong> and shaping positioning across <strong>15+ brands</strong>.</p>
-      </div>
-
-      <div class="stage">
-        <div class="stage-tag">
-          <div class="stage-num">03</div>
-          <div class="stage-name">Automate</div>
-        </div>
-        <p>Engineered <strong>Generative AI + Power Automate</strong> workflows that eliminated <strong>30+ hours</strong> of manual work weekly, lifting team productivity by <strong>40%</strong>.</p>
-      </div>
-
-      <div class="stage">
-        <div class="stage-tag">
-          <div class="stage-num">04</div>
-          <div class="stage-name">Monitor</div>
-        </div>
-        <p>Automated web data extraction from <strong>15+ competitor sites</strong> in Python, keeping a real-time competitive-intelligence database for leadership.</p>
+        <div class="learn-title">Analytics Engineering</div>
+        <div class="learn-sub">dbt, Snowflake, BigQuery, Git for analytics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
       </div>
     </div>
-  </section>
-
-  <section id="projects" class="wrap reveal">
-    <div class="sec-head">
-      <h2>Key Projects</h2>
-      <span class="sec-no">02 / Builds</span>
-    </div>
-
-    <div class="proj-grid">
-
-      <div class="card">
-        <div class="card-top">
-          <h3>AI-Powered Product Data Extraction System</h3>
-          <span class="card-year">2024</span>
-        </div>
-        <div class="metrics">
-          <span class="metric"><b>95%</b> extraction accuracy</span>
-          <span class="metric"><b>500+</b> product images</span>
-        </div>
-        <ul>
-          <li>End-to-end pipeline using the Gemini API to pull SKU, pricing &amp; specs via prompt engineering.</li>
-          <li>16+ key rotation with automatic failover and checkpointing for safe 8+ hour batch runs.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Gemini API</span><span class="tag">LangChain</span><span class="tag">Pandas</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <h3>Enterprise Sentiment Analysis Platform</h3>
-          <span class="card-year">2024</span>
-        </div>
-        <div class="metrics">
-          <span class="metric"><b>89%</b> accuracy</span>
-          <span class="metric"><b>10,000+</b> reviews</span>
-        </div>
-        <ul>
-          <li>Production sentiment system on Qwen3 &amp; Gamma LLMs via LangChain, cutting manual analysis time by 85%.</li>
-          <li>RAG agent over a FAISS vector store for natural-language Q&amp;A on Excel data, surfaced in Power BI.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">FAISS</span><span class="tag">HuggingFace</span><span class="tag">Power BI</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <h3>Competitive Intelligence Automation Suite</h3>
-          <span class="card-year">2024</span>
-        </div>
-        <div class="metrics">
-          <span class="metric"><b>20+ hrs</b> saved / week</span>
-          <span class="metric"><b>1,000+</b> photos processed</span>
-        </div>
-        <ul>
-          <li>Automated scraping of Kay, Jared &amp; Zales, maintaining real-time SKU databases across 15+ brands.</li>
-          <li>Image-processing pipeline standardized product photography, cutting manual editing time by 60%.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">SQL</span><span class="tag">VBA</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <h3>VBA Process Automation Framework</h3>
-          <span class="card-year">2024</span>
-        </div>
-        <div class="metrics">
-          <span class="metric"><b>3x</b> faster processing</span>
-          <span class="metric"><b>85→98%</b> data quality</span>
-        </div>
-        <ul>
-          <li>VBA macro suite for review-data validation &amp; cleaning, raising accuracy from 85% to 98%.</li>
-          <li>Automated ETL for Macy's LGD tracking data, removing 100% of manual transformation errors.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">VBA</span><span class="tag">Excel</span><span class="tag">Power Query</span><span class="tag">ETL</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="skills" class="wrap reveal">
-    <div class="sec-head">
-      <h2>Technical Skills</h2>
-      <span class="sec-no">03 / Stack</span>
-    </div>
-
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="group-label">Languages &amp; Frameworks</div>
-        <div class="chip-row">
-          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">VBA</span><span class="chip">DAX</span><span class="chip">JavaScript</span><span class="chip">JSON</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="group-label">Data Analysis Tools</div>
-        <div class="chip-row">
-          <span class="chip">Power BI</span><span class="chip">MS SQL Server</span><span class="chip">MySQL</span><span class="chip">Advanced Excel</span><span class="chip">Tableau</span><span class="chip">Power Query</span><span class="chip">ETL Pipelines</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="group-label">AI &amp; Machine Learning</div>
-        <div class="chip-row">
-          <span class="chip">LangChain</span><span class="chip">HuggingFace</span><span class="chip">FAISS</span><span class="chip">RAG</span><span class="chip">Gemini API</span><span class="chip">NLP</span><span class="chip">LLMs</span><span class="chip">Sentiment Analysis</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="group-label">Libraries &amp; Automation</div>
-        <div class="chip-row">
-          <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Pillow</span><span class="chip">Requests</span><span class="chip">Openpyxl</span><span class="chip">Power Automate</span><span class="chip">MCP Server</span><span class="chip">Git/GitHub</span>
-        </div>
+    <div class="learn-card">
+      <div class="learn-icon">📊</div>
+      <div>
+        <div class="learn-title">Advanced SQL</div>
+        <div class="learn-sub">Window functions, CTEs, query optimization (DataLemur)</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
       </div>
     </div>
-  </section>
+    <div class="learn-card">
+      <div class="learn-icon">🧪</div>
+      <div>
+        <div class="learn-title">Statistics &amp; A/B Testing</div>
+        <div class="learn-sub">Hypothesis testing, experiment design, p-values</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+      </div>
+    </div>
+    <div class="learn-card">
+      <div class="learn-icon">🔗</div>
+      <div>
+        <div class="learn-title">Causal Inference</div>
+        <div class="learn-sub">Confounders, Simpson's Paradox, causal graphs</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
+      </div>
+    </div>
+    <div class="learn-card">
+      <div class="learn-icon">📐</div>
+      <div>
+        <div class="learn-title">Product Analytics Frameworks</div>
+        <div class="learn-sub">AARRR, MECE, unit economics, KPI trees, DAU/MAU, star schema</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+      </div>
+    </div>
+    <div class="learn-card">
+      <div class="learn-icon">🤖</div>
+      <div>
+        <div class="learn-title">Agentic AI &amp; n8n</div>
+        <div class="learn-sub">Advanced RAG, LangChain agents, n8n, MCP workflows</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section id="education" class="wrap reveal">
-    <div class="sec-head">
-      <h2>Education &amp; Certifications</h2>
-      <span class="sec-no">04 / Foundation</span>
+<!-- EDUCATION -->
+<section id="education" class="wrap reveal">
+  <div class="sec-head">
+    <h2>Education &amp; Certifications</h2>
+    <span class="sec-no">05 / Foundation</span>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <h4>B.Tech, Electrical &amp; Electronics Engineering</h4>
+      <div class="edu-sub">Shri Ram Institute of Technology &nbsp;·&nbsp; CGPA 8.0/10.0</div>
+      <div class="edu-date">Jul 2019 — Jun 2023</div>
     </div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <h4>B.Tech, Electrical &amp; Electronics Engineering</h4>
-        <div class="edu-sub">Shri Ram Institute of Technology · CGPA 8.0/10.0</div>
-        <div class="edu-date">Jul 2019 — Jun 2023</div>
-      </div>
-      <div class="edu-card">
-        <h4>IBM Data Analyst Professional Certificate</h4>
-        <div class="edu-sub">Coursera</div>
-        <div class="edu-date">2024</div>
-      </div>
-      <div class="edu-card">
-        <h4>PCAP: Programming Essentials in Python</h4>
-        <div class="edu-sub">Cisco</div>
-        <div class="edu-date">2022</div>
-      </div>
+    <div class="edu-card">
+      <h4>IBM Data Analyst Professional Certificate</h4>
+      <div class="edu-sub">Coursera</div>
+      <div class="edu-date">2024</div>
     </div>
-  </section>
+    <div class="edu-card">
+      <h4>PCAP: Programming Essentials in Python</h4>
+      <div class="edu-sub">Cisco</div>
+      <div class="edu-date">2022</div>
+    </div>
+    <div class="edu-card">
+      <h4>FAANG Analytics Study Path</h4>
+      <div class="edu-sub">Self-directed · 28-week structured curriculum benchmarked against Meta, Amazon &amp; Google analyst loops</div>
+      <div class="edu-date">2025 — In Progress</div>
+    </div>
+  </div>
+</section>
 
 </main>
 
+<!-- FOOTER / CONTACT -->
 <footer class="contact wrap reveal" id="contact">
   <div class="contact-grid">
-    <h2>Have data that needs a pipeline? Let's talk.</h2>
+    <h2>Have data that needs a pipeline, AI system, or dashboard? Let's build it.</h2>
     <div class="contact-links">
       <a href="mailto:uttamsingh4027@gmail.com">uttamsingh4027@gmail.com</a>
       <a href="tel:+917489359791">+91 74893 59791</a>
       <a href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">linkedin.com/in/uttamdataanalytics</a>
       <a href="https://github.com/uttam4027" target="_blank" rel="noopener">github.com/uttam4027</a>
+      <a class="btn primary" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank" style="margin-top:8px;width:fit-content;">Download Resume ↓</a>
     </div>
   </div>
   <div class="foot-bottom">
     <span>© 2026 Uttam Singh</span>
-    <span>Built with HTML, CSS &amp; a little Python energy</span>
+    <span>Data Analyst &amp; AI Engineer — Mumbai, India</span>
   </div>
 </footer>
 
 <script>
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => io.observe(el));
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Count-up KPIs
-  const kpiStrip = document.querySelector('.kpi-strip');
-  let counted = false;
-  function animateCount(el){
-    const target = parseInt(el.getAttribute('data-count'), 10);
-    const valEl = el.querySelector('.val');
-    const duration = 1100;
-    const start = performance.now();
-    function tick(now){
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      valEl.textContent = Math.round(eased * target);
-      if (p < 1) requestAnimationFrame(tick);
+// Count-up KPIs
+let counted = false;
+const kpiStrip = document.querySelector('.kpi-strip');
+function animateCount(el){
+  const target = parseInt(el.getAttribute('data-count'));
+  const valEl = el.querySelector('.val');
+  const dur = 1200, start = performance.now();
+  const tick = now => {
+    const p = Math.min((now-start)/dur,1);
+    const e = 1-Math.pow(1-p,3);
+    valEl.textContent = Math.round(e*target);
+    if(p<1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+const kioIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !counted){
+      counted = true;
+      document.querySelectorAll('.kpi .num').forEach(animateCount);
+      kioIo.disconnect();
     }
-    requestAnimationFrame(tick);
-  }
-  const kpiObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !counted){
-        counted = true;
-        document.querySelectorAll('.kpi .num').forEach(animateCount);
-        kpiObserver.disconnect();
+  });
+},{threshold:0.4});
+if(kpiStrip) kioIo.observe(kpiStrip);
+
+// Project filters
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.proj-grid .card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.getAttribute('data-filter');
+    cards.forEach(card => {
+      if(f === 'all'){ card.removeAttribute('data-hidden'); }
+      else {
+        const cats = card.getAttribute('data-categories') || '';
+        card.setAttribute('data-hidden', cats.includes(f) ? 'false' : 'true');
       }
     });
-  }, { threshold: 0.4 });
-  if (kpiStrip) kpiObserver.observe(kpiStrip);
+  });
+});
 </script>
-
 </body>
 </html>
