@@ -3,1074 +3,1592 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Analyst — AI-Powered Analytics & Automation</title>
-<meta name="description" content="Uttam Singh — I build data systems and AI tools that save time, reduce cost, and help teams make better decisions.">
+<title>Uttam Singh, Data Analyst and AI Automation Engineer</title>
+<meta name="description" content="Data analyst and AI automation engineer in Mumbai. I turn business problems into data analysis, workflow automation and practical AI applications.">
+<meta name="theme-color" content="#EDF2F3">
+<meta property="og:title" content="Uttam Singh, Data Analyst and AI Automation Engineer">
+<meta property="og:description" content="Dashboards, automated systems and AI applications built from business data and repetitive workflows.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F2D3A'/%3E%3Ctext x='16' y='22' font-size='15' font-weight='700' text-anchor='middle' fill='white' font-family='Arial,sans-serif'%3EUS%3C/text%3E%3C/svg%3E">
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
 <style>
+/* ─── TOKENS ─────────────────────────────────────
+   paper  = page background (pale lab-report tint)
+   sheet  = raised panels
+   ink    = text and dark bands
+   teal   = diagram lines, links, guilloche
+   ruby   = marks a result or an end point, nothing else
+──────────────────────────────────────────────── */
 :root{
-  --white:#ffffff;
-  --off:#F8F7F4;
-  --ink:#1A1A1A;
-  --ink-mid:#4A4A4A;
-  --ink-light:#828282;
-  --amber:#C4732A;
-  --amber-pale:#FDF3E8;
-  --teal:#1B5E4F;
-  --teal-pale:#EAF2EF;
-  --line:#E5E2DB;
-  --max:1060px;
-  --r:8px;
+  color-scheme:light;
+  --paper:#EDF2F3;
+  --sheet:#FBFCFC;
+  --map:#F2F6F7;
+  --ink:#0F2D3A;
+  --ink-2:#40565F;
+  --ink-3:#586C75;
+  --teal:#2D7383;
+  --ruby:#B3173B;
+  --rule:#CBD7DA;
+  --inv:#FFFFFF;            /* text that sits on an --ink or --teal button */
+  --nav-bg:rgba(237,242,243,.93);
+  --foot-bg:#0F2D3A;
+  --foot-fg:#EDF2F3;
+  --dk:#0F2D3A;             /* deep block inside illustrations */
+  --rose-op:.5;
+  --rose-soft:.3;
+  --teal-tint:color-mix(in srgb,var(--teal) 14%,transparent);
+  --ruby-tint:color-mix(in srgb,var(--ruby) 12%,transparent);
+  --max:1120px;
+  --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
+}
+/* DARK THEME: every colour below was checked for contrast (text 4.5:1 or better) */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0B1B22;
+  --sheet:#12272F;
+  --map:#0E212A;
+  --ink:#E7EFF1;
+  --ink-2:#AEC0C7;
+  --ink-3:#8FA5AD;
+  --teal:#5DB4C6;
+  --ruby:#FF7A93;
+  --rule:#284450;
+  --inv:#0B1B22;
+  --nav-bg:rgba(11,27,34,.92);
+  --foot-bg:#071319;
+  --foot-fg:#E7EFF1;
+  --dk:#1D4655;
+  --rose-op:.34;
+  --rose-soft:.2;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
+html{scroll-behavior:smooth;scroll-padding-top:76px;}
 body{
-  background:var(--white);
-  color:var(--ink);
-  font-family:'Inter',sans-serif;
-  line-height:1.6;
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none;}
-:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+ul,ol{list-style:none;}
+[hidden]{display:none !important;}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:3px;}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
 
-/* ── NAV ── */
-.nav-bar{
+/* headings: condensed width is what gives the page its voice */
+h1,h2,h3{font-stretch:80%;font-weight:700;line-height:1.08;}
+h4,h5{font-weight:650;line-height:1.3;}
+
+.skip{
+  position:absolute;left:16px;top:-60px;z-index:200;
+  background:var(--ink);color:var(--inv);padding:10px 16px;border-radius:6px;font-size:14px;
+}
+.skip:focus{top:12px;}
+
+/* ─── NAV ─────────────────────────────────────── */
+.nav{
   position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--line);
+  background:var(--nav-bg);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
 }
-.nav-inner{
+.nav-i{
   max-width:var(--max);margin:0 auto;padding:0 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  height:58px;
+  height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
-.nav-logo{
-  font-family:'Lora',serif;font-size:17px;font-weight:600;
-  letter-spacing:-.01em;color:var(--ink);
-}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:14px;color:var(--ink-mid);transition:color .15s;}
+.nav-name{font-stretch:80%;font-weight:700;font-size:1.25rem;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:15px;color:var(--ink-2);transition:color .12s;}
 .nav-links a:hover{color:var(--ink);}
-.nav-cta{
-  font-size:13px;font-weight:500;padding:8px 18px;
-  border-radius:20px;background:var(--ink);color:#fff;
-  transition:background .15s;
+.nav-resume{
+  font-size:14px;font-weight:600;padding:7px 16px;
+  border:1.5px solid var(--ink);border-radius:6px;transition:background .12s,color .12s;
 }
-.nav-cta:hover{background:var(--teal);}
-@media(max-width:780px){.nav-links{display:none;}}
+.nav-resume:hover{background:var(--ink);color:var(--paper);}
+@media(max-width:760px){.nav-links{display:none;}}
 
-/* ── HERO ── */
-.hero{
-  padding:80px 0 64px;
-  border-bottom:1px solid var(--line);
+/* dark-mode switch */
+.nav-right{display:flex;align-items:center;gap:16px;}
+.theme-toggle{
+  display:inline-flex;align-items:center;gap:10px;
+  font:inherit;font-size:14px;font-weight:600;color:var(--ink);
+  background:transparent;border:0;padding:6px 2px;cursor:pointer;
 }
-.hero-label{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:13px;color:var(--ink-light);
-  margin-bottom:24px;
+.tt-track{
+  position:relative;width:42px;height:24px;border-radius:999px;flex-shrink:0;
+  border:1.5px solid var(--ink-3);background:transparent;
+  transition:background .18s,border-color .18s;
 }
-.hero-label span{
-  display:inline-block;width:28px;height:1px;background:var(--amber);
-}
-h1{
-  font-family:'Lora',serif;
-  font-size:clamp(2rem,4.5vw,3.4rem);
-  font-weight:600;line-height:1.15;
-  letter-spacing:-.02em;
-  max-width:700px;
-  margin-bottom:20px;
-}
-h1 em{color:var(--teal);font-style:normal;}
-.hero-sub{
-  font-size:17px;color:var(--ink-mid);
-  max-width:520px;line-height:1.65;
-  margin-bottom:32px;
-}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
-.btn-main{
-  font-size:14px;font-weight:500;padding:11px 22px;
-  border-radius:6px;background:var(--ink);color:#fff;
-  transition:background .15s;display:inline-flex;align-items:center;gap:6px;
-}
-.btn-main:hover{background:var(--teal);}
-.btn-out{
-  font-size:14px;font-weight:500;padding:11px 22px;
-  border-radius:6px;border:1px solid var(--line);color:var(--ink-mid);
-  transition:all .15s;display:inline-flex;align-items:center;gap:6px;
-}
-.btn-out:hover{border-color:var(--ink);color:var(--ink);}
-
-/* ── KPIs ── */
-.kpi-row{
-  display:grid;grid-template-columns:repeat(5,1fr);
-  border-top:1px solid var(--line);
-  margin-top:56px;
-}
-.kpi-cell{
-  padding:28px 0 22px;
-  border-right:1px solid var(--line);
-  padding-right:20px;
-}
-.kpi-cell:last-child{border-right:none;}
-.kpi-number{
-  font-family:'Lora',serif;
-  font-size:clamp(1.5rem,2.8vw,2.2rem);
-  font-weight:600;color:var(--ink);
-  display:flex;align-items:baseline;gap:3px;
-  margin-bottom:6px;
-}
-.kpi-number .unit{font-size:.5em;color:var(--amber);font-family:'Inter',sans-serif;font-weight:600;}
-.kpi-label{font-size:13px;color:var(--ink-light);line-height:1.4;}
-.kpi-context{font-size:12px;color:var(--teal);margin-top:3px;font-weight:500;}
-@media(max-width:780px){
-  .kpi-row{grid-template-columns:repeat(2,1fr);}
-  .kpi-cell:nth-child(2){border-right:none;}
-  .kpi-cell:nth-child(5){border-right:none;}
-  .kpi-cell{padding-right:12px;}
-}
-
-/* ── SECTION SHELL ── */
-section.block{padding:72px 0;border-bottom:1px solid var(--line);}
-section.block:last-of-type{border-bottom:none;}
-.sec-label{
-  font-size:11.5px;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--amber);
-  margin-bottom:10px;
-}
-h2.sec-title{
-  font-family:'Lora',serif;font-size:clamp(1.5rem,3vw,2rem);
-  font-weight:600;letter-spacing:-.01em;
-  margin-bottom:10px;
-}
-.sec-desc{font-size:16px;color:var(--ink-mid);max-width:600px;line-height:1.65;margin-bottom:44px;}
-
-/* ── EXPERIENCE ── */
-.exp-head{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  flex-wrap:wrap;gap:12px;
-  padding:28px;background:var(--off);border-radius:var(--r);
-  border:1px solid var(--line);
-  margin-bottom:32px;
-}
-.exp-title{font-family:'Lora',serif;font-size:1.2rem;font-weight:600;margin-bottom:4px;}
-.exp-org{font-size:15px;color:var(--ink-mid);}
-.exp-period{
-  font-family:'JetBrains Mono',monospace;
-  font-size:12.5px;color:var(--ink-light);white-space:nowrap;
-}
-.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-@media(max-width:680px){.exp-cols{grid-template-columns:1fr;}}
-.exp-block{
-  border-left:3px solid var(--amber);padding-left:18px;
-}
-.exp-block-title{font-weight:600;font-size:14.5px;margin-bottom:6px;}
-.exp-block p{font-size:14.5px;color:var(--ink-mid);line-height:1.6;}
-
-/* ── PROJECTS ── */
-.proj-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
-.pf{
-  font-size:13px;padding:6px 16px;border-radius:20px;
-  border:1px solid var(--line);color:var(--ink-mid);
-  cursor:pointer;transition:all .15s;background:transparent;
-}
-.pf:hover,.pf.on{background:var(--ink);color:#fff;border-color:var(--ink);}
-
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-@media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:580px){.proj-grid{grid-template-columns:1fr;}}
-
-.pcard{
-  background:var(--white);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  overflow:hidden;
-  display:flex;flex-direction:column;
-  transition:box-shadow .18s,transform .18s;
-}
-.pcard:hover{
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-  transform:translateY(-2px);
-}
-.pcard[data-hidden="true"]{display:none;}
-
-.pcard-img{
-  height:140px;background:var(--off);
+.tt-knob{
+  position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;
+  background:var(--ink-3);color:var(--sheet);
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
+  transition:transform .18s,background .18s,color .18s;
 }
-.pcard-img svg{width:100%;height:100%;}
+.tt-knob svg{width:10px;height:10px;display:block;}
+:root[data-theme="dark"] .tt-track{background:var(--teal);border-color:var(--teal);}
+:root[data-theme="dark"] .tt-knob{transform:translateX(18px);background:var(--inv);color:var(--teal);}
+@media(max-width:560px){
+  .tt-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .nav-right{gap:10px;}
+}
+@media(prefers-reduced-motion:reduce){.tt-track,.tt-knob{transition:none;}}
 
-.pcard-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:12px;}
 
-.pcard-domain{
-  display:inline-block;font-size:11.5px;font-weight:600;
-  letter-spacing:.06em;text-transform:uppercase;
-  color:var(--teal);
+/* ─── HERO ────────────────────────────────────── */
+.hero{padding-top:60px;padding-bottom:76px;}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) 380px;
+  gap:48px;align-items:center;
 }
-.pcard-title{
-  font-family:'Lora',serif;font-size:1.02rem;font-weight:600;
-  line-height:1.3;
+.hero-id{display:flex;flex-direction:column;gap:2px;margin-bottom:26px;}
+.hero-name{font-stretch:80%;font-weight:700;font-size:1.6rem;line-height:1.1;}
+.hero-role{font-size:1.06rem;color:var(--ink-2);}
+h1{
+  font-size:clamp(2.1rem,4vw,3.25rem);
+  max-width:680px;text-wrap:balance;margin-bottom:22px;
 }
-.pcard-psi{display:flex;flex-direction:column;gap:8px;flex:1;}
-.psi-row{display:flex;gap:8px;align-items:flex-start;}
-.psi-tag{
-  font-size:10.5px;font-weight:700;letter-spacing:.05em;
-  text-transform:uppercase;padding:2px 7px;border-radius:3px;
-  white-space:nowrap;flex-shrink:0;margin-top:2px;
+.hero-skills{font-size:1.06rem;color:var(--ink-2);max-width:520px;margin-bottom:32px;}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;}
+.btn{
+  font-size:15px;font-weight:600;padding:12px 22px;border-radius:6px;
+  background:var(--ink);color:var(--inv);border:1.5px solid var(--ink);
+  transition:background .12s,border-color .12s;
 }
-.psi-tag.prob{background:var(--amber-pale);color:var(--amber);}
-.psi-tag.sol{background:var(--teal-pale);color:var(--teal);}
-.psi-tag.imp{background:#F0FFF4;color:#1A7A3E;}
-.psi-text{font-size:13.5px;color:var(--ink-mid);line-height:1.5;}
-.psi-text strong{color:var(--ink);font-weight:600;}
+.btn:hover{background:var(--teal);border-color:var(--teal);color:var(--inv);}
+.btn-quiet{background:transparent;color:var(--ink);}
+.btn-quiet:hover{background:var(--ink);border-color:var(--ink);color:var(--inv);}
+.lnk{font-size:15px;font-weight:600;border-bottom:1.5px solid var(--teal);padding-bottom:1px;}
+.lnk:hover{color:var(--teal);}
 
-.pcard-chips{display:flex;gap:5px;flex-wrap:wrap;padding-top:4px;border-top:1px solid var(--line);margin-top:auto;}
-.chip{font-size:11px;padding:3px 8px;border-radius:4px;background:var(--off);color:var(--ink-mid);}
+/* the one bold moment: portrait in a guilloche medallion */
+.medal{position:relative;width:100%;max-width:380px;aspect-ratio:1;justify-self:end;}
+.medal svg{width:100%;height:100%;display:block;overflow:visible;}
+.rose{transform-box:fill-box;transform-origin:center;animation:settle 1.7s cubic-bezier(.16,.8,.24,1) both;}
+.rose path{fill:none;stroke:var(--teal);stroke-width:.5;opacity:var(--rose-op);}
+.rose path.soft{opacity:var(--rose-soft);}
+.rose circle{fill:none;stroke:var(--teal);stroke-width:1;opacity:.85;}
+.micro{font-family:var(--sans);font-size:5.4px;fill:var(--teal);letter-spacing:.15px;}
+.portrait{
+  position:absolute;inset:0;margin:auto;width:41%;height:41%;
+  border-radius:50%;overflow:hidden;background:var(--sheet);
+  box-shadow:0 0 0 3px var(--paper),0 0 0 4.5px var(--teal);
+  animation:fadein .9s .55s ease both;
+}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-fallback{
+  width:100%;height:100%;align-items:center;justify-content:center;
+  font-stretch:80%;font-weight:700;font-size:3rem;color:var(--ink-2);
+}
+@keyframes settle{from{opacity:0;transform:rotate(-16deg) scale(.94);}to{opacity:1;transform:none;}}
+@keyframes fadein{from{opacity:0;}to{opacity:1;}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .rose,.portrait{animation:none;}
+}
+@media(max-width:940px){
+  .hero{padding-top:44px;padding-bottom:56px;}
+  .hero-grid{grid-template-columns:1fr;gap:40px;}
+  .medal{justify-self:start;max-width:320px;}
+}
 
-/* ── SKILLS ── */
-.skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:32px 56px;}
-@media(max-width:680px){.skill-groups{grid-template-columns:1fr;}}
-.sg-title{
-  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ink-light);margin-bottom:12px;
-  display:flex;align-items:center;gap:10px;
-}
-.sg-title::after{content:'';flex:1;height:1px;background:var(--line);}
-.chips-row{display:flex;gap:7px;flex-wrap:wrap;}
-.skill-chip{
-  font-size:13.5px;padding:7px 14px;border-radius:20px;
-  border:1px solid var(--line);background:var(--white);color:var(--ink);
+/* ─── SECTION SHELL WITH MARGIN RAIL ─────────── */
+.sec{padding:76px 0;border-top:1px solid var(--rule);}
+.rail{display:grid;grid-template-columns:270px minmax(0,1fr);gap:56px;}
+.rail-head{align-self:start;position:sticky;top:92px;}
+.rail-head h2{font-size:2.1rem;margin-bottom:12px;}
+.rail-head p{color:var(--ink-2);font-size:15.5px;}
+@media(max-width:940px){
+  .sec{padding:56px 0;}
+  .rail{grid-template-columns:1fr;gap:28px;}
+  .rail-head{position:static;}
 }
 
-/* ── LEARNING ── */
-.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-@media(max-width:760px){.learn-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:480px){.learn-grid{grid-template-columns:1fr;}}
-.lcard{
-  background:var(--off);border:1px solid var(--line);border-radius:var(--r);
-  padding:18px;display:flex;flex-direction:column;gap:8px;
-}
-.lcard-icon{font-size:20px;}
-.lcard-title{font-weight:600;font-size:14px;}
-.lcard-sub{font-size:13px;color:var(--ink-mid);}
-.pbar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;}
-.pbar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:2px;transition:width .5s ease;}
+/* role plate: real label/value pairs */
+.role{margin-top:24px;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14.5px;}
+.role dt{color:var(--ink-3);}
+.role dd{font-weight:600;}
 
-/* ── EDU ── */
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-@media(max-width:680px){.edu-grid{grid-template-columns:1fr;}}
-.edu-item{
-  padding:22px;border:1px solid var(--line);border-radius:var(--r);
-  background:var(--off);
+/* ─── RESULTS LEDGER ─────────────────────────── */
+.ledger{border-top:1px solid var(--rule);}
+.ledger li{
+  display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px;
+  align-items:baseline;padding:24px 0;border-bottom:1px solid var(--rule);
 }
-.edu-item h4{font-family:'Lora',serif;font-size:1rem;font-weight:600;margin-bottom:4px;}
-.edu-item .sub{font-size:14px;color:var(--ink-mid);}
-.edu-item .yr{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-light);margin-top:8px;}
+.fig{
+  font-stretch:78%;font-weight:700;font-size:2.7rem;line-height:1;
+  color:var(--ruby);font-variant-numeric:tabular-nums;
+}
+.ledger p{color:var(--ink-2);max-width:60ch;}
+.ledger strong{color:var(--ink);font-weight:650;}
+@media(max-width:640px){.ledger li{grid-template-columns:1fr;gap:8px;}}
 
-/* ── FOOTER ── */
-footer{
-  padding:64px 0 40px;
-  background:var(--ink);
-  color:#fff;
+/* ─── WHAT I BUILD ───────────────────────────── */
+.builds{border-top:1px solid var(--rule);}
+.build{padding:26px 0;border-bottom:1px solid var(--rule);}
+.build h3{font-size:1.6rem;margin-bottom:4px;}
+.build > p{color:var(--ink-2);max-width:62ch;}
+.build .see{margin-top:2px;font-size:14.5px;color:var(--ink-3);}
+.build .see a{color:var(--teal);font-weight:600;border-bottom:1px solid currentColor;}
+.build .see a:hover{color:var(--ink);}
+
+/* a flow: boxes joined by a line with an arrowhead (real sequence) */
+.chain{display:flex;flex-wrap:wrap;gap:10px 0;margin:16px 0 14px;}
+.chain li{
+  position:relative;padding:5px 12px;margin-right:24px;
+  background:var(--sheet);border:1px solid var(--rule);border-radius:6px;font-size:14px;
 }
-.foot-inner{max-width:var(--max);margin:0 auto;padding:0 32px;}
-.foot-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:48px;}
-footer h2{
-  font-family:'Lora',serif;font-size:clamp(1.4rem,3vw,2.1rem);
-  font-weight:600;max-width:440px;line-height:1.3;
+.chain li:not(:last-child)::after{
+  content:'';position:absolute;left:100%;top:50%;width:19px;height:1.5px;background:var(--teal);
 }
-footer h2 em{color:var(--amber);font-style:normal;}
-.foot-links{display:flex;flex-direction:column;gap:10px;}
-.foot-links a{font-size:14px;color:rgba(255,255,255,.65);transition:color .15s;}
-.foot-links a:hover{color:#fff;}
-.foot-bottom{
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
-  border-top:1px solid rgba(255,255,255,.12);padding-top:24px;
-  font-size:13px;color:rgba(255,255,255,.35);
+.chain li:not(:last-child)::before{
+  content:'';position:absolute;right:-24px;top:calc(50% - 3.75px);
+  border-left:6px solid var(--teal);border-top:4px solid transparent;border-bottom:4px solid transparent;
 }
+
+/* ─── PROJECTS ───────────────────────────────── */
+.proj-head h2{font-size:2.4rem;margin-bottom:12px;max-width:640px;}
+.proj-head p{color:var(--ink-2);max-width:68ch;}
+.filters{display:flex;flex-wrap:wrap;gap:6px 26px;margin:30px 0 34px;border-bottom:1px solid var(--rule);}
+.project-note{max-width:72ch;}
+.pf{
+  font:inherit;font-size:15px;background:none;border:0;
+  border-bottom:3px solid transparent;margin-bottom:-1px;padding:8px 0;
+  color:var(--ink-2);cursor:pointer;transition:color .12s;
+}
+.pf:hover{color:var(--ink);}
+.pf.on{color:var(--ink);font-weight:650;border-bottom-color:var(--ruby);}
+
+.pc[data-hidden="true"]{display:none;}
+
+/* featured case sheet */
+.sheet{
+  background:var(--sheet);border:1px solid var(--rule);border-radius:14px;
+  margin-bottom:30px;overflow:hidden;
+}
+.sheet-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:28px;
+  padding:30px 34px 24px;border-bottom:1px solid var(--rule);
+}
+.sheet-head h3{font-size:2.05rem;}
+.outcome{margin-top:8px;color:var(--ink-2);font-size:1.06rem;max-width:58ch;}
+.meta{display:grid;grid-template-columns:auto auto;gap:4px 14px;font-size:14.5px;flex-shrink:0;}
+.meta dt{color:var(--ink-3);}
+.meta dd{font-weight:600;}
+.sheet-body{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);}
+.story{padding:28px 34px 30px;border-right:1px solid var(--rule);}
+.story h4{font-size:15px;margin:20px 0 4px;}
+.story h4:first-child{margin-top:0;}
+.story h4.res{color:var(--ruby);}
+.story p{font-size:15.5px;color:var(--ink-2);}
+.story p + p{margin-top:8px;}
+.story .note{font-size:14.5px;color:var(--ink-3);}
+
+/* architecture drawn as a line map */
+.map{padding:28px 34px 30px;background:var(--map);}
+.map figcaption{font-weight:650;font-size:15px;margin-bottom:16px;}
+.lines{display:grid;gap:30px;}
+.lines.two{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;}
+.lane h5{font-size:14px;color:var(--ink-3);font-weight:600;margin-bottom:12px;}
+.line{position:relative;}
+.line::before{
+  content:'';position:absolute;left:6px;top:8px;bottom:14px;width:2.5px;
+  background:var(--teal);border-radius:2px;
+}
+.line li{position:relative;padding:0 0 15px 32px;}
+.line li:last-child{padding-bottom:0;}
+.line li::before{
+  content:'';position:absolute;left:0;top:3px;width:15px;height:15px;border-radius:50%;
+  background:var(--map);border:2.5px solid var(--teal);
+}
+.line li.hub::before{
+  left:-2px;top:1px;width:19px;height:19px;border-width:3px;background:var(--sheet);
+  box-shadow:0 0 0 2.5px var(--map),0 0 0 4px var(--teal);
+}
+.line li.end::before{background:var(--ruby);border-color:var(--ruby);}
+.line b{display:block;font-size:15px;font-weight:650;line-height:1.35;}
+.line span{display:block;font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-top:1px;}
+
+.sheet .links{display:flex;flex-wrap:wrap;gap:10px 24px;padding:16px 34px;border-top:1px solid var(--rule);}
+@media(max-width:940px){.sheet .links{padding:16px 22px;}}
+
+
+/* ─── PROJECT ILLUSTRATIONS (follow the light and dark theme) ─── */
+.ill{background:var(--map);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:22px;}
+.ill svg{display:block;width:100%;height:auto;}
+.ill text{font-family:var(--sans);}
+.ill .f-panel{fill:var(--sheet);stroke:var(--rule);}
+.ill .f-panel-hi{fill:var(--sheet);stroke:var(--teal);stroke-width:1.5;}
+.ill .f-doc{fill:var(--sheet);stroke:var(--ink-3);stroke-width:1.5;}
+.ill .f-map{fill:var(--map);stroke:var(--rule);}
+.ill .f-dark{fill:var(--dk);}
+.ill .f-in{fill:rgba(255,255,255,.12);}
+.ill .f-teal{fill:var(--teal);}
+.ill .f-ruby{fill:var(--ruby);}
+.ill .f-tt{fill:var(--teal-tint);stroke:var(--teal);stroke-width:.8;}
+.ill .f-tint{fill:var(--teal-tint);}
+.ill .f-rt{fill:var(--ruby-tint);}
+.ill .f-rt2{fill:color-mix(in srgb,var(--ruby) 30%,transparent);}
+.ill .f-line{fill:var(--rule);}
+.ill .s-rule{stroke:var(--rule);fill:none;}
+.ill .s-teal{stroke:var(--teal);fill:none;}
+.ill .s-ruby{stroke:var(--ruby);fill:none;}
+.ill .s-inv{stroke:var(--inv);fill:none;}
+.ill .s-gold{stroke:#B7791F;fill:none;}
+.ill .s-silver{stroke:var(--ink-3);fill:none;}
+.ill .t1{fill:var(--ink);}
+.ill .t2{fill:var(--ink-2);}
+.ill .t3{fill:var(--ink-3);}
+.ill .tt{fill:var(--teal);}
+.ill .tr{fill:var(--ruby);}
+.ill .tw{fill:var(--inv);}
+.ill .tk{fill:#EAF3F5;}
+.ill .tk2{fill:#9CD3DF;}
+.ill .tk3{fill:rgba(234,243,245,.68);}
+.ill .mono{font-family:ui-monospace,Menlo,Consolas,monospace;}
+.ill + h4{margin-top:0;}
+
+/* expandable details */
+.more{border-top:1px solid var(--rule);}
+.more summary,.row summary{list-style:none;cursor:pointer;}
+.more summary::-webkit-details-marker,.row summary::-webkit-details-marker{display:none;}
+.more summary{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:17px 34px;font-weight:650;font-size:15.5px;
+}
+.more summary::after,.row summary::after{
+  content:'+';font-size:1.5rem;line-height:1;color:var(--teal);font-weight:400;
+}
+.more[open] summary::after,.row details[open] summary::after{content:'\2212';}
+.more summary:hover{background:var(--map);}
+.more-in{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:34px;padding:6px 34px 32px;}
+.feat li{position:relative;padding-left:18px;margin:7px 0;font-size:14.5px;color:var(--ink-2);}
+.feat li::before{content:'';position:absolute;left:0;top:.72em;width:7px;height:2px;background:var(--teal);}
+.stack{font-size:14.5px;color:var(--ink-2);}
+.stack b{display:block;color:var(--ink);font-weight:650;margin-bottom:2px;}
+
+/* compact rows for the remaining projects */
+.also-head{font-size:1.7rem;margin:52px 0 10px;}
+.row{border-top:1px solid var(--rule);}
+.row:last-of-type{border-bottom:1px solid var(--rule);}
+.row summary{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.5fr) 120px 24px;
+  gap:22px;align-items:baseline;padding:22px 6px;
+}
+.row-title{font-stretch:80%;font-weight:700;font-size:1.4rem;line-height:1.15;transition:color .12s;}
+.row summary:hover .row-title{color:var(--teal);}
+.row-out{color:var(--ink-2);font-size:15px;}
+.row-for{color:var(--ink-3);font-size:14.5px;}
+.row summary::after{justify-self:end;}
+.row-panel{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin:2px 0 30px;}
+.row-panel .more-in{border-top:1px solid var(--rule);padding-top:26px;}
+.row details[open] .row-title{color:var(--teal);}
+
+@media(max-width:940px){
+  .sheet-head{flex-direction:column;gap:18px;padding:24px 22px 20px;}
+  .sheet-head h3{font-size:1.8rem;}
+  .sheet-body{grid-template-columns:1fr;}
+  .story{border-right:0;border-bottom:1px solid var(--rule);padding:24px 22px;}
+  .map{padding:24px 22px 26px;}
+  .more summary{padding:16px 22px;}
+  .more-in{grid-template-columns:1fr;gap:20px;padding:4px 22px 26px;}
+  .row summary{grid-template-columns:minmax(0,1fr) 24px;gap:6px 16px;}
+  .row-title{grid-column:1;}
+  .row-out{grid-column:1;grid-row:2;}
+  .row-for{grid-column:1;grid-row:3;}
+  .row summary::after{grid-column:2;grid-row:1;}
+}
+@media(max-width:560px){
+  .lines.two{grid-template-columns:1fr;}
+}
+
+/* ─── HOW I WORK ─────────────────────────────── */
+.steps{counter-reset:s;border-top:1px solid var(--rule);}
+.steps li{
+  counter-increment:s;display:grid;grid-template-columns:46px 150px minmax(0,1fr);
+  gap:10px;padding:15px 0;border-bottom:1px solid var(--rule);align-items:baseline;
+}
+.steps li::before{
+  content:counter(s);font-stretch:78%;font-weight:700;font-size:1.45rem;color:var(--teal);line-height:1;
+}
+.steps b{font-weight:650;}
+.steps span{color:var(--ink-2);}
+@media(max-width:560px){
+  .steps li{grid-template-columns:36px 1fr;}
+  .steps span{grid-column:2;}
+}
+
+/* ─── SKILLS ─────────────────────────────────── */
+.skill-rows{border-top:1px solid var(--rule);}
+.skill-rows > div{
+  display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;
+  padding:17px 0;border-bottom:1px solid var(--rule);
+}
+.skill-rows dt{color:var(--ink-3);font-size:15px;}
+.skill-rows dd{font-size:16px;}
+.skill-rows .core dd{font-stretch:80%;font-weight:700;font-size:1.65rem;line-height:1.2;}
+.skill-rows .now dt{color:var(--ruby);font-weight:650;}
+@media(max-width:640px){.skill-rows > div{grid-template-columns:1fr;gap:4px;}}
+
+/* ─── EDUCATION ──────────────────────────────── */
+.edu{border-top:1px solid var(--rule);}
+.edu li{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;
+  padding:17px 0;border-bottom:1px solid var(--rule);
+}
+.edu b{display:block;font-weight:650;}
+.edu span{color:var(--ink-2);font-size:15px;}
+.edu time{color:var(--ink-3);font-size:14.5px;white-space:nowrap;}
+
+/* ─── FOOTER ─────────────────────────────────── */
+footer{background:var(--foot-bg);color:var(--foot-fg);padding:76px 0 34px;border-top:1px solid var(--rule);}
+footer :focus-visible{outline-color:#fff;}
+.foot-grid{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:48px;align-items:end;margin-bottom:60px;
+}
+footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
+.foot-links{display:grid;gap:11px;}
+.foot-links a{font-size:15.5px;color:rgba(237,242,243,.8);transition:color .12s;}
+.foot-links a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;}
 .foot-resume{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:13.5px;font-weight:500;padding:10px 20px;
-  border-radius:20px;border:1px solid rgba(255,255,255,.25);color:#fff;
-  transition:border-color .15s;
+  display:inline-block;margin-top:8px;font-weight:600;color:#fff !important;
+  border:1.5px solid rgba(237,242,243,.5);border-radius:6px;padding:10px 20px;
 }
-.foot-resume:hover{border-color:#fff;}
-
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease;}
-.reveal.visible{opacity:1;transform:none;}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+.foot-resume:hover{border-color:#fff;text-decoration:none !important;}
+.foot-bottom{
+  border-top:1px solid rgba(237,242,243,.16);padding-top:22px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  font-size:13.5px;color:rgba(237,242,243,.6);
+}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:32px;}}
+@media(max-width:560px){.wrap,.nav-i{padding-left:20px;padding-right:20px;}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav-bar">
-  <div class="nav-inner">
-    <a class="nav-logo" href="#top">Uttam Singh</a>
-    <ul class="nav-links">
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a class="nav-cta" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank">Resume ↗</a>
+<a class="skip" href="#top">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-i">
+    <a class="nav-name" href="#top">Uttam Singh</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#build">What I build</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#how">How I work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" type="button" role="switch" aria-checked="false">
+        <span class="tt-label">Dark mode</span>
+        <span class="tt-track" aria-hidden="true"><span class="tt-knob"><svg viewBox="0 0 24 24" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="currentColor"/></svg></span></span>
+      </button>
+      <a class="nav-resume" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
   </div>
-</nav>
+</header>
 
 <main id="top">
 
-<!-- HERO -->
-<section class="hero wrap">
-  <div class="hero-label"><span></span>Data Analyst &amp; AI Engineer · Mumbai, India</div>
-  <h1>I build data systems that<br>free up people and<br><em>sharpen decisions.</em></h1>
-  <p class="hero-sub">I'm Uttam Singh. Over the past year I've shipped 9 production tools at Jewelex India — things that turned weeks of manual work into minutes, and gave leadership the numbers they needed to act.</p>
-  <div class="hero-btns">
-    <a class="btn-main" href="#projects">See my work →</a>
-    <a class="btn-out" href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a class="btn-out" href="https://github.com/uttam4027" target="_blank" rel="noopener">GitHub ↗</a>
-  </div>
-
-  <div class="kpi-row reveal">
-    <div class="kpi-cell">
-      <div class="kpi-number" data-count="99" data-dec=".7"><span class="val">0</span><span class="unit">%</span></div>
-      <div class="kpi-label">Faster compliance processing</div>
-      <div class="kpi-context">2 weeks → 20 minutes</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kpi-number" data-count="80"><span class="val">0</span><span class="unit"> hrs</span></div>
-      <div class="kpi-label">Person-hours saved per month</div>
-      <div class="kpi-context">One process, one person</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kpi-number" data-count="400"><span class="val">0</span><span class="unit">K+</span></div>
-      <div class="kpi-label">Products searchable by image</div>
-      <div class="kpi-context">Seconds, not hours</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kpi-number" data-count="76"><span class="val">0</span><span class="unit">%</span></div>
-      <div class="kpi-label">AI compute cost cut</div>
-      <div class="kpi-context">Same results, smarter pipeline</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kpi-number" data-count="9"><span class="val">0</span><span class="unit"></span></div>
-      <div class="kpi-label">Production apps shipped</div>
-      <div class="kpi-context">All live, all used daily</div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="block wrap reveal" id="experience">
-  <div class="sec-label">Experience</div>
-  <h2 class="sec-title">What I do at work</h2>
-  <p class="sec-desc">I'm the person teams call when a process takes too long, a decision needs better data, or something could just run itself.</p>
-
-  <div class="exp-head">
+<!-- ──────── HERO ──────── -->
+<section class="hero wrap" aria-labelledby="hero-h">
+  <div class="hero-grid">
     <div>
-      <div class="exp-title">Data Analyst &amp; AI Engineer</div>
-      <div class="exp-org">Jewelex India Pvt Ltd &nbsp;·&nbsp; Mumbai</div>
-    </div>
-    <div class="exp-period">Jul 2024 — Present</div>
-  </div>
-
-  <div class="exp-cols">
-    <div class="exp-block">
-      <div class="exp-block-title">Analytics &amp; Reporting</div>
-      <p>Built SQL and Python pipelines that process over 100,000 records a month. Replaced manual reporting with Power BI dashboards that C-suite teams now rely on for pricing and competitive strategy.</p>
-    </div>
-    <div class="exp-block">
-      <div class="exp-block-title">AI &amp; Automation</div>
-      <p>Shipped 9 production AI applications — from document intelligence and RAG chatbots to computer vision search. Every tool replaced a manual workflow with something that just runs.</p>
-    </div>
-    <div class="exp-block">
-      <div class="exp-block-title">Time &amp; Cost Savings</div>
-      <p>The GST compliance tool alone saves 40–80 person-hours every month. Across all projects, recurring manual work that used to sit across multiple people now happens automatically.</p>
-    </div>
-    <div class="exp-block">
-      <div class="exp-block-title">Business Intelligence</div>
-      <p>Built competitive intelligence dashboards covering 15+ rival brands, demand forecasting across 6 SKU segments, and a white-space analysis tool that now shapes product strategy conversations.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="block wrap reveal" id="projects">
-  <div class="sec-label">Projects</div>
-  <h2 class="sec-title">Real problems. Real results.</h2>
-  <p class="sec-desc">Each card tells you what the problem was, what I built, and what actually changed because of it.</p>
-
-  <div class="proj-filters">
-    <button class="pf on" data-f="all">All (9)</button>
-    <button class="pf" data-f="automation">Automation</button>
-    <button class="pf" data-f="ai">AI / GenAI</button>
-    <button class="pf" data-f="analytics">Analytics</button>
-    <button class="pf" data-f="vision">Computer Vision</button>
-  </div>
-
-  <div class="proj-grid">
-
-    <!-- 1 GST -->
-    <div class="pcard" data-cat="automation">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <rect x="28" y="28" width="56" height="72" rx="4" fill="#fff" stroke="#E5E2DB" stroke-width="1.5"/>
-          <rect x="36" y="36" width="56" height="72" rx="4" fill="#fff" stroke="#E5E2DB" stroke-width="1.5"/>
-          <rect x="44" y="44" width="56" height="72" rx="4" fill="#fff" stroke="#C4732A" stroke-width="1.5"/>
-          <text x="57" y="74" font-family="monospace" font-size="9" fill="#C4732A" font-weight="bold">500+</text>
-          <text x="52" y="85" font-family="monospace" font-size="7" fill="#828282">Invoices</text>
-          <path d="M115,80 L148,80" stroke="#C4732A" stroke-width="2.5" marker-end="url(#ga)"/>
-          <defs><marker id="ga" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#C4732A"/></marker></defs>
-          <rect x="118" y="66" width="26" height="26" rx="13" fill="#C4732A" fill-opacity=".12" stroke="#C4732A" stroke-width="1.5"/>
-          <text x="125" y="83" font-family="monospace" font-size="12" fill="#C4732A">⚙</text>
-          <rect x="156" y="48" width="60" height="76" rx="4" fill="#fff" stroke="#1B5E4F" stroke-width="2"/>
-          <rect x="163" y="57" width="36" height="3" rx="1" fill="#1B5E4F" opacity=".7"/>
-          <rect x="163" y="64" width="46" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="163" y="70" width="42" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="163" y="76" width="46" height="2" rx="1" fill="#E5E2DB"/>
-          <circle cx="202" cy="106" r="10" fill="#1B5E4F"/>
-          <polyline points="197,106 201,110 208,102" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-          <rect x="234" y="56" width="72" height="16" rx="3" fill="#C4732A" fill-opacity=".12"/>
-          <text x="240" y="68" font-family="monospace" font-size="8" fill="#C4732A">2 weeks</text>
-          <rect x="234" y="78" width="72" height="16" rx="3" fill="#1B5E4F" fill-opacity=".12"/>
-          <text x="240" y="90" font-family="monospace" font-size="8" fill="#1B5E4F">20 minutes</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Finance · Compliance</span>
-        <div class="pcard-title">GST Compliance Document Automation</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Finance team spent 1–2 weeks every month manually matching, merging, and filing 500+ invoice documents across two systems.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A Python tool that automatically validates Excel data, matches invoice and ICE Gate PDFs, merges them, and compresses batches to portal specs.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>2 weeks → 20 minutes.</strong> 40–80 person-hours saved per month. The same work now takes one person, one click.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">Python</span><span class="chip">PyMuPDF</span><span class="chip">Flask</span><span class="chip">OpenCV</span><span class="chip">Pandas</span>
-        </div>
+      <p class="hero-id">
+        <span class="hero-name">Uttam Singh</span>
+        <span class="hero-role">Data Analyst & AI Automation Engineer · Mumbai</span>
+      </p>
+      <h1 id="hero-h">I turn business problems into data analysis, workflow automation and practical AI applications.</h1>
+      <p class="hero-skills">Python · SQL · Power BI · Automation · GenAI · RAG · AI Agents</p>
+      <div class="hero-actions">
+        <a class="btn" href="#projects">See the projects</a>
+        <a class="btn btn-quiet" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="lnk" href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="lnk" href="https://github.com/uttam4027" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
 
-    <!-- 2 DEMAND PLANNING -->
-    <div class="pcard" data-cat="analytics ai">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <line x1="36" y1="18" x2="36" y2="118" stroke="#E5E2DB" stroke-width="1"/>
-          <line x1="36" y1="118" x2="296" y2="118" stroke="#E5E2DB" stroke-width="1"/>
-          <line x1="36" y1="90" x2="296" y2="90" stroke="#E5E2DB" stroke-width=".8" stroke-dasharray="3,3"/>
-          <line x1="36" y1="62" x2="296" y2="62" stroke="#E5E2DB" stroke-width=".8" stroke-dasharray="3,3"/>
-          <line x1="36" y1="34" x2="296" y2="34" stroke="#E5E2DB" stroke-width=".8" stroke-dasharray="3,3"/>
-          <rect x="52" y="78" width="18" height="40" fill="#1B5E4F" rx="2" opacity=".8"/>
-          <rect x="88" y="58" width="18" height="60" fill="#1B5E4F" rx="2" opacity=".8"/>
-          <rect x="124" y="68" width="18" height="50" fill="#1B5E4F" rx="2" opacity=".8"/>
-          <rect x="160" y="48" width="18" height="70" fill="#1B5E4F" rx="2" opacity=".8"/>
-          <rect x="196" y="72" width="18" height="46" fill="#1B5E4F" rx="2" opacity=".8"/>
-          <line x1="204" y1="18" x2="204" y2="118" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <polyline points="61,76 97,57 133,48 169,40 205,52 241,38 277,32" fill="none" stroke="#C4732A" stroke-width="2.5"/>
-          <rect x="220" y="62" width="18" height="56" fill="#C4732A" rx="2" opacity=".3"/>
-          <rect x="256" y="48" width="18" height="70" fill="#C4732A" rx="2" opacity=".3"/>
-          <text x="206" y="27" font-family="monospace" font-size="7.5" fill="#C4732A">Forecast →</text>
-          <text x="40" y="130" font-family="monospace" font-size="7.5" fill="#828282">6 SKU segments · SARIMA · XGBoost · ETS</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Supply Chain · Forecasting</span>
-        <div class="pcard-title">Demand Planning &amp; Inventory Management</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">No system to forecast which products to stock. Inventory decisions were gut-feel — leading to overstock on slow movers and stockouts on fast ones.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A forecasting dashboard that segments SKUs into 6 demand buckets and applies the best-fit model (SARIMA, XGBoost, ETS) per segment, with WAPE accuracy scoring.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Inventory decisions now backed by data.</strong> Leadership sees model accuracy scores and forecasts per segment before placing orders.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">Python</span><span class="chip">SARIMA</span><span class="chip">XGBoost</span><span class="chip">Flask</span><span class="chip">Pandas</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3 IMAGE SIMILARITY -->
-    <div class="pcard" data-cat="ai vision">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <rect x="20" y="30" width="68" height="68" rx="6" fill="#fff" stroke="#1B5E4F" stroke-width="2"/>
-          <ellipse cx="54" cy="52" rx="14" ry="9" fill="#1B5E4F" opacity=".2"/>
-          <polygon points="42,82 54,52 66,82" fill="#1B5E4F" opacity=".45"/>
-          <text x="32" y="112" font-family="monospace" font-size="8" fill="#1B5E4F">query</text>
-          <path d="M94,64 L116,64" stroke="#C4732A" stroke-width="2.5" marker-end="url(#ia)"/>
-          <defs><marker id="ia" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#C4732A"/></marker></defs>
-          <text x="96" y="58" font-family="monospace" font-size="7" fill="#C4732A">DINOv2</text>
-          <text x="96" y="67" font-family="monospace" font-size="7" fill="#C4732A">+Qdrant</text>
-          <rect x="124" y="22" width="50" height="50" rx="4" fill="#fff" stroke="#1B5E4F" stroke-width="2"/>
-          <polygon points="136,66 149,38 162,66" fill="#1B5E4F" opacity=".45"/>
-          <text x="132" y="82" font-family="monospace" font-size="8" fill="#1B5E4F">96%</text>
-          <rect x="182" y="30" width="44" height="44" rx="4" fill="#fff" stroke="#1B5E4F" stroke-width="1.5" opacity=".8"/>
-          <polygon points="193,68 204,44 215,68" fill="#1B5E4F" opacity=".35"/>
-          <text x="190" y="84" font-family="monospace" font-size="8" fill="#828282">89%</text>
-          <rect x="234" y="36" width="40" height="40" rx="4" fill="#fff" stroke="#1B5E4F" stroke-width="1" opacity=".6"/>
-          <polygon points="244,70 254,50 264,70" fill="#1B5E4F" opacity=".28"/>
-          <text x="241" y="86" font-family="monospace" font-size="8" fill="#828282">82%</text>
-          <text x="124" y="112" font-family="monospace" font-size="7.5" fill="#828282">400,000+ images indexed in Qdrant</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Computer Vision · Product Search</span>
-        <div class="pcard-title">Jewellery Image Similarity Search</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Finding a similar product in a 400,000-image catalogue meant manually browsing for hours. There was no search — just scrolling.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A visual search engine using DINOv2 embeddings and Qdrant vector database. Upload an image, get ranked visual matches in seconds.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Hours of manual search eliminated.</strong> 400K+ products now searchable by image, with similarity scores and multi-view matching.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">PyTorch</span><span class="chip">DINOv2</span><span class="chip">Qdrant</span><span class="chip">OpenCV</span><span class="chip">Streamlit</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4 WHITE SPACE -->
-    <div class="pcard" data-cat="analytics">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <g transform="translate(24,16)">
-            <text x="14" y="10" font-family="monospace" font-size="7" fill="#828282">R1</text>
-            <text x="52" y="10" font-family="monospace" font-size="7" fill="#828282">R2</text>
-            <text x="90" y="10" font-family="monospace" font-size="7" fill="#828282">R3</text>
-            <text x="128" y="10" font-family="monospace" font-size="7" fill="#828282">R4</text>
-            <text x="166" y="10" font-family="monospace" font-size="7" fill="#828282">R5</text>
-            <text x="0" y="28" font-family="monospace" font-size="7" fill="#828282">$-$K</text>
-            <rect x="12" y="14" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".75"/>
-            <rect x="50" y="14" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".45"/>
-            <rect x="88" y="14" width="32" height="22" fill="#F8F7F4" rx="2" stroke="#C4732A" stroke-width="2"/>
-            <text x="100" y="29" font-family="monospace" font-size="10" fill="#C4732A" font-weight="bold">!</text>
-            <rect x="126" y="14" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".3"/>
-            <rect x="164" y="14" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".9"/>
-            <text x="0" y="53" font-family="monospace" font-size="7" fill="#828282">$K-5K</text>
-            <rect x="12" y="40" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".35"/>
-            <rect x="50" y="40" width="32" height="22" fill="#F8F7F4" rx="2" stroke="#C4732A" stroke-width="2"/>
-            <text x="62" y="55" font-family="monospace" font-size="10" fill="#C4732A" font-weight="bold">!</text>
-            <rect x="88" y="40" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".65"/>
-            <rect x="126" y="40" width="32" height="22" fill="#F8F7F4" rx="2" stroke="#C4732A" stroke-width="2"/>
-            <text x="138" y="55" font-family="monospace" font-size="10" fill="#C4732A" font-weight="bold">!</text>
-            <rect x="164" y="40" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".2"/>
-            <text x="0" y="78" font-family="monospace" font-size="7" fill="#828282">$5K+</text>
-            <rect x="12" y="66" width="32" height="22" fill="#F8F7F4" rx="2" stroke="#C4732A" stroke-width="2"/>
-            <text x="24" y="81" font-family="monospace" font-size="10" fill="#C4732A" font-weight="bold">!</text>
-            <rect x="50" y="66" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".55"/>
-            <rect x="88" y="66" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".4"/>
-            <rect x="126" y="66" width="32" height="22" fill="#F8F7F4" rx="2" stroke="#C4732A" stroke-width="2"/>
-            <text x="138" y="81" font-family="monospace" font-size="10" fill="#C4732A" font-weight="bold">!</text>
-            <rect x="164" y="66" width="32" height="22" fill="#1B5E4F" rx="2" opacity=".15"/>
-            <rect x="212" y="18" width="10" height="10" fill="#1B5E4F" rx="1" opacity=".7"/>
-            <text x="226" y="27" font-family="monospace" font-size="7" fill="#4A4A4A">Present</text>
-            <rect x="212" y="34" width="10" height="10" fill="#F8F7F4" stroke="#C4732A" stroke-width="1.5" rx="1"/>
-            <text x="226" y="43" font-family="monospace" font-size="7" fill="#C4732A">Gap</text>
-          </g>
-          <text x="24" y="130" font-family="monospace" font-size="7.5" fill="#828282">5 retailers · 10+ attributes · Auto PowerPoint export</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Market Intelligence · Strategy</span>
-        <div class="pcard-title">White Space &amp; Competitive Intelligence Dashboard</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Leadership had no visibility into which product categories competitors offered that the company didn't. Strategy conversations ran on gut feel.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A multi-retailer comparison dashboard mapping assortment gaps across price bands, categories and collections — with auto-generated PowerPoint reports for presentations.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Market gaps now visible at a glance.</strong> Strategy meetings shifted from "what should we stock?" to "here are the specific gaps — which do we enter?"</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">OpenPyXL</span><span class="chip">python-pptx</span><span class="chip">JavaScript</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5 NEWSLETTER AGENT -->
-    <div class="pcard" data-cat="ai automation">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <rect x="18" y="36" width="58" height="44" rx="4" fill="#fff" stroke="#E5E2DB" stroke-width="1.5"/>
-          <polyline points="18,40 47,58 76,40" fill="none" stroke="#1B5E4F" stroke-width="1.5"/>
-          <text x="22" y="92" font-family="monospace" font-size="7" fill="#828282">Outlook</text>
-          <path d="M80,58 L100,38" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <path d="M80,58 L100,58" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <path d="M80,58 L100,78" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <rect x="100" y="26" width="46" height="24" rx="3" fill="#1B5E4F" opacity=".9"/>
-          <text x="105" y="37" font-family="monospace" font-size="7" fill="#fff">Browse</text>
-          <text x="105" y="46" font-family="monospace" font-size="7" fill="#fff">Product</text>
-          <rect x="100" y="46" width="46" height="24" rx="3" fill="#1B5E4F" opacity=".65"/>
-          <text x="105" y="57" font-family="monospace" font-size="7" fill="#fff">LLM</text>
-          <text x="105" y="66" font-family="monospace" font-size="7" fill="#fff">Enrich</text>
-          <rect x="100" y="66" width="46" height="24" rx="3" fill="#1B5E4F" opacity=".45"/>
-          <text x="105" y="77" font-family="monospace" font-size="7" fill="#fff">Dedup</text>
-          <text x="105" y="86" font-family="monospace" font-size="7" fill="#fff">Store</text>
-          <path d="M148,38 L168,58" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <path d="M148,58 L168,58" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <path d="M148,78 L168,58" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <rect x="170" y="36" width="60" height="44" rx="4" fill="#fff" stroke="#1B5E4F" stroke-width="1.5"/>
-          <rect x="178" y="45" width="38" height="3" rx="1" fill="#1B5E4F" opacity=".6"/>
-          <rect x="178" y="52" width="44" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="178" y="57" width="40" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="178" y="62" width="44" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="178" y="67" width="36" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="246" y="36" width="62" height="44" rx="4" fill="#C4732A" fill-opacity=".08" stroke="#C4732A" stroke-width="1.2"/>
-          <text x="252" y="56" font-family="monospace" font-size="12" fill="#C4732A" font-weight="bold">76%</text>
-          <text x="252" y="68" font-family="monospace" font-size="7.5" fill="#C4732A">fewer</text>
-          <text x="252" y="77" font-family="monospace" font-size="7.5" fill="#C4732A">tokens</text>
-          <text x="18" y="110" font-family="monospace" font-size="7.5" fill="#828282">Runs every 4 hours · LangGraph fan-out</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Market Intelligence · Agentic AI</span>
-        <div class="pcard-title">Newsletter Product Research Agent</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Someone spent hours every week manually scanning newsletters, visiting product pages, and compiling a research report — tedious, slow, and always delayed.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A LangGraph agent that scans Outlook every 4 hours, browses product pages in parallel, enriches data with an LLM, and delivers a structured report automatically.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Weekly manual research now runs itself.</strong> LLM token cost cut 76% by restructuring data sent per query — better output at a fraction of the compute.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">LangGraph</span><span class="chip">Playwright</span><span class="chip">MS Graph API</span><span class="chip">OpenAI</span><span class="chip">Flask</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6 RAG CHATBOT -->
-    <div class="pcard" data-cat="ai">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <rect x="20" y="22" width="54" height="72" rx="4" fill="#fff" stroke="#E5E2DB" stroke-width="1.5"/>
-          <rect x="28" y="32" width="30" height="3" rx="1" fill="#1B5E4F" opacity=".6"/>
-          <rect x="28" y="40" width="38" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="28" y="46" width="34" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="28" y="52" width="38" height="2" rx="1" fill="#E5E2DB"/>
-          <rect x="28" y="58" width="30" height="2" rx="1" fill="#E5E2DB"/>
-          <text x="22" y="106" font-family="monospace" font-size="7" fill="#828282">Workbooks</text>
-          <rect x="86" y="42" width="50" height="30" rx="5" fill="#C4732A" fill-opacity=".12" stroke="#C4732A" stroke-width="1.5"/>
-          <text x="90" y="55" font-family="monospace" font-size="7" fill="#C4732A">Qdrant</text>
-          <text x="90" y="65" font-family="monospace" font-size="7" fill="#C4732A">Vectors</text>
-          <path d="M76,58 L84,58" stroke="#C4732A" stroke-width="1.5" marker-end="url(#ra)"/>
-          <defs><marker id="ra" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#C4732A"/></marker></defs>
-          <path d="M138,58 L158,58" stroke="#1B5E4F" stroke-width="1.5" marker-end="url(#ra2)"/>
-          <defs><marker id="ra2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#1B5E4F"/></marker></defs>
-          <rect x="160" y="22" width="142" height="28" rx="8" fill="#1B5E4F"/>
-          <text x="170" y="35" font-family="monospace" font-size="7.5" fill="#fff">What's the spec for SKU-A?</text>
-          <polygon points="168,50 176,50 168,42" fill="#1B5E4F"/>
-          <rect x="160" y="58" width="142" height="38" rx="8" fill="#fff" stroke="#1B5E4F" stroke-width="1.5"/>
-          <text x="170" y="71" font-family="monospace" font-size="7" fill="#1B5E4F">Per guideline v3, p.12:</text>
-          <text x="170" y="81" font-family="monospace" font-size="7" fill="#4A4A4A">min weight = 2.4g ···</text>
-          <text x="170" y="91" font-family="monospace" font-size="7" fill="#C4732A">[source: workbook-v3.xlsx]</text>
-          <polygon points="168,58 176,58 168,66" fill="#fff" stroke="#1B5E4F" stroke-width="1"/>
-          <text x="22" y="125" font-family="monospace" font-size="7.5" fill="#828282">LlamaIndex · Incremental indexing · Source citations</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Product Development · RAG</span>
-        <div class="pcard-title">PD Smart Assistant — RAG Chatbot</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Product teams dug through multiple guideline workbooks every time they needed a spec. A 10-minute lookup, dozens of times a day.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A RAG chatbot that indexes all guideline documents and answers natural language questions with exact citations — file name, page, version.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Spec lookups dropped from 10+ minutes to seconds.</strong> The chatbot cites its source, so teams trust the answer and move on.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">LlamaIndex</span><span class="chip">OpenAI</span><span class="chip">Qdrant</span><span class="chip">Flask</span><span class="chip">SQLite</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7 HR ONBOARDING -->
-    <div class="pcard" data-cat="ai automation">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <circle cx="68" cy="58" r="28" fill="#fff" stroke="#E5E2DB" stroke-width="1.5"/>
-          <circle cx="68" cy="50" r="10" fill="#1B5E4F" opacity=".75"/>
-          <path d="M44,78 Q68,65 92,78" fill="#1B5E4F" opacity=".75"/>
-          <rect x="42" y="30" width="52" height="52" rx="3" fill="none" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="30" y="104" font-family="monospace" font-size="7" fill="#828282">Document</text>
-          <path d="M100,58 L120,58" stroke="#C4732A" stroke-width="2" marker-end="url(#ha)"/>
-          <defs><marker id="ha" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#C4732A"/></marker></defs>
-          <rect x="122" y="44" width="48" height="28" rx="5" fill="#1B5E4F"/>
-          <text x="130" y="55" font-family="monospace" font-size="7" fill="#fff">AI Vision</text>
-          <text x="130" y="64" font-family="monospace" font-size="7" fill="#fff">+ OCR</text>
-          <path d="M172,58 L196,58" stroke="#C4732A" stroke-width="2" marker-end="url(#ha2)"/>
-          <defs><marker id="ha2" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#C4732A"/></marker></defs>
-          <rect x="198" y="30" width="52" height="16" rx="3" fill="#fff" stroke="#E5E2DB"/>
-          <text x="204" y="42" font-family="monospace" font-size="7" fill="#828282">DB Sync</text>
-          <rect x="198" y="50" width="52" height="16" rx="3" fill="#fff" stroke="#E5E2DB"/>
-          <text x="204" y="62" font-family="monospace" font-size="7" fill="#828282">Validate</text>
-          <rect x="198" y="70" width="52" height="16" rx="3" fill="#fff" stroke="#1B5E4F" stroke-width="1.5"/>
-          <text x="204" y="82" font-family="monospace" font-size="7" fill="#1B5E4F">Form Gen ✓</text>
-          <text x="38" y="125" font-family="monospace" font-size="7.5" fill="#828282">OpenAI Vision · Auto form generation · MSSQL</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">HR · Document Intelligence</span>
-        <div class="pcard-title">HR Onboarding Documentation System</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">HR manually extracted data from new hire documents, typed it into the database, and filled statutory forms by hand. Error-prone and slow for every new joiner.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">An AI tool that reads documents via Vision AI, validates and syncs data to MSSQL, auto-detects &amp; crops photos, and generates all onboarding forms automatically.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Zero manual data entry.</strong> HR onboards new hires in minutes instead of an afternoon — and the forms are right the first time.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">OpenAI Vision</span><span class="chip">PyMuPDF</span><span class="chip">OpenCV</span><span class="chip">Flask</span><span class="chip">MSSQL</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8 METAL RATES -->
-    <div class="pcard" data-cat="automation ai">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <circle cx="48" cy="62" r="26" fill="#fff" stroke="#E5E2DB" stroke-width="1.5"/>
-          <circle cx="48" cy="62" r="2" fill="#1B5E4F"/>
-          <line x1="48" y1="62" x2="48" y2="46" stroke="#1B5E4F" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="48" y1="62" x2="60" y2="68" stroke="#C4732A" stroke-width="2" stroke-linecap="round"/>
-          <text x="30" y="100" font-family="monospace" font-size="7" fill="#828282">every 4 hrs</text>
-          <path d="M78,62 L100,62" stroke="#C4732A" stroke-width="2" marker-end="url(#ma)"/>
-          <defs><marker id="ma" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#C4732A"/></marker></defs>
-          <rect x="104" y="30" width="108" height="68" rx="4" fill="#fff" stroke="#E5E2DB"/>
-          <text x="112" y="44" font-family="monospace" font-size="7.5" fill="#C4732A">Gold $—/oz</text>
-          <text x="112" y="53" font-family="monospace" font-size="6.5" fill="#828282">Silver $—/oz</text>
-          <polyline points="112,82 124,70 136,74 148,60 160,66 172,54 184,50 196,56" fill="none" stroke="#1B5E4F" stroke-width="2"/>
-          <path d="M216,62 L240,48" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ma2)"/>
-          <path d="M216,62 L240,76" stroke="#C4732A" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ma3)"/>
-          <defs>
-            <marker id="ma2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#C4732A"/></marker>
-            <marker id="ma3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#C4732A"/></marker>
-          </defs>
-          <rect x="242" y="36" width="62" height="22" rx="3" fill="#1B5E4F"/>
-          <text x="248" y="51" font-family="monospace" font-size="8" fill="#fff">📊 Excel</text>
-          <rect x="242" y="64" width="62" height="22" rx="3" fill="#fff" stroke="#1B5E4F" stroke-width="1.5"/>
-          <text x="248" y="79" font-family="monospace" font-size="8" fill="#1B5E4F">✉ Email</text>
-          <text x="38" y="125" font-family="monospace" font-size="7.5" fill="#828282">Playwright · OpenAI Vision · APScheduler</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Sales Support · Automation</span>
-        <div class="pcard-title">Metal Rate Extraction &amp; Auto-Reporting</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Sales needed up-to-date precious metal prices to quote customers. Getting them meant manually checking multiple websites throughout the day — disruptive and inconsistent.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">A bot that checks metal rates every 4 hours using Playwright + AI-based extraction, generates a formatted Excel report, and emails it to the Sales team automatically.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Sales has accurate rates in their inbox before they need them.</strong> Nobody interrupts their day to look up prices anymore.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">Playwright</span><span class="chip">OpenAI Vision</span><span class="chip">APScheduler</span><span class="chip">Flask</span><span class="chip">SMTP</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 9 DIAMOND DATA -->
-    <div class="pcard" data-cat="automation analytics">
-      <div class="pcard-img">
-        <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="140" fill="#F8F7F4"/>
-          <polygon points="130,18 190,56 130,112 70,56" fill="#fff" stroke="#1B5E4F" stroke-width="2"/>
-          <polygon points="130,18 190,56 130,64" fill="#1B5E4F" opacity=".18"/>
-          <polygon points="70,56 130,64 130,112" fill="#1B5E4F" opacity=".28"/>
-          <polygon points="130,18 190,56 130,64" fill="none" stroke="#1B5E4F" stroke-width=".8"/>
-          <line x1="70" y1="56" x2="190" y2="56" stroke="#1B5E4F" stroke-width=".8" opacity=".5"/>
-          <path d="M196,65 L220,65" stroke="#C4732A" stroke-width="2" marker-end="url(#da)"/>
-          <defs><marker id="da" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#C4732A"/></marker></defs>
-          <rect x="224" y="24" width="82" height="88" rx="4" fill="#fff" stroke="#E5E2DB"/>
-          <rect x="224" y="24" width="82" height="16" rx="4" fill="#1B5E4F"/>
-          <text x="228" y="36" font-family="monospace" font-size="7" fill="#fff">Carat  Shape  $</text>
-          <text x="228" y="50" font-family="monospace" font-size="7" fill="#4A4A4A">0.30   RD    —</text>
-          <text x="228" y="60" font-family="monospace" font-size="7" fill="#4A4A4A">0.50   PR    —</text>
-          <text x="228" y="70" font-family="monospace" font-size="7" fill="#4A4A4A">0.70   OV    —</text>
-          <text x="228" y="80" font-family="monospace" font-size="7" fill="#4A4A4A">1.00   CU    —</text>
-          <text x="228" y="90" font-family="monospace" font-size="7" fill="#4A4A4A">1.50   EM    —</text>
-          <text x="38" y="125" font-family="monospace" font-size="7.5" fill="#828282">Structured extraction · Pricing intelligence · Repeatable</text>
-        </svg>
-      </div>
-      <div class="pcard-body">
-        <span class="pcard-domain">Product Analytics · Data Pipeline</span>
-        <div class="pcard-title">Diamond Data Extraction &amp; Automation</div>
-        <div class="pcard-psi">
-          <div class="psi-row">
-            <span class="psi-tag prob">Problem</span>
-            <span class="psi-text">Building a pricing intelligence database meant manually looking up listings one by one — slow, inconsistent, and impossible to keep current.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag sol">Built</span>
-            <span class="psi-text">An automated pipeline that extracts structured diamond data (carat, shape, cut, price) from industry platforms and feeds a clean, queryable database.</span>
-          </div>
-          <div class="psi-row">
-            <span class="psi-tag imp">Impact</span>
-            <span class="psi-text"><strong>Pricing intelligence that used to take days now runs automatically.</strong> The database stays current with no manual effort from anyone.</span>
-          </div>
-        </div>
-        <div class="pcard-chips">
-          <span class="chip">Python</span><span class="chip">Web Scraping</span><span class="chip">Pandas</span><span class="chip">SQL</span><span class="chip">Excel</span>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- proj-grid -->
-</section>
-
-<!-- SKILLS -->
-<section class="block wrap reveal" id="skills">
-  <div class="sec-label">Skills</div>
-  <h2 class="sec-title">What I work with</h2>
-  <p class="sec-desc">Python and SQL are my daily tools. Everything else depends on the problem — I pick what fits.</p>
-  <div class="skill-groups">
-    <div>
-      <div class="sg-title">Languages</div>
-      <div class="chips-row">
-        <span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">VBA</span><span class="skill-chip">DAX</span><span class="skill-chip">JavaScript</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">Data &amp; BI</div>
-      <div class="chips-row">
-        <span class="skill-chip">Power BI</span><span class="skill-chip">MS SQL Server</span><span class="skill-chip">MySQL</span><span class="skill-chip">Advanced Excel</span><span class="skill-chip">Tableau</span><span class="skill-chip">Power Query</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">AI / GenAI</div>
-      <div class="chips-row">
-        <span class="skill-chip">LangChain</span><span class="skill-chip">LangGraph</span><span class="skill-chip">LlamaIndex</span><span class="skill-chip">RAG</span><span class="skill-chip">OpenAI API</span><span class="skill-chip">Gemini API</span><span class="skill-chip">FAISS</span><span class="skill-chip">Qdrant</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">Vision &amp; ML</div>
-      <div class="chips-row">
-        <span class="skill-chip">PyTorch</span><span class="skill-chip">DINOv2</span><span class="skill-chip">OpenCV</span><span class="skill-chip">Embeddings</span><span class="skill-chip">SARIMA</span><span class="skill-chip">XGBoost</span><span class="skill-chip">NLP</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">Libraries</div>
-      <div class="chips-row">
-        <span class="skill-chip">Pandas</span><span class="skill-chip">NumPy</span><span class="skill-chip">PyMuPDF</span><span class="skill-chip">Openpyxl</span><span class="skill-chip">Matplotlib</span><span class="skill-chip">Requests</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">Infra &amp; Automation</div>
-      <div class="chips-row">
-        <span class="skill-chip">Flask</span><span class="skill-chip">Streamlit</span><span class="skill-chip">Playwright</span><span class="skill-chip">APScheduler</span><span class="skill-chip">MS Graph API</span><span class="skill-chip">Power Automate</span><span class="skill-chip">Git</span><span class="skill-chip">SQLite</span>
+    <div class="medal">
+      <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+        <defs><path id="micro-ring" d="M200,200 m-98,0 a98,98 0 1,1 196,0 a98,98 0 1,1 -196,0"/></defs>
+        <g class="rose" data-rosette></g>
+        <text class="micro"><textPath href="#micro-ring" textLength="613" lengthAdjust="spacing">Uttam Singh, data analyst, AI automation engineer, Mumbai, Uttam Singh, data analyst, AI automation engineer, Mumbai, Uttam Singh, data analyst, AI automation engineer, Mumbai,&#160;&#160;</textPath></text>
+      </svg>
+      <div class="portrait">
+        <img src="https://github.com/uttam4027.png" alt="Portrait of Uttam Singh"
+             onerror="this.style.display='none';this.parentElement.querySelector('.photo-fallback').style.display='flex';">
+        <div class="photo-fallback" style="display:none">US</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CURRENTLY LEARNING -->
-<section class="block wrap reveal" id="learning">
-  <div class="sec-label">Currently Learning</div>
-  <h2 class="sec-title">What I'm working on next</h2>
-  <p class="sec-desc">Following a structured 28-week curriculum benchmarked against Meta, Amazon and Google analyst interview loops.</p>
-  <div class="learn-grid">
-    <div class="lcard">
-      <div class="lcard-icon">🗄️</div>
-      <div class="lcard-title">Analytics Engineering</div>
-      <div class="lcard-sub">dbt, Snowflake, BigQuery, Git for analytics</div>
-      <div class="pbar"><div class="pbar-fill" style="width:55%"></div></div>
+<!-- ──────── RESULTS ──────── -->
+<section class="sec" id="results" aria-labelledby="results-h">
+  <div class="wrap rail">
+    <div class="rail-head">
+      <h2 id="results-h">Selected results</h2>
+      <p>Selected outcomes from internal projects. Company data and confidential implementation details are intentionally excluded.</p>
     </div>
-    <div class="lcard">
-      <div class="lcard-icon">📊</div>
-      <div class="lcard-title">Advanced SQL</div>
-      <div class="lcard-sub">Window functions, CTEs, query optimisation (DataLemur)</div>
-      <div class="pbar"><div class="pbar-fill" style="width:75%"></div></div>
+    <ul class="ledger">
+      <li>
+        <span class="fig">10–20 min</span>
+        <p><strong>GST document processing</strong>, once the data is prepared. The manual process took 1–2 weeks and several people. Now one person runs it.</p>
+      </li>
+      <li>
+        <span class="fig">400K+</span>
+        <p><strong>Product images indexed for similarity search</strong>, so researchers can check whether a new design already exists as a SKU.</p>
+      </li>
+      <li>
+        <span class="fig">9</span>
+        <p><strong>Internal tools and systems built</strong> for finance, HR, sales, supply chain, product development and market intelligence teams.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ──────── WHAT I BUILD ──────── -->
+<section class="sec" id="build" aria-labelledby="build-h">
+  <div class="wrap rail">
+    <div class="rail-head">
+      <h2 id="build-h">What I build</h2>
+      <p>I work with teams across a jewellery and commodities business and replace slow manual steps with analysis, automation or an AI application.</p>
+      <dl class="role">
+        <dt>Role</dt><dd>Data Analyst and AI Engineer</dd>
+        <dt>Company</dt><dd>Jewelex India Pvt Ltd, Mumbai</dd>
+        <dt>Since</dt><dd>July 2024</dd>
+      </dl>
     </div>
-    <div class="lcard">
-      <div class="lcard-icon">🧪</div>
-      <div class="lcard-title">Statistics &amp; A/B Testing</div>
-      <div class="lcard-sub">Hypothesis testing, experiment design, p-values</div>
-      <div class="pbar"><div class="pbar-fill" style="width:50%"></div></div>
-    </div>
-    <div class="lcard">
-      <div class="lcard-icon">🔗</div>
-      <div class="lcard-title">Causal Inference</div>
-      <div class="lcard-sub">Confounders, Simpson's Paradox, causal graphs</div>
-      <div class="pbar"><div class="pbar-fill" style="width:35%"></div></div>
-    </div>
-    <div class="lcard">
-      <div class="lcard-icon">📐</div>
-      <div class="lcard-title">Product Analytics</div>
-      <div class="lcard-sub">AARRR, unit economics, KPI trees, DAU/MAU, star schema</div>
-      <div class="pbar"><div class="pbar-fill" style="width:45%"></div></div>
-    </div>
-    <div class="lcard">
-      <div class="lcard-icon">🤖</div>
-      <div class="lcard-title">Agentic AI &amp; n8n</div>
-      <div class="lcard-sub">Advanced RAG, multi-agent systems, n8n, MCP workflows</div>
-      <div class="pbar"><div class="pbar-fill" style="width:65%"></div></div>
+    <div class="builds">
+      <div class="build">
+        <h3>Analytics</h3>
+        <p>Turning sales, catalogue and market data into something a team can act on.</p>
+        <ul class="chain" aria-label="Analytics flow">
+          <li>Business question</li><li>SQL</li><li>Python</li><li>Power BI or web dashboard</li><li>Decision</li>
+        </ul>
+        <p class="see">Examples: <a href="#p-demand">Demand planning</a>, <a href="#p-white">White space analysis</a></p>
+      </div>
+      <div class="build">
+        <h3>Automation</h3>
+        <p>Replacing repeated manual work with a script that runs on its own and logs what it did.</p>
+        <ul class="chain" aria-label="Automation flow">
+          <li>Manual process</li><li>Python or VBA</li><li>Automated workflow</li>
+        </ul>
+        <p class="see">Examples: <a href="#p-gst">GST documents</a>, <a href="#p-metal">Metal rates</a>, <a href="#p-diamond">Diamond data</a></p>
+      </div>
+      <div class="build">
+        <h3>AI applications</h3>
+        <p>Putting an LLM to work on company documents and data, with the source shown next to the answer.</p>
+        <ul class="chain" aria-label="AI application flow">
+          <li>Documents and data</li><li>RAG or LLM</li><li>Business application</li>
+        </ul>
+        <p class="see">Examples: <a href="#p-pd">PD Smart Assistant</a>, <a href="#p-newsletter">Newsletter agent</a>, <a href="#p-hr">HR onboarding</a></p>
+      </div>
+      <div class="build">
+        <h3>Computer vision</h3>
+        <p>Searching a large image catalogue by what products look like.</p>
+        <ul class="chain" aria-label="Computer vision flow">
+          <li>Image</li><li>Embedding</li><li>Vector search</li><li>Similar products</li>
+        </ul>
+        <p class="see">Example: <a href="#p-image">Jewellery image search</a></p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section class="block wrap reveal" id="education">
-  <div class="sec-label">Education &amp; Certifications</div>
-  <h2 class="sec-title">Background</h2>
-  <div class="edu-grid">
-    <div class="edu-item">
-      <h4>B.Tech — Electrical &amp; Electronics Engineering</h4>
-      <div class="sub">Shri Ram Institute of Technology &nbsp;·&nbsp; CGPA 8.0 / 10</div>
-      <div class="yr">2019 – 2023</div>
+<!-- ──────── PROJECTS ──────── -->
+<section class="sec" id="projects" aria-labelledby="proj-h">
+  <div class="wrap">
+    <div class="proj-head">
+      <h2 id="proj-h">Selected projects, each started from a business problem</h2>
+      <p>Most projects are internal company systems, so source code and business data remain private. Each case explains the problem, solution, architecture and outcome without exposing confidential data.</p>
+      <p class="project-note" style="margin-top:10px;color:var(--ink-3);font-size:14px;">
+        Public repositories are linked only where available. For confidential work, the portfolio focuses on architecture, workflow and measurable outcomes rather than company data. Illustrations and diagrams use sample data.
+      </p>
     </div>
-    <div class="edu-item">
-      <h4>IBM Data Analyst Professional Certificate</h4>
-      <div class="sub">Coursera</div>
-      <div class="yr">2024</div>
+
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="pf on" data-f="all" aria-pressed="true">All (9)</button>
+      <button class="pf" data-f="ai" aria-pressed="false">AI and GenAI</button>
+      <button class="pf" data-f="automation" aria-pressed="false">Automation</button>
+      <button class="pf" data-f="analytics" aria-pressed="false">Analytics</button>
+      <button class="pf" data-f="vision" aria-pressed="false">Computer vision</button>
     </div>
-    <div class="edu-item">
-      <h4>PCAP: Programming Essentials in Python</h4>
-      <div class="sub">Cisco</div>
-      <div class="yr">2022</div>
+
+    <!-- 1. PD SMART ASSISTANT -->
+    <article class="pc sheet" id="p-pd" data-cat="ai">
+      <header class="sheet-head">
+        <div>
+          <h3>PD Smart Assistant</h3>
+          <p class="outcome">Ask a product-guideline question in plain language and get the answer with its source document.</p>
+        </div>
+        <dl class="meta"><dt>Built for</dt><dd>Product Development</dd><dt>Type</dt><dd>RAG chatbot</dd></dl>
+      </header>
+      <div class="sheet-body">
+        <div class="story">
+          <div class="ill">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Chat window: a user asks for a ring specification and the assistant answers, showing the source file and sheet.">
+            <rect x="10" y="10" width="320" height="28" rx="5" class="f-dark"/>
+            <text x="20" y="28" class="tk" font-size="10" font-weight="600">PD Smart Assistant</text>
+            <text x="320" y="28" text-anchor="end" class="tk2" font-size="8">LlamaIndex + Qdrant</text>
+            <rect x="10" y="46" width="104" height="134" rx="4" class="f-panel"/>
+            <text x="17" y="61" class="tt" font-size="8.5" font-weight="600">Indexed files</text>
+            <text x="17" y="77" class="t2" font-size="8">Guideline-v3.xlsx</text>
+            <text x="17" y="90" class="t2" font-size="8">Spec-Master.xlsx</text>
+            <text x="17" y="103" class="t2" font-size="8">PD-Rules.xlsx</text>
+            <text x="17" y="116" class="t2" font-size="8">Care-Notes.xlsx</text>
+            <rect x="16" y="136" width="92" height="38" rx="3" class="f-tt"/>
+            <text x="21" y="150" class="tt" font-size="7.5" font-weight="600">Incremental indexing</text>
+            <text x="21" y="161" class="t2" font-size="7.5">Only new or</text>
+            <text x="21" y="170" class="t2" font-size="7.5">changed files</text>
+            <rect x="122" y="46" width="208" height="134" rx="4" class="f-panel"/>
+            <rect x="156" y="54" width="166" height="28" rx="5" class="f-teal"/>
+            <text x="163" y="65" class="tw" font-size="8">What is the spec for Ring SKU-102?</text>
+            <text x="163" y="76" class="tw" font-size="8" opacity=".85">Minimum weight and finish?</text>
+            <rect x="128" y="90" width="194" height="58" rx="5" class="f-map"/>
+            <text x="135" y="103" class="t1" font-size="8.5" font-weight="600">From Guideline-v3.xlsx, sheet Rings</text>
+            <text x="135" y="116" class="t2" font-size="8">Minimum weight: 2.4 g</text>
+            <text x="135" y="127" class="t2" font-size="8">Stone size: 0.30 to 0.50 ct</text>
+            <text x="135" y="138" class="t2" font-size="8">Finish: high polish</text>
+            <rect x="128" y="154" width="160" height="17" rx="3" class="f-tt"/>
+            <text x="134" y="166" class="tt" font-size="8">Source: Guideline-v3.xlsx, Rings</text>
+          </svg>
+          </div>
+          <h4>Problem</h4>
+          <p>Product Development teams opened several guideline workbooks by hand to find one parameter or instruction. Every lookup meant searching through documents.</p>
+          <h4>What I built</h4>
+          <p>A chatbot that indexes the company's guideline documents. Users ask in natural language. It answers from the matching guidelines and shows which document the answer came from.</p>
+          <h4 class="res">Result</h4>
+          <p>Teams get the relevant guideline from one question instead of manual searching. Only the relevant passages go to the model, not the whole dataset, so token use stays low.</p>
+        </div>
+        <figure class="map">
+          <figcaption>How it works</figcaption>
+          <div class="lines two">
+            <div class="lane">
+              <h5>Indexing the guidelines</h5>
+              <ol class="line">
+                <li><b>Guideline workbooks</b><span>The Excel guideline documents.</span></li>
+                <li><b>Chunking</b><span>Sheets are split into passages that can be retrieved one at a time.</span></li>
+                <li><b>Embeddings</b><span>OpenAI embeddings for every passage.</span></li>
+                <li class="hub"><b>Qdrant index</b><span>Only new or changed files are re-indexed. Admins can also trigger a full re-index.</span></li>
+              </ol>
+            </div>
+            <div class="lane">
+              <h5>Answering a question</h5>
+              <ol class="line">
+                <li><b>Question</b><span>Asked by a signed-in user. Chat history is saved.</span></li>
+                <li><b>Customer-to-group match</b><span>Picks the guideline group that applies.</span></li>
+                <li class="hub"><b>Qdrant search</b><span>Retrieves the closest passages.</span></li>
+                <li><b>LLM answer</b><span>OpenAI writes the answer from those passages, orchestrated with LlamaIndex.</span></li>
+                <li class="end"><b>Answer with source</b><span>The source document is shown next to the answer.</span></li>
+              </ol>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <!-- LINKS: when a project has a public repo or demo, paste this block here
+           (between </div> of .sheet-body and <details class="more">) in that project's <article>:
+      <p class="links"><a class="lnk" href="YOUR_GITHUB_REPO_URL" target="_blank" rel="noopener">GitHub</a><a class="lnk" href="YOUR_DEMO_URL" target="_blank" rel="noopener">Live demo</a></p>
+      -->
+      <details class="more">
+        <summary>Features and stack</summary>
+        <div class="more-in">
+          <ul class="feat">
+            <li>Excel guideline processing, chunking and embeddings</li>
+            <li>Vector search in Qdrant with source references on every answer</li>
+            <li>Customer-to-group matching for relevant guideline retrieval</li>
+            <li>Chat history and user login</li>
+            <li>Admin panel and guideline re-indexing</li>
+            <li>Incremental indexing of new and updated documents</li>
+            <li>Token-efficient retrieval instead of sending the full dataset</li>
+          </ul>
+          <p class="stack"><b>Stack</b>Python, Flask, LlamaIndex, OpenAI, OpenAI embeddings, Qdrant, Pandas, Excel, SQLite</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 2. NEWSLETTER AGENT -->
+    <article class="pc sheet" id="p-newsletter" data-cat="ai automation">
+      <header class="sheet-head">
+        <div>
+          <h3>Newsletter Product Research Agent</h3>
+          <p class="outcome">Newsletters in, structured product research out, with no product-by-product browsing.</p>
+        </div>
+        <dl class="meta"><dt>Built for</dt><dd>Market Intelligence</dd><dt>Type</dt><dd>AI agent</dd></dl>
+      </header>
+      <div class="sheet-body">
+        <div class="story">
+          <div class="ill">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Flow: newsletters in an Outlook folder go to a LangGraph agent that finds new products, browses pages, enriches with an LLM and stores results, producing a product report.">
+            <rect x="10" y="52" width="62" height="66" rx="5" class="f-panel"/>
+            <path d="M10 70V57a5 5 0 0 1 5-5h52a5 5 0 0 1 5 5v13z" class="f-teal"/>
+            <text x="41" y="65" text-anchor="middle" class="tw" font-size="8.5" font-weight="600">Outlook</text>
+            <rect x="16" y="78" width="50" height="4" rx="2" class="f-line"/>
+            <rect x="16" y="86" width="50" height="4" rx="2" class="f-line"/>
+            <rect x="16" y="94" width="38" height="4" rx="2" class="f-line"/>
+            <text x="10" y="132" class="t2" font-size="8" font-weight="600">Newsletters</text>
+            <text x="10" y="143" class="t3" font-size="7.5">Scanned every 4 hours</text>
+            <path d="M74 88H93" class="s-teal" stroke-width="1.6"/>
+            <polygon points="93,84 100,88 93,92" class="f-teal"/>
+            <rect x="100" y="34" width="118" height="116" rx="5" class="f-dark"/>
+            <text x="110" y="50" class="tk" font-size="9" font-weight="600">LangGraph agent</text>
+            <rect x="106" y="58" width="106" height="18" rx="3" class="f-in"/>
+            <text x="113" y="70" class="tk2" font-size="8">Find new products</text>
+            <rect x="106" y="80" width="106" height="18" rx="3" class="f-in"/>
+            <text x="113" y="92" class="tk2" font-size="8">Browse product pages</text>
+            <rect x="106" y="102" width="106" height="18" rx="3" class="f-in"/>
+            <text x="113" y="114" class="tk2" font-size="8">LLM enrichment</text>
+            <rect x="106" y="124" width="106" height="18" rx="3" class="f-in"/>
+            <text x="113" y="136" class="tk2" font-size="8">Store in SQLite</text>
+            <path d="M220 92H235" class="s-teal" stroke-width="1.6"/>
+            <polygon points="235,88 242,92 235,96" class="f-teal"/>
+            <rect x="242" y="52" width="88" height="80" rx="5" class="f-panel-hi"/>
+            <path d="M242 70V57a5 5 0 0 1 5-5h78a5 5 0 0 1 5 5v13z" class="f-ruby"/>
+            <text x="286" y="65" text-anchor="middle" class="tw" font-size="8" font-weight="600">Product report</text>
+            <rect x="248" y="78" width="56" height="4" rx="2" class="f-rt2"/>
+            <rect x="248" y="86" width="76" height="4" rx="2" class="f-line"/>
+            <rect x="248" y="94" width="70" height="4" rx="2" class="f-line"/>
+            <rect x="248" y="102" width="76" height="4" rx="2" class="f-line"/>
+            <rect x="248" y="110" width="52" height="4" rx="2" class="f-line"/>
+            <rect x="10" y="158" width="320" height="24" rx="4" class="f-panel"/>
+            <text x="20" y="173" class="t2" font-size="8">Output: Excel and CSV reports, plus a dashboard for runs and errors</text>
+          </svg>
+          </div>
+          <h4>Problem</h4>
+          <p>The Market Intelligence team opened newsletters one by one, researched each product and compiled the report by hand. It was repetitive and slow.</p>
+          <h4>What I built</h4>
+          <p>An agent that scans a dedicated Outlook folder, pulls out product links, finds the products that are new, visits their pages and collects structured details. An LLM fills in what the page does not say.</p>
+          <h4 class="res">Result</h4>
+          <p>Research now runs on a schedule. The team spends its time checking the generated output instead of collecting it.</p>
+        </div>
+        <figure class="map">
+          <figcaption>How it works, one research run</figcaption>
+          <div class="lines">
+            <div class="lane">
+              <h5>Orchestrated by a LangGraph agent</h5>
+              <ol class="line">
+                <li><b>Scheduler</b><span>Starts a run every 4 hours.</span></li>
+                <li><b>Outlook folder</b><span>Newsletters are read through the Microsoft Graph API.</span></li>
+                <li><b>Find new products</b><span>Extracts product links, identifies new products and removes duplicates.</span></li>
+                <li><b>Browse product pages</b><span>Playwright opens each page and extracts the product attributes.</span></li>
+                <li><b>LLM enrichment</b><span>Fills in the fields the page did not provide.</span></li>
+                <li><b>SQLite</b><span>Stores products, runs and errors.</span></li>
+                <li class="end"><b>Reports and dashboard</b><span>Excel and CSV reports, plus a Flask dashboard for runs, products and errors.</span></li>
+              </ol>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Features and stack</summary>
+        <div class="more-in">
+          <ul class="feat">
+            <li>Automated Outlook newsletter scanning and product link extraction</li>
+            <li>Automated research on each product page</li>
+            <li>New product identification and deduplication</li>
+            <li>Product attribute extraction with LLM enrichment for missing information</li>
+            <li>Automated scheduling and SQLite storage</li>
+            <li>Excel and CSV reports</li>
+            <li>Dashboard for monitoring runs, products and errors</li>
+          </ul>
+          <p class="stack"><b>Stack</b>Python, LangGraph, Playwright, Microsoft Graph API, OpenAI, Flask, SQLite, Pandas</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 3. IMAGE SEARCH -->
+    <article class="pc sheet" id="p-image" data-cat="ai vision">
+      <header class="sheet-head">
+        <div>
+          <h3>Jewellery Image Similarity Search</h3>
+          <p class="outcome">Upload a photo and see which existing SKUs look like it.</p>
+        </div>
+        <dl class="meta"><dt>Built for</dt><dd>Product research</dd><dt>Type</dt><dd>Computer vision</dd></dl>
+      </header>
+      <div class="sheet-body">
+        <div class="story">
+          <div class="ill">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Search screen: an uploaded query image and three ranked similar products from the catalogue.">
+            <rect x="10" y="10" width="320" height="30" rx="5" class="f-panel-hi"/>
+            <circle cx="24" cy="24" r="4.5" class="s-teal" stroke-width="1.5"/>
+            <path d="M27.5 27.5L31 31" class="s-teal" stroke-width="1.5"/>
+            <text x="38" y="28.5" class="t3" font-size="9">Upload a jewellery image to find similar SKUs</text>
+            <rect x="280" y="14" width="44" height="22" rx="3" class="f-teal"/>
+            <text x="302" y="28.5" text-anchor="middle" class="tw" font-size="8.5" font-weight="600">Search</text>
+            <rect x="10" y="46" width="88" height="14" rx="3" class="f-tt"/>
+            <text x="16" y="56" class="tt" font-size="8" font-weight="600">DINOv2 + Qdrant</text>
+            <text x="106" y="56" class="t3" font-size="8">400,000+ images indexed</text>
+
+            <rect x="10" y="66" width="74" height="76" rx="4" class="f-panel-hi"/>
+            <circle cx="47" cy="98" r="14" class="s-teal" stroke-width="3"/>
+            <polygon points="47,74 53,81 47,88 41,81" class="f-teal"/>
+            <rect x="11" y="125" width="72" height="16" class="f-teal"/>
+            <text x="47" y="136" text-anchor="middle" class="tw" font-size="8" font-weight="600">Query image</text>
+
+            <rect x="90" y="66" width="74" height="76" rx="4" class="f-panel"/>
+            <g opacity=".85"><circle cx="127" cy="98" r="14" class="s-teal" stroke-width="3"/><polygon points="127,74 133,81 127,88 121,81" class="f-teal"/></g>
+            <text x="98" y="132" class="t1" font-size="8.5" font-weight="600">Rank 1</text>
+            <rect x="98" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="98" y="136" width="52" height="3" rx="1.5" class="f-teal"/>
+
+            <rect x="170" y="66" width="74" height="76" rx="4" class="f-panel"/>
+            <g opacity=".65"><circle cx="207" cy="98" r="13" class="s-teal" stroke-width="3"/><polygon points="207,75 212,81 207,87 202,81" class="f-teal"/></g>
+            <text x="178" y="132" class="t1" font-size="8.5" font-weight="600">Rank 2</text>
+            <rect x="178" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="178" y="136" width="42" height="3" rx="1.5" class="f-teal"/>
+
+            <rect x="250" y="66" width="74" height="76" rx="4" class="f-panel"/>
+            <g opacity=".5"><circle cx="287" cy="98" r="12" class="s-teal" stroke-width="3"/><polygon points="287,76 291,81 287,86 283,81" class="f-teal"/></g>
+            <text x="258" y="132" class="t1" font-size="8.5" font-weight="600">Rank 3</text>
+            <rect x="258" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="258" y="136" width="32" height="3" rx="1.5" class="f-teal"/>
+
+            <rect x="10" y="150" width="320" height="32" rx="4" class="f-panel"/>
+            <text x="20" y="164" class="t2" font-size="8.5">Ranked by similarity score and grouped by SKU.</text>
+            <text x="20" y="176" class="t3" font-size="8">Optional metal filter. The research team confirms the match.</text>
+          </svg>
+          </div>
+          <h4>Problem</h4>
+          <p>Product researchers had to check by eye whether a newly launched design already existed as a SKU, searching a catalogue of hundreds of thousands of images.</p>
+          <h4>What I built</h4>
+          <p>A search tool where the user uploads a jewellery image and gets visually similar SKUs from the catalogue, ranked by similarity score, with an optional metal filter.</p>
+          <h4 class="res">Result</h4>
+          <p>Researchers find existing designs that resemble a new one in a single search, which helps avoid duplicate development.</p>
+          <p class="note">It suggests candidates. It is not an exact-match system, so the research team confirms the final match.</p>
+        </div>
+        <figure class="map">
+          <figcaption>How it works</figcaption>
+          <div class="lines two">
+            <div class="lane">
+              <h5>Indexing the catalogue</h5>
+              <ol class="line">
+                <li><b>Catalogue images</b><span>400,000+ product photos.</span></li>
+                <li><b>Preprocess and crop</b><span>Each image is cleaned up and cropped to the product.</span></li>
+                <li><b>DINOv2 embeddings</b><span>Visual embeddings from several views, plus a shape fingerprint for structure.</span></li>
+                <li class="hub"><b>Qdrant</b><span>The vector index of the whole catalogue.</span></li>
+              </ol>
+            </div>
+            <div class="lane">
+              <h5>Searching</h5>
+              <ol class="line">
+                <li><b>Uploaded photo</b><span>Entered through a Streamlit interface.</span></li>
+                <li><b>Preprocess and embed</b><span>The same steps as the catalogue images.</span></li>
+                <li class="hub"><b>Qdrant search</b><span>Finds the nearest images by visual similarity.</span></li>
+                <li><b>Group by SKU</b><span>Results are grouped at SKU level.</span></li>
+                <li class="end"><b>Ranked SKUs</b><span>Similarity scores, with an optional metal filter.</span></li>
+              </ol>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Features and stack</summary>
+        <div class="more-in">
+          <ul class="feat">
+            <li>Image-to-image similarity search</li>
+            <li>Image preprocessing and cropping</li>
+            <li>DINOv2-based visual embeddings</li>
+            <li>Multi-view image analysis for shape and design detail</li>
+            <li>Shape fingerprint for structural matching</li>
+            <li>SKU-level result grouping, similarity scoring and ranking</li>
+            <li>Optional metal filter</li>
+          </ul>
+          <p class="stack"><b>Stack</b>Python, Streamlit, PyTorch, DINOv2, Qdrant, NumPy, Pandas, PIL, OpenCV</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 4. GST -->
+    <article class="pc sheet" id="p-gst" data-cat="automation">
+      <header class="sheet-head">
+        <div>
+          <h3>GST Compliance Document Automation</h3>
+          <p class="outcome">One to two weeks of manual paperwork became about 10 to 20 minutes, once the data is prepared.</p>
+        </div>
+        <dl class="meta"><dt>Built for</dt><dd>Finance</dd><dt>Type</dt><dd>Automation</dd></dl>
+      </header>
+      <div class="sheet-body">
+        <div class="story">
+          <div class="ill">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Before: a stack of invoice documents handled by hand over one to two weeks. After: a Python script validates, matches, merges and compresses them in about ten to twenty minutes.">
+            <rect x="10" y="10" width="148" height="170" rx="6" class="f-panel"/>
+            <text x="22" y="30" class="t3" font-size="9" font-weight="600">Before</text>
+            <rect x="30" y="38" width="76" height="92" rx="3" class="f-panel"/>
+            <rect x="38" y="44" width="76" height="92" rx="3" class="f-panel"/>
+            <rect x="46" y="50" width="76" height="92" rx="3" class="f-doc"/>
+            <text x="54" y="70" class="t1" font-size="8.5" font-weight="600">INV-001</text>
+            <text x="54" y="83" class="t3" font-size="8">ICE Gate</text>
+            <text x="54" y="94" class="t3" font-size="8">Match, merge</text>
+            <text x="54" y="105" class="t3" font-size="8">Compress</text>
+            <text x="54" y="116" class="t3" font-size="8">Under 5 MB</text>
+            <text x="54" y="131" class="t2" font-size="8" font-weight="600">Several people</text>
+            <rect x="24" y="148" width="110" height="22" rx="4" class="f-map"/>
+            <text x="79" y="163" text-anchor="middle" class="t2" font-size="10" font-weight="700">1–2 weeks</text>
+
+            <path d="M162 95H172" class="s-teal" stroke-width="1.6"/>
+            <polygon points="172,91 179,95 172,99" class="f-teal"/>
+
+            <rect x="182" y="10" width="148" height="170" rx="6" class="f-panel-hi"/>
+            <text x="194" y="30" class="tt" font-size="9" font-weight="700">After</text>
+            <rect x="198" y="40" width="116" height="86" rx="4" class="f-tt"/>
+            <text x="208" y="57" class="t1" font-size="9" font-weight="700">Python script</text>
+            <path d="M208 69l2.5 2.5 4.5-5.5" class="s-teal" stroke-width="1.4"/>
+            <text x="220" y="72" class="t2" font-size="8">Validate Excel data</text>
+            <path d="M208 81l2.5 2.5 4.5-5.5" class="s-teal" stroke-width="1.4"/>
+            <text x="220" y="84" class="t2" font-size="8">Match INV + ICE Gate</text>
+            <path d="M208 93l2.5 2.5 4.5-5.5" class="s-teal" stroke-width="1.4"/>
+            <text x="220" y="96" class="t2" font-size="8">Merge and compress PDF</text>
+            <path d="M208 105l2.5 2.5 4.5-5.5" class="s-teal" stroke-width="1.4"/>
+            <text x="220" y="108" class="t2" font-size="8">Portal-ready batch</text>
+            <circle cx="257" cy="143" r="13" class="f-teal"/>
+            <path d="M250.5 143l4.5 4.5 8.5-9.5" class="s-inv" stroke-width="2.2"/>
+            <rect x="194" y="160" width="126" height="16" rx="4" class="f-rt"/>
+            <text x="257" y="172" text-anchor="middle" class="tr" font-size="9.5" font-weight="700">10–20 minutes</text>
+          </svg>
+          </div>
+          <h4>Problem</h4>
+          <p>GST document processing was done by hand. Invoice and ICE Gate PDFs had to be checked, merged, scanned and shrunk to fit the portal's upload limit. For large volumes it took 1–2 weeks and several people.</p>
+          <h4>What I built</h4>
+          <p>An end-to-end tool. It validates the Excel data, finds the Invoice and ICE Gate PDFs, merges them in sequence, compresses them and creates upload-ready batches.</p>
+          <h4 class="res">Result</h4>
+          <p>About 10–20 minutes for prepared data, run by one person. Missing files and errors are listed in a verification report before processing starts.</p>
+        </div>
+        <figure class="map">
+          <figcaption>How it works, one monthly run</figcaption>
+          <div class="lines">
+            <div class="lane">
+              <ol class="line">
+                <li><b>Excel register</b><span>The list of documents for the month.</span></li>
+                <li><b>Validate</b><span>Checks each record, writes a verification report and lists missing files.</span></li>
+                <li><b>Match</b><span>Finds the Invoice and ICE Gate PDF for every record.</span></li>
+                <li><b>Merge</b><span>Joins the documents in the required sequence.</span></li>
+                <li><b>Compress</b><span>PyMuPDF reduces size, with the DPI tuned per file.</span></li>
+                <li><b>Batch</b><span>Groups files so every batch stays under the 5 MB portal limit.</span></li>
+                <li class="end"><b>Upload-ready batches</b><span>Outputs are validated. Logs and a batch dashboard track status.</span></li>
+              </ol>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Features and stack</summary>
+        <div class="more-in">
+          <ul class="feat">
+            <li>Excel-based document validation</li>
+            <li>Automatic Invoice and ICE Gate file matching</li>
+            <li>Missing-file and error identification</li>
+            <li>Sequential PDF merging</li>
+            <li>Smart PDF compression with DPI optimisation</li>
+            <li>Automatic batching within the 5 MB limit</li>
+            <li>Pre-processing verification report, processing logs and batch dashboard</li>
+            <li>Output validation and status tracking</li>
+          </ul>
+          <p class="stack"><b>Stack</b>Python, Flask, PyMuPDF, Pandas, OpenPyXL, Pillow, OpenCV, SQLite, HTML, CSS, JavaScript</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 5. DEMAND PLANNING -->
+    <article class="pc sheet" id="p-demand" data-cat="analytics ai">
+      <header class="sheet-head">
+        <div>
+          <h3>Demand Planning and Inventory Management</h3>
+          <p class="outcome">SKU classification, weekly forecasts and accuracy scoring in one workflow.</p>
+        </div>
+        <dl class="meta"><dt>Built for</dt><dd>Supply Chain</dd><dt>Type</dt><dd>Forecasting</dd></dl>
+      </header>
+      <div class="sheet-body">
+        <div class="story">
+          <div class="ill">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Chart: SKU segments Fast moving, Medium moving, Slow moving, New and Non-moving, with bars for actual demand and a dashed forecast line, scored with WAPE and WMAPE.">
+            <text x="12" y="19" class="t3" font-size="8.5" font-weight="600">SKU segments</text>
+            <rect x="12" y="25" width="56" height="15" rx="7.5" style="fill:color-mix(in srgb,#3B82F6 26%,transparent)"/>
+            <text x="40" y="35.5" text-anchor="middle" class="t1" font-size="8">Fast moving</text>
+            <rect x="74" y="25" width="56" height="15" rx="7.5" style="fill:color-mix(in srgb,#10B981 26%,transparent)"/>
+            <text x="102" y="35.5" text-anchor="middle" class="t1" font-size="8">Med. moving</text>
+            <rect x="136" y="25" width="56" height="15" rx="7.5" style="fill:color-mix(in srgb,#F59E0B 28%,transparent)"/>
+            <text x="164" y="35.5" text-anchor="middle" class="t1" font-size="8">Slow moving</text>
+            <rect x="198" y="25" width="42" height="15" rx="7.5" style="fill:color-mix(in srgb,#8B5CF6 26%,transparent)"/>
+            <text x="219" y="35.5" text-anchor="middle" class="t1" font-size="8">New SKU</text>
+            <rect x="246" y="25" width="54" height="15" rx="7.5" style="fill:color-mix(in srgb,#EF4444 24%,transparent)"/>
+            <text x="273" y="35.5" text-anchor="middle" class="t1" font-size="8">Non-moving</text>
+
+            <line x1="28" y1="55" x2="28" y2="148" class="s-rule"/>
+            <line x1="28" y1="148" x2="320" y2="148" class="s-rule"/>
+            <line x1="28" y1="90" x2="320" y2="90" class="s-rule" stroke-dasharray="3 3"/>
+            <line x1="28" y1="70" x2="320" y2="70" class="s-rule" stroke-dasharray="3 3"/>
+            <rect x="44" y="100" width="20" height="48" rx="2" class="f-teal" opacity=".85"/>
+            <rect x="84" y="80" width="20" height="68" rx="2" class="f-teal" opacity=".85"/>
+            <rect x="124" y="92" width="20" height="56" rx="2" class="f-teal" opacity=".85"/>
+            <rect x="164" y="70" width="20" height="78" rx="2" class="f-teal" opacity=".85"/>
+            <rect x="204" y="85" width="20" height="63" rx="2" class="f-teal" opacity=".85"/>
+            <rect x="236" y="55" width="84" height="93" class="f-tint"/>
+            <line x1="236" y1="55" x2="236" y2="148" class="s-teal" stroke-dasharray="3 3"/>
+            <rect x="244" y="65" width="20" height="83" rx="2" class="f-rt2"/>
+            <rect x="284" y="58" width="20" height="90" rx="2" class="f-rt2"/>
+            <polyline points="54,100 94,79 134,70 174,60 214,72 254,55 294,48" class="s-ruby" stroke-width="2" stroke-dasharray="5 3"/>
+
+            <rect x="24" y="154" width="214" height="28" rx="4" class="f-panel"/>
+            <rect x="30" y="164" width="8" height="8" rx="1" class="f-teal" opacity=".85"/>
+            <text x="42" y="171" class="t2" font-size="8">Actual demand</text>
+            <line x1="112" y1="168" x2="126" y2="168" class="s-ruby" stroke-width="2" stroke-dasharray="4 2"/>
+            <text x="130" y="171" class="t2" font-size="8">Forecast</text>
+            <rect x="246" y="154" width="84" height="28" rx="4" class="f-rt"/>
+            <text x="252" y="165" class="tr" font-size="7.5" font-weight="700">WAPE and WMAPE</text>
+            <text x="252" y="175" class="t2" font-size="7.5">accuracy scored</text>
+          </svg>
+          </div>
+          <h4>Problem</h4>
+          <p>The Supply Chain team needed a structured way to study historical demand, classify SKUs and choose forecasting approaches. Doing it by hand slowed down demand planning and inventory decisions.</p>
+          <h4>What I built</h4>
+          <p>Working with the Supply Chain and Development teams, I turned demand-planning concepts into an automated forecasting and analytics system built around SKU history, frequency and variability.</p>
+          <h4 class="res">Result</h4>
+          <p>One workflow shows demand patterns, weekly forecasts, seasonality and forecast accuracy (WAPE and WMAPE) to support inventory planning.</p>
+          <p class="note">Methods compared: SARIMA, Holt-Winters, XGBoost, ETS, SES, Croston, TSB, linear regression and moving average. The workflow in use applies logic-based moving-average forecasting to sparse-demand cases.</p>
+        </div>
+        <figure class="map">
+          <figcaption>How it works</figcaption>
+          <div class="lines">
+            <div class="lane">
+              <ol class="line">
+                <li><b>Weekly sales history</b><span>Historical demand by SKU and by customer.</span></li>
+                <li><b>Classify SKUs</b><span>By history length, frequency and variability (coefficient of variation).</span></li>
+                <li><b>Demand segments</b><span>Fast, medium and slow moving, new, and non-moving (FM, MM, SM, New, NM).</span></li>
+                <li><b>Choose a method</b><span>The forecast approach is allocated by segment.</span></li>
+                <li><b>Weekly forecast</b><span>TTB, BTT or hybrid workflow, with seasonality and a confidence score.</span></li>
+                <li><b>Score accuracy</b><span>WAPE and WMAPE.</span></li>
+                <li class="end"><b>Cached outputs</b><span>Forecasts are reused, with customer-level forecasts in the Flask app.</span></li>
+              </ol>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Features and stack</summary>
+        <div class="more-in">
+          <ul class="feat">
+            <li>Historical sales and weekly demand analysis</li>
+            <li>SKU history, frequency and variability classification</li>
+            <li>Demand patterns FM, MM, SM, New and NM, with CV-based variability</li>
+            <li>Forecast model allocation by demand characteristics</li>
+            <li>Weekly forecasting with TTB, BTT and hybrid workflows</li>
+            <li>Seasonality analysis and forecast confidence scoring</li>
+            <li>Accuracy measurement with WAPE and WMAPE</li>
+            <li>Customer segmentation and customer-level forecasting</li>
+            <li>Forecast caching and reusable outputs</li>
+          </ul>
+          <p class="stack"><b>Stack</b>Python, Pandas, NumPy, Flask, Excel, forecasting and machine learning techniques</p>
+        </div>
+      </details>
+    </article>
+
+    <h3 class="also-head">Additional projects</h3>
+
+    <!-- 6. HR ONBOARDING -->
+    <article class="pc row" id="p-hr" data-cat="ai automation">
+      <details class="row-d">
+        <summary>
+          <span class="row-title">HR onboarding documentation system</span>
+          <span class="row-out">Employee documents in, database record and joining forms out.</span>
+          <span class="row-for">Built for HR</span>
+        </summary>
+        <div class="row-panel">
+          <div class="sheet-body">
+            <div class="story">
+              <div class="ill">
+                <svg viewBox="0 38 340 148" role="img" aria-label="Flow: employee documents go through AI vision extraction, are synced to an MSSQL database, and joining forms are generated automatically.">
+                  <rect x="10" y="50" width="68" height="80" rx="4" class="f-panel"/>
+                  <circle cx="44" cy="74" r="14" class="f-map"/>
+                  <circle cx="44" cy="70" r="6" class="f-line"/>
+                  <path d="M32 86Q44 77 56 86" class="f-line"/>
+                  <text x="15" y="106" class="t2" font-size="7.5">Joining docs</text>
+                  <text x="15" y="117" class="t2" font-size="7.5">ID proofs</text>
+                  <text x="15" y="127" class="t3" font-size="7.5">Uploaded by HR</text>
+                  <path d="M80 90H95" class="s-teal" stroke-width="1.6"/>
+                  <polygon points="95,86 102,90 95,94" class="f-teal"/>
+                  <rect x="102" y="56" width="72" height="66" rx="4" class="f-dark"/>
+                  <text x="110" y="72" class="tk" font-size="8.5" font-weight="600">AI vision</text>
+                  <text x="110" y="87" class="tk2" font-size="7.5">Field extraction</text>
+                  <text x="110" y="98" class="tk2" font-size="7.5">Photo detection</text>
+                  <text x="110" y="109" class="tk2" font-size="7.5">OCR</text>
+                  <path d="M176 90H191" class="s-teal" stroke-width="1.6"/>
+                  <polygon points="191,86 198,90 191,94" class="f-teal"/>
+                  <rect x="198" y="62" width="56" height="56" rx="4" class="f-panel"/>
+                  <ellipse cx="226" cy="74" rx="22" ry="6" class="f-tt"/>
+                  <rect x="204" y="74" width="44" height="24" class="f-tint"/>
+                  <ellipse cx="226" cy="98" rx="22" ry="6" class="f-tt"/>
+                  <text x="226" y="90" text-anchor="middle" class="tt" font-size="7.5" font-weight="700">MSSQL</text>
+                  <text x="226" y="112" text-anchor="middle" class="t3" font-size="7.5">kept in sync</text>
+                  <path d="M256 90H271" class="s-teal" stroke-width="1.6"/>
+                  <polygon points="271,86 278,90 271,94" class="f-teal"/>
+                  <rect x="278" y="52" width="52" height="76" rx="4" class="f-panel-hi"/>
+                  <path d="M278 66V56a4 4 0 0 1 4-4h44a4 4 0 0 1 4 4v10z" class="f-ruby"/>
+                  <text x="304" y="62.5" text-anchor="middle" class="tw" font-size="7" font-weight="600">Forms</text>
+                  <rect x="284" y="72" width="38" height="3" rx="1" class="f-rt2"/>
+                  <rect x="284" y="79" width="38" height="3" rx="1" class="f-line"/>
+                  <rect x="284" y="86" width="38" height="3" rx="1" class="f-line"/>
+                  <rect x="284" y="93" width="38" height="3" rx="1" class="f-line"/>
+                  <circle cx="304" cy="113" r="8" class="f-ruby"/>
+                  <path d="M300 113l3 3 5-6" class="s-inv" stroke-width="1.8"/>
+                  <rect x="10" y="144" width="320" height="36" rx="4" class="f-panel"/>
+                  <text x="18" y="158" class="t2" font-size="8.5">Extracted, validated, synced to the database, forms generated.</text>
+                  <text x="18" y="172" class="t3" font-size="8">Replaces manual data entry and hand-filled joining forms.</text>
+                </svg>
+              </div>
+              <h4>Problem</h4>
+              <p>HR collected employee documents, typed the details into records and prepared joining forms by hand. The work was repetitive and slow.</p>
+              <h4>What I built</h4>
+              <p>HR uploads an employee's documents. The system extracts the details with AI vision, validates key fields, stores them in the database and generates the joining and statutory forms.</p>
+              <h4 class="res">Result</h4>
+              <p>Less manual data entry and better consistency between the employee record, the database and the generated forms. When HR edits a detail, the data stays in sync.</p>
+            </div>
+            <figure class="map">
+              <figcaption>How it works</figcaption>
+              <div class="lines">
+                <div class="lane">
+                  <ol class="line">
+                <li><b>Employee documents</b><span>HR uploads the joining documents and ID proofs.</span></li>
+                <li><b>AI vision extraction</b><span>OpenAI or Gemini Vision reads the documents, with OCR where needed.</span></li>
+                <li><b>Validation</b><span>Important employee fields are checked before anything is saved.</span></li>
+                <li><b>Photo detection</b><span>The employee photo is found and cropped automatically.</span></li>
+                <li><b>MSSQL database</b><span>Details are stored, and HR edits stay in sync with the forms.</span></li>
+                <li class="end"><b>Forms generated</b><span>Joining and statutory forms are created automatically.</span></li>
+                  </ol>
+                </div>
+              </div>
+            </figure>
+          </div>
+          <div class="more-in">
+            <ul class="feat">
+              <li>Document upload and AI-based data extraction</li>
+              <li>Automatic database update and dynamic data synchronisation when HR edits information</li>
+              <li>Automatic joining and statutory form generation</li>
+              <li>Employee photo detection and cropping</li>
+              <li>Data validation for important employee fields</li>
+              <li>Document management</li>
+              <li>OpenAI or Gemini vision, switchable</li>
+            </ul>
+            <p class="stack"><b>Stack</b>Python, Flask, OpenAI or Gemini Vision, OCR, PyMuPDF, OpenCV, Pandas, OpenPyXL, python-docx, ReportLab, MSSQL</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <!-- 7. METAL RATES -->
+    <article class="pc row" id="p-metal" data-cat="automation ai">
+      <details class="row-d">
+        <summary>
+          <span class="row-title">Metal rate extraction and auto-reporting</span>
+          <span class="row-out">Precious-metal rates reach the Sales team without anyone checking sites.</span>
+          <span class="row-for">Built for Sales</span>
+        </summary>
+        <div class="row-panel">
+          <div class="sheet-body">
+            <div class="story">
+              <div class="ill">
+                <svg viewBox="0 0 340 190" role="img" aria-label="Precious metal rate chart for gold and silver, a schedule panel showing runs every four hours, and an output bar: an Excel report emailed to the Sales team.">
+                  <rect x="10" y="14" width="220" height="120" rx="4" class="f-panel"/>
+                  <text x="18" y="31" class="t2" font-size="9" font-weight="600">Precious metal rates</text>
+                  <line x1="26" y1="42" x2="26" y2="118" class="s-rule"/>
+                  <line x1="26" y1="118" x2="220" y2="118" class="s-rule"/>
+                  <line x1="26" y1="75" x2="220" y2="75" class="s-rule" stroke-dasharray="3 3"/>
+                  <line x1="26" y1="58" x2="220" y2="58" class="s-rule" stroke-dasharray="3 3"/>
+                  <polyline points="30,96 54,82 78,88 102,72 126,78 150,64 174,60 198,56 218,52" class="s-gold" stroke-width="2"/>
+                  <polyline points="30,104 54,100 78,106 102,98 126,102 150,95 174,98 198,92 218,88" class="s-silver" stroke-width="2"/>
+                  <line x1="16" y1="126" x2="30" y2="126" class="s-gold" stroke-width="2"/>
+                  <text x="34" y="129.5" class="t2" font-size="8">Gold</text>
+                  <line x1="70" y1="126" x2="84" y2="126" class="s-silver" stroke-width="2"/>
+                  <text x="88" y="129.5" class="t2" font-size="8">Silver</text>
+
+                  <rect x="238" y="14" width="92" height="120" rx="4" class="f-panel"/>
+                  <text x="248" y="31" class="t2" font-size="8.5" font-weight="600">Schedule</text>
+                  <circle cx="284" cy="52" r="12" class="s-teal" stroke-width="1.8"/>
+                  <path d="M284 45V52L289 55" class="s-teal" stroke-width="1.8"/>
+                  <text x="284" y="82" text-anchor="middle" class="t1" font-size="10" font-weight="700">Every 4 hours</text>
+                  <text x="284" y="94" text-anchor="middle" class="t3" font-size="7.5">Playwright capture</text>
+                  <text x="284" y="104" text-anchor="middle" class="t3" font-size="7.5">AI reads the rates</text>
+                  <rect x="244" y="112" width="80" height="16" rx="3" class="f-teal"/>
+                  <text x="284" y="123" text-anchor="middle" class="tw" font-size="7.5" font-weight="600">Emailed to Sales</text>
+
+                  <rect x="10" y="142" width="320" height="40" rx="4" class="f-dark"/>
+                  <text x="20" y="158" class="tk2" font-size="8">Output</text>
+                  <text x="58" y="158" class="tk" font-size="8.5">Formatted Excel report, emailed to the Sales team</text>
+                  <text x="20" y="173" class="tk3" font-size="8">Dashboard shows the latest rates and run history.</text>
+                </svg>
+              </div>
+              <h4>Problem</h4>
+              <p>Sales had to check precious-metal prices on several sources by hand. It took time and made it hard to get the latest rates quickly.</p>
+              <h4>What I built</h4>
+              <p>A Playwright bot captures rates from multiple sources every 4 hours. OpenAI Vision reads the values, an Excel report is generated and it is emailed to Sales automatically.</p>
+              <h4 class="res">Result</h4>
+              <p>No more manual price checking. Sales gets current rates automatically, which supports faster purchasing and pricing decisions.</p>
+            </div>
+            <figure class="map">
+              <figcaption>How it works</figcaption>
+              <div class="lines">
+                <div class="lane">
+                  <ol class="line">
+                <li><b>Scheduler</b><span>APScheduler starts a run every 4 hours.</span></li>
+                <li><b>Playwright capture</b><span>Opens the rate sources and captures each page.</span></li>
+                <li><b>AI reading</b><span>OpenAI Vision extracts the rate values from the capture.</span></li>
+                <li><b>Excel report</b><span>Pandas and OpenPyXL build the formatted report.</span></li>
+                <li class="end"><b>Email and dashboard</b><span>The report goes to Sales by email. A dashboard shows the latest rates and run history.</span></li>
+                  </ol>
+                </div>
+              </div>
+            </figure>
+          </div>
+          <div class="more-in">
+            <ul class="feat">
+              <li>Automated price extraction from multiple sources</li>
+              <li>AI-based extraction of rate information</li>
+              <li>Scheduled monitoring with automatic email reports</li>
+              <li>Dashboard for latest rates and run history</li>
+              <li>Error logging and execution tracking</li>
+            </ul>
+            <p class="stack"><b>Stack</b>Python, Flask, Playwright, OpenAI Vision API, Pandas, OpenPyXL, APScheduler, SMTP</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <!-- 8. WHITE SPACE -->
+    <article class="pc row" id="p-white" data-cat="analytics">
+      <details class="row-d">
+        <summary>
+          <span class="row-title">White space and competitive intelligence dashboard</span>
+          <span class="row-out">See which product segments competitors cover that we do not.</span>
+          <span class="row-for">Built for Product Development</span>
+        </summary>
+        <div class="row-panel">
+          <div class="sheet-body">
+            <div class="story">
+              <div class="ill">
+                <svg viewBox="0 0 340 190" role="img" aria-label="Heatmap: five retailers by three price bands. Filled cells show a competitor is present; outlined cells marked with an exclamation point are white-space gaps.">
+                  <text x="14" y="20" class="t2" font-size="9" font-weight="600">Competitive assortment heatmap</text>
+                  <text x="14" y="37" class="t3" font-size="8">Retailer</text>
+                  <text x="91" y="37" text-anchor="middle" class="t2" font-size="8.5" font-weight="600">A</text>
+                  <text x="135" y="37" text-anchor="middle" class="t2" font-size="8.5" font-weight="600">B</text>
+                  <text x="179" y="37" text-anchor="middle" class="t2" font-size="8.5" font-weight="600">C</text>
+                  <text x="223" y="37" text-anchor="middle" class="t2" font-size="8.5" font-weight="600">D</text>
+                  <text x="267" y="37" text-anchor="middle" class="t2" font-size="8.5" font-weight="600">E</text>
+                  <text x="14" y="61" class="t2" font-size="8">Low price</text>
+                  <text x="14" y="97" class="t2" font-size="8">Mid price</text>
+                  <text x="14" y="133" class="t2" font-size="8">High price</text>
+
+                  <rect x="72" y="44" width="38" height="26" rx="2" class="f-teal" opacity=".75"/>
+                  <rect x="116" y="44" width="38" height="26" rx="2" class="f-teal" opacity=".5"/>
+                  <rect x="160" y="44" width="38" height="26" rx="2" class="f-panel"/>
+                  <text x="179" y="61" text-anchor="middle" class="t3" font-size="12">–</text>
+                  <rect x="204" y="44" width="38" height="26" rx="2" class="f-teal" opacity=".3"/>
+                  <rect x="248" y="44" width="38" height="26" rx="2" class="f-teal" opacity=".9"/>
+
+                  <rect x="72" y="80" width="38" height="26" rx="2" class="f-teal" opacity=".35"/>
+                  <rect x="117" y="81" width="36" height="24" rx="2" class="f-panel s-ruby" stroke-width="2"/>
+                  <text x="135" y="98" text-anchor="middle" class="tr" font-size="11" font-weight="700">!</text>
+                  <rect x="160" y="80" width="38" height="26" rx="2" class="f-teal" opacity=".6"/>
+                  <rect x="205" y="81" width="36" height="24" rx="2" class="f-panel s-ruby" stroke-width="2"/>
+                  <text x="223" y="98" text-anchor="middle" class="tr" font-size="11" font-weight="700">!</text>
+                  <rect x="248" y="80" width="38" height="26" rx="2" class="f-teal" opacity=".2"/>
+
+                  <rect x="73" y="117" width="36" height="24" rx="2" class="f-panel s-ruby" stroke-width="2"/>
+                  <text x="91" y="134" text-anchor="middle" class="tr" font-size="11" font-weight="700">!</text>
+                  <rect x="116" y="116" width="38" height="26" rx="2" class="f-teal" opacity=".55"/>
+                  <rect x="160" y="116" width="38" height="26" rx="2" class="f-teal" opacity=".4"/>
+                  <rect x="205" y="117" width="36" height="24" rx="2" class="f-panel s-ruby" stroke-width="2"/>
+                  <text x="223" y="134" text-anchor="middle" class="tr" font-size="11" font-weight="700">!</text>
+                  <rect x="248" y="116" width="38" height="26" rx="2" class="f-teal" opacity=".15"/>
+
+                  <rect x="14" y="152" width="312" height="28" rx="4" class="f-panel"/>
+                  <rect x="22" y="160" width="12" height="12" rx="1" class="f-teal" opacity=".75"/>
+                  <text x="38" y="169" class="t2" font-size="8">Competitor present</text>
+                  <rect x="128" y="161" width="10" height="10" rx="1" class="f-panel s-ruby" stroke-width="1.6"/>
+                  <text x="142" y="169" class="tr" font-size="8" font-weight="600">White space</text>
+                  <text x="200" y="169" class="t3" font-size="8">Excel and PowerPoint export</text>
+                </svg>
+              </div>
+              <h4>Problem</h4>
+              <p>Comparing competitor assortments by hand made it hard to spot gaps and product opportunities.</p>
+              <h4>What I built</h4>
+              <p>An interactive dashboard that compares product data across retailers, categories, collections, price ranges, diamond weight and shapes. It has a SKU-level view with images and creates Excel and PowerPoint reports automatically.</p>
+              <h4 class="res">Result</h4>
+              <p>Faster competitive analysis, and segment-level white spaces that can feed product development and assortment decisions.</p>
+            </div>
+            <figure class="map">
+              <figcaption>How it works</figcaption>
+              <div class="lines">
+                <div class="lane">
+                  <ol class="line">
+                <li><b>Retailer product data</b><span>Assortments across retailers, categories and collections.</span></li>
+                <li><b>Segment by attributes</b><span>Price range, diamond weight, shape and other product attributes.</span></li>
+                <li><b>Filters and pivots</b><span>Dynamic filters and pivot analysis in the dashboard.</span></li>
+                <li><b>White-space view</b><span>Shows segments where competitors are present and we are not.</span></li>
+                <li class="end"><b>Excel and PowerPoint reports</b><span>Generated automatically from the current view.</span></li>
+                  </ol>
+                </div>
+              </div>
+            </figure>
+          </div>
+          <div class="more-in">
+            <ul class="feat">
+              <li>Retailer and product segment comparison</li>
+              <li>Price and diamond-weight segmentation</li>
+              <li>Dynamic filters and pivot analysis</li>
+              <li>Product and SKU-level analysis with images</li>
+              <li>Identification of potential white-space opportunities</li>
+            </ul>
+            <p class="stack"><b>Stack</b>Python, Flask, JavaScript, HTML, CSS, Excel, OpenPyXL, python-pptx</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <!-- 9. DIAMOND DATA -->
+    <article class="pc row" id="p-diamond" data-cat="automation analytics">
+      <details class="row-d">
+        <summary>
+          <span class="row-title">Diamond data extraction</span>
+          <span class="row-out">Diamond listings collected into structured data without copying by hand.</span>
+          <span class="row-for">Built for analysis</span>
+        </summary>
+        <div class="row-panel">
+          <div class="sheet-body">
+            <div class="story">
+              <div class="ill">
+                <svg viewBox="0 0 340 190" role="img" aria-label="Flow: raw diamond listings from a trading platform are extracted by Python into a structured table with SKU, carat, shape, colour, clarity and price.">
+                  <rect x="10" y="14" width="130" height="162" rx="4" class="f-panel"/>
+                  <text x="20" y="32" class="t3" font-size="8.5" font-weight="600">Source platform</text>
+                  <rect x="16" y="38" width="118" height="52" rx="2" class="f-map"/>
+                  <text x="20" y="50" class="t2 mono" font-size="7">SKU: 1234ABC</text>
+                  <text x="20" y="62" class="t2 mono" font-size="7">0.50 ct Round</text>
+                  <text x="20" y="74" class="t2 mono" font-size="7">G VS2 EX EX EX</text>
+                  <text x="20" y="86" class="t2 mono" font-size="7">USD 1,240</text>
+                  <rect x="16" y="96" width="118" height="52" rx="2" class="f-map"/>
+                  <text x="20" y="108" class="t2 mono" font-size="7">SKU: 5678DEF</text>
+                  <text x="20" y="120" class="t2 mono" font-size="7">0.70 ct Princess</text>
+                  <text x="20" y="132" class="t2 mono" font-size="7">H SI1 VG VG VG</text>
+                  <text x="20" y="144" class="t2 mono" font-size="7">USD 1,890</text>
+                  <text x="20" y="166" class="t3 mono" font-size="7">+ more listings</text>
+
+                  <path d="M141 94H146" class="s-teal" stroke-width="1.6"/>
+                  <rect x="146" y="78" width="48" height="32" rx="4" class="f-dark"/>
+                  <text x="170" y="92" text-anchor="middle" class="tk" font-size="8" font-weight="600">Python</text>
+                  <text x="170" y="103" text-anchor="middle" class="tk2" font-size="7.5">extract</text>
+                  <path d="M194 94H191" class="s-teal" stroke-width="1.6"/>
+                  <polygon points="190,90 197,94 190,98" class="f-teal"/>
+
+                  <rect x="198" y="14" width="132" height="162" rx="4" class="f-panel-hi"/>
+                  <path d="M198 34V18a4 4 0 0 1 4-4h124a4 4 0 0 1 4 4v16z" class="f-ruby"/>
+                  <text x="264" y="28" text-anchor="middle" class="tw" font-size="8.5" font-weight="600">Structured table</text>
+                  <rect x="200" y="38" width="128" height="14" rx="2" class="f-tint"/>
+                  <text x="204" y="48" class="tt" font-size="7" font-weight="600">SKU</text>
+                  <text x="228" y="48" class="tt" font-size="7" font-weight="600">Ct</text>
+                  <text x="246" y="48" class="tt" font-size="7" font-weight="600">Shape</text>
+                  <text x="272" y="48" class="tt" font-size="7" font-weight="600">Col</text>
+                  <text x="292" y="48" class="tt" font-size="7" font-weight="600">Clr</text>
+                  <text x="312" y="48" class="tt" font-size="7" font-weight="600">$</text>
+                  <g class="t2" font-size="7">
+                    <text x="204" y="61" class="t2">1234</text><text x="228" y="61" class="t2">0.50</text><text x="246" y="61" class="t2">RD</text><text x="272" y="61" class="t2">G</text><text x="292" y="61" class="t2">VS2</text><text x="312" y="61" class="t2">1240</text>
+                    <text x="204" y="72" class="t2">5678</text><text x="228" y="72" class="t2">0.70</text><text x="246" y="72" class="t2">PR</text><text x="272" y="72" class="t2">H</text><text x="292" y="72" class="t2">SI1</text><text x="312" y="72" class="t2">1890</text>
+                    <text x="204" y="83" class="t2">9012</text><text x="228" y="83" class="t2">1.00</text><text x="246" y="83" class="t2">OV</text><text x="272" y="83" class="t2">F</text><text x="292" y="83" class="t2">VVS1</text><text x="312" y="83" class="t2">3400</text>
+                    <text x="204" y="94" class="t2">3456</text><text x="228" y="94" class="t2">0.30</text><text x="246" y="94" class="t2">CU</text><text x="272" y="94" class="t2">G</text><text x="292" y="94" class="t2">SI2</text><text x="312" y="94" class="t2">580</text>
+                  </g>
+                  <line x1="200" y1="102" x2="328" y2="102" class="s-rule"/>
+                  <text x="204" y="115" class="t3" font-size="7.5">More rows filled automatically</text>
+                  <rect x="204" y="128" width="118" height="38" rx="3" class="f-rt"/>
+                  <text x="212" y="143" class="t2" font-size="8">Manual copying</text>
+                  <text x="212" y="158" class="tr" font-size="8.5" font-weight="700">Automated extraction</text>
+                </svg>
+              </div>
+              <h4>Problem</h4>
+              <p>Collecting diamond product data from a trading platform by hand was repetitive, slow and inconsistent.</p>
+              <h4>What I built</h4>
+              <p>A Python automation that extracts diamond attributes such as carat, shape, colour, clarity and price and organises them into clean, structured data.</p>
+              <h4 class="res">Result</h4>
+              <p>Faster and more consistent collection of diamond data for downstream analysis and reporting.</p>
+            </div>
+            <figure class="map">
+              <figcaption>How it works</figcaption>
+              <div class="lines">
+                <div class="lane">
+                  <ol class="line">
+                <li><b>Platform listings</b><span>Diamond product information on a trading platform.</span></li>
+                <li><b>Python extraction</b><span>Collects each listing automatically instead of copying by hand.</span></li>
+                <li><b>Structured table</b><span>Carat, shape, colour, clarity and price in clean columns (Pandas).</span></li>
+                <li class="end"><b>Analysis and reports</b><span>Ready for downstream analysis in Excel and SQL.</span></li>
+                  </ol>
+                </div>
+              </div>
+            </figure>
+          </div>
+          <div class="more-in">
+            <p class="stack"><b>Stack</b>Python, web data extraction, Pandas, SQL, Excel</p>
+          </div>
+        </div>
+      </details>
+    </article>
+  </div>
+</section>
+
+<!-- ──────── HOW I WORK ──────── -->
+<section class="sec" id="how" aria-labelledby="how-h">
+  <div class="wrap rail">
+    <div class="rail-head">
+      <h2 id="how-h">How I work</h2>
+      <p>A practical workflow from business problem to a usable system.</p>
     </div>
-    <div class="edu-item">
-      <h4>FAANG Analytics Study Path</h4>
-      <div class="sub">28-week self-directed curriculum · Meta, Amazon &amp; Google benchmarked</div>
-      <div class="yr">2025 – In Progress</div>
+    <ol class="steps">
+      <li><b>Understand</b><span>The business problem</span></li>
+      <li><b>Analyse</b><span>The data and the current workflow</span></li>
+      <li><b>Design</b><span>The solution architecture</span></li>
+      <li><b>Build</b><span>In Python, SQL and AI</span></li>
+      <li><b>Automate</b><span>The repetitive work</span></li>
+      <li><b>Measure</b><span>Accuracy, cost and time</span></li>
+      <li><b>Deploy</b><span>So people can actually use it</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ──────── SKILLS ──────── -->
+<section class="sec" id="skills" aria-labelledby="skills-h">
+  <div class="wrap rail">
+    <div class="rail-head">
+      <h2 id="skills-h">Skills</h2>
+      <p>Core tools first; frameworks and models are selected based on the business problem.</p>
     </div>
+    <dl class="skill-rows">
+      <div class="core"><dt>Core</dt><dd>Python, SQL, Power BI, Excel, Pandas</dd></div>
+      <div><dt>AI engineering</dt><dd>LLM APIs (OpenAI, Gemini), RAG, LangGraph, LangChain, LlamaIndex, embeddings, vector search, prompt engineering</dd></div>
+      <div><dt>Machine learning and vision</dt><dd>PyTorch, DINOv2, OpenCV, NLP, XGBoost, SARIMA and other forecasting methods</dd></div>
+      <div><dt>Backend and automation</dt><dd>Flask, Streamlit, Playwright, REST APIs, Microsoft Graph API, APScheduler, Power Automate, VBA</dd></div>
+      <div><dt>Data</dt><dd>MS SQL Server, MySQL, SQLite, Qdrant, FAISS, Power Query, DAX</dd></div>
+      <div><dt>Also used</dt><dd>JavaScript, Tableau, Git, NumPy, Matplotlib, PyMuPDF, OpenPyXL, python-pptx, Requests</dd></div>
+      <div class="now"><dt>Currently learning / building</dt><dd>FastAPI, Docker, production RAG, AI evaluation, agent architecture, cloud deployment, system design</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ──────── EDUCATION ──────── -->
+<section class="sec" id="education" aria-labelledby="edu-h">
+  <div class="wrap rail">
+    <div class="rail-head">
+      <h2 id="edu-h">Education</h2>
+    </div>
+    <ul class="edu">
+      <li><div><b>B.Tech, Electrical and Electronics Engineering</b><span>Shri Ram Institute of Technology, CGPA 8.0 / 10</span></div><time>2019 to 2023</time></li>
+      <li><div><b>IBM Data Analyst Professional Certificate</b><span>Coursera</span></div><time>2024</time></li>
+      <li><div><b>PCAP: Programming Essentials in Python</b><span>Cisco</span></div><time>2022</time></li>
+      <li><div><b>Self-directed analytics and AI study</b><span>Advanced SQL, statistics, A/B testing, machine learning and AI engineering</span></div><time>2025 to now</time></li>
+    </ul>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
+<!-- ──────── FOOTER ──────── -->
 <footer id="contact">
-  <div class="foot-inner">
-    <div class="foot-top">
-      <h2>Got a process that<br>takes too long?<br><em>Let's fix it.</em></h2>
-      <div class="foot-links">
-        <a href="mailto:uttamsingh4027@gmail.com">uttamsingh4027@gmail.com</a>
-        <a href="tel:+917489359791">+91 74893 59791</a>
-        <a href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">linkedin.com/in/uttamdataanalytics</a>
-        <a href="https://github.com/uttam4027" target="_blank" rel="noopener">github.com/uttam4027</a>
-        <a class="foot-resume" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank" style="margin-top:6px;">Download Resume ↓</a>
-      </div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <h2>Have a repetitive process or data problem? Let's build a practical solution.</h2>
+      <ul class="foot-links">
+        <li><a href="mailto:uttamsingh4027@gmail.com">uttamsingh4027@gmail.com</a></li>
+        <li><a href="tel:+917489359791">+91 74893 59791</a></li>
+        <li><a href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">linkedin.com/in/uttamdataanalytics</a></li>
+        <li><a href="https://github.com/uttam4027" target="_blank" rel="noopener">github.com/uttam4027</a></li>
+        <li><a class="foot-resume" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank" rel="noopener">Download resume</a></li>
+      </ul>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Uttam Singh</span>
-      <span>Mumbai, India</span>
+      <span>© 2026 Uttam Singh, Mumbai</span>
+      <span>Built with HTML and CSS</span>
     </div>
   </div>
 </footer>
 
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
-}, {threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// KPI count-up
-let counted = false;
-const kpiRow = document.querySelector('.kpi-row');
-function countUp(el){
-  const target = parseInt(el.getAttribute('data-count'));
-  const valEl = el.querySelector('.val');
-  const dur = 1300, t0 = performance.now();
-  const tick = now => {
-    const p = Math.min((now-t0)/dur, 1);
-    const eased = 1 - Math.pow(1-p, 3);
-    valEl.textContent = Math.round(eased * target);
-    if(p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-}
-new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting && !counted){
-      counted = true;
-      document.querySelectorAll('.kpi-number').forEach(countUp);
+/* Guilloche medallion: decorative only, generated once at load */
+(function(){
+  var g=document.querySelector('[data-rosette]');
+  if(!g) return;
+  var NS='http://www.w3.org/2000/svg';
+  var layers=[
+    {n:56, base:154, amp:28, k:15, step:.115},
+    {n:44, base:113, amp:8,  k:24, step:.14, soft:true}
+  ];
+  layers.forEach(function(L){
+    for(var i=0;i<L.n;i++){
+      var d='', ph=i*L.step;
+      for(var s=0;s<=540;s++){
+        var t=s/540*Math.PI*2, r=L.base+L.amp*Math.sin(L.k*t+ph);
+        d+=(s?'L':'M')+(200+r*Math.cos(t)).toFixed(1)+' '+(200+r*Math.sin(t)).toFixed(1);
+      }
+      var p=document.createElementNS(NS,'path');
+      p.setAttribute('d',d+'Z');
+      if(L.soft) p.setAttribute('class','soft');
+      g.appendChild(p);
     }
   });
-}, {threshold:0.4}).observe(kpiRow);
+  [96,104,192,196].forEach(function(r){
+    var c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',200);c.setAttribute('cy',200);c.setAttribute('r',r);
+    g.appendChild(c);
+  });
+})();
 
-// Project filters
-const filterBtns = document.querySelectorAll('.pf');
-const cards = document.querySelectorAll('.pcard');
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    const f = btn.getAttribute('data-f');
-    cards.forEach(c => {
-      const cats = c.getAttribute('data-cat') || '';
-      c.setAttribute('data-hidden', f === 'all' ? 'false' : (cats.includes(f) ? 'false' : 'true'));
+/* Project filters */
+(function(){
+  var pcs=[].slice.call(document.querySelectorAll('.pc'));
+  var btns=[].slice.call(document.querySelectorAll('.pf'));
+  var rows=[].slice.call(document.querySelectorAll('.row'));
+  var also=document.querySelector('.also-head');
+
+  function applyFilter(f){
+    btns.forEach(function(b){
+      var on=b.dataset.f===f;
+      b.classList.toggle('on',on);
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    pcs.forEach(function(c){
+      c.dataset.hidden=(f==='all'||(c.dataset.cat||'').indexOf(f)>-1)?'false':'true';
+    });
+    if(also){
+      also.hidden=!rows.some(function(r){return r.dataset.hidden!=='true';});
+    }
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){applyFilter(b.dataset.f);});
+  });
+
+  /* "Examples" links: reveal the target project even if a filter hides it */
+  [].slice.call(document.querySelectorAll('a[href^="#p-"]')).forEach(function(a){
+    a.addEventListener('click',function(){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(!t) return;
+      if(t.dataset.hidden==='true') applyFilter('all');
+      var d=t.querySelector('details.row-d');
+      if(d) d.open=true;
     });
   });
-});
+})();
+
+/* Dark mode switch: remembers the visitor's choice on this device */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme-toggle');
+  if(!btn) return;
+  function apply(t,save){
+    root.setAttribute('data-theme',t);
+    btn.setAttribute('aria-checked',t==='dark'?'true':'false');
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m) m.setAttribute('content',t==='dark'?'#0B1B22':'#EDF2F3');
+    if(save){try{localStorage.setItem('theme',t);}catch(e){}}
+  }
+  apply(root.getAttribute('data-theme')==='dark'?'dark':'light',false);
+  btn.addEventListener('click',function(){
+    apply(root.getAttribute('data-theme')==='dark'?'light':'dark',true);
+  });
+})();
 </script>
 </body>
 </html>
