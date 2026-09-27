@@ -9,7 +9,7 @@
 <meta property="og:title" content="Uttam Singh, Data Analyst and AI Automation Engineer">
 <meta property="og:description" content="Dashboards, automated systems and AI applications built from business data and repetitive workflows.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F2D3A'/%3E%3Ctext x='16' y='22' font-size='15' font-weight='700' text-anchor='middle' fill='white' font-family='Arial,sans-serif'%3EUS%3C/text%3E%3C/svg%3E">
-<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
@@ -43,6 +43,13 @@
   --ruby-tint:color-mix(in srgb,var(--ruby) 12%,transparent);
   --max:1120px;
   --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
+  /* problem-to-impact colour system: used only as accents (nodes, icons,
+     lines, small highlights) — never as page-wide colour */
+  --c-business:#3B82F6;
+  --c-data:#0F9D8A;
+  --c-ai:#8B5CF6;
+  --c-automation:#F59E0B;
+  --c-impact:#10B981;
 }
 /* DARK THEME: every colour below was checked for contrast (text 4.5:1 or better) */
 :root[data-theme="dark"]{
@@ -63,6 +70,12 @@
   --dk:#1D4655;
   --rose-op:.34;
   --rose-soft:.2;
+  /* same accent system, lifted slightly for contrast on a dark ground */
+  --c-business:#60A5FA;
+  --c-data:#2DD4BF;
+  --c-ai:#A78BFA;
+  --c-automation:#FBBF24;
+  --c-impact:#34D399;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;scroll-padding-top:76px;}
@@ -99,9 +112,23 @@ h4,h5{font-weight:650;line-height:1.3;}
   height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
 .nav-name{font-stretch:80%;font-weight:700;font-size:1.25rem;}
-.nav-links{display:flex;gap:28px;}
-.nav-links a{font-size:15px;color:var(--ink-2);transition:color .12s;}
-.nav-links a:hover{color:var(--ink);}
+.nav-links{display:flex;gap:10px;}
+.nav-links a{
+  --nc:var(--ink-3);
+  display:inline-block;font-size:14px;font-weight:650;color:var(--nc);
+  padding:7px 14px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--nc) 45%,transparent);
+  background:color-mix(in srgb,var(--nc) 9%,transparent);
+  transition:color .12s,border-color .12s,background .12s,transform .12s;
+}
+.nav-links a[data-c="business"]{--nc:var(--c-business);}
+.nav-links a[data-c="data"]{--nc:var(--c-data);}
+.nav-links a[data-c="ai"]{--nc:var(--c-ai);}
+.nav-links a[data-c="automation"]{--nc:var(--c-automation);}
+.nav-links a[data-c="impact"]{--nc:var(--c-impact);}
+.nav-links a:hover,.nav-links a:focus-visible{
+  color:var(--inv);background:var(--nc);border-color:var(--nc);transform:translateY(-1px);
+}
+@media(prefers-reduced-motion:reduce){.nav-links a{transition:none;}}
 .nav-resume{
   font-size:14px;font-weight:600;padding:7px 16px;
   border:1.5px solid var(--ink);border-radius:6px;transition:background .12s,color .12s;
@@ -138,19 +165,20 @@ h4,h5{font-weight:650;line-height:1.3;}
 
 
 /* ─── HERO ────────────────────────────────────── */
-.hero{padding-top:60px;padding-bottom:76px;}
+.hero{padding-top:34px;padding-bottom:44px;position:relative;overflow:hidden;}
 .hero-grid{
   display:grid;grid-template-columns:minmax(0,1fr) 380px;
   gap:48px;align-items:center;
+  position:relative;z-index:1;
 }
-.hero-id{display:flex;flex-direction:column;gap:2px;margin-bottom:26px;}
+.hero-id{display:flex;flex-direction:column;gap:2px;margin-bottom:16px;}
 .hero-name{font-stretch:80%;font-weight:700;font-size:1.6rem;line-height:1.1;}
 .hero-role{font-size:1.06rem;color:var(--ink-2);}
 h1{
   font-size:clamp(2.1rem,4vw,3.25rem);
-  max-width:680px;text-wrap:balance;margin-bottom:22px;
+  max-width:680px;text-wrap:balance;margin-bottom:14px;
 }
-.hero-skills{font-size:1.06rem;color:var(--ink-2);max-width:520px;margin-bottom:32px;}
+.hero-skills{font-size:1.06rem;color:var(--ink-2);max-width:520px;margin-bottom:20px;}
 .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;}
 .btn{
   font-size:15px;font-weight:600;padding:12px 22px;border-radius:6px;
@@ -164,7 +192,7 @@ h1{
 .lnk:hover{color:var(--teal);}
 
 /* the one bold moment: portrait in a guilloche medallion */
-.medal{position:relative;width:100%;max-width:380px;aspect-ratio:1;justify-self:end;}
+.medal{position:relative;width:100%;max-width:330px;aspect-ratio:1;justify-self:end;}
 .medal svg{width:100%;height:100%;display:block;overflow:visible;}
 .rose{transform-box:fill-box;transform-origin:center;animation:settle 1.7s cubic-bezier(.16,.8,.24,1) both;}
 .rose path{fill:none;stroke:var(--teal);stroke-width:.5;opacity:var(--rose-op);}
@@ -246,6 +274,109 @@ h1{
 .chain li:not(:last-child)::before{
   content:'';position:absolute;right:-24px;top:calc(50% - 3.75px);
   border-left:6px solid var(--teal);border-top:4px solid transparent;border-bottom:4px solid transparent;
+}
+.chain-mini{margin:18px 0 0;}
+.chain-mini li{background:var(--map);}
+
+/* colour-code the four build cards to the business/data/ai/automation system
+   (accent only — a 3px left rule, nothing else about the card changes) */
+.build{border-left:3px solid transparent;padding-left:20px;margin-left:-20px;}
+.build[data-c="data"]{border-left-color:var(--c-data);}
+.build[data-c="automation"]{border-left-color:var(--c-automation);}
+.build[data-c="ai"]{border-left-color:var(--c-ai);}
+.build[data-c="vision"]{border-left-color:var(--c-ai);}
+@media(max-width:940px){.build{margin-left:0;padding-left:16px;}}
+
+/* ─── HOW I SOLVE BUSINESS PROBLEMS (flow) ───── */
+.flow-sec .rail-head p{max-width:46ch;}
+.flow-map{position:relative;list-style:none;}
+.flow-map::before{
+  content:'';position:absolute;left:19px;top:6px;bottom:22px;width:3px;border-radius:3px;
+  background:linear-gradient(var(--c-business),var(--c-data) 22%,var(--c-ai) 55%,var(--c-automation) 78%,var(--c-impact));
+  transform-origin:top;transform:scaleY(0);transition:transform 1.3s cubic-bezier(.16,.8,.24,1);
+}
+.js .flow-map.in::before{transform:scaleY(1);}
+.flow-map::after{
+  content:'';position:absolute;left:19px;top:6px;width:11px;height:11px;margin-left:-4px;
+  border-radius:50%;background:var(--sheet);box-shadow:0 0 10px 3px color-mix(in srgb,var(--ink) 22%,transparent);
+  opacity:0;
+}
+.js .flow-map.in::after{animation:flowPulse 5.5s ease-in-out .9s infinite;}
+@keyframes flowPulse{
+  0%{top:6px;opacity:0;}
+  6%{opacity:1;}
+  92%{opacity:1;}
+  100%{top:calc(100% - 26px);opacity:0;}
+}
+.flow-node{position:relative;padding:0 0 26px 56px;}
+.flow-node:last-child{padding-bottom:0;}
+.flow-node::before{
+  content:'';position:absolute;left:3px;top:1px;width:32px;height:32px;border-radius:50%;
+  background:var(--sheet);border:2.5px solid var(--nc);display:flex;
+}
+.flow-ic{
+  position:absolute;left:3px;top:1px;width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:var(--nc);
+}
+.flow-ic svg{width:16px;height:16px;}
+.flow-card{
+  background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--nc);
+  border-radius:10px;padding:12px 16px;
+}
+.flow-card b{display:block;font-weight:650;font-size:15.5px;color:var(--nc);}
+.flow-card span{display:block;color:var(--ink-2);font-size:14px;margin-top:2px;}
+.flow-card em{
+  display:inline-block;margin-top:8px;font-style:normal;font-size:12px;font-weight:600;
+  color:var(--ink-3);background:var(--map);border-radius:4px;padding:3px 8px;
+}
+.js .flow-node{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.js .flow-map.in .flow-node{opacity:1;transform:none;}
+.js .flow-map.in .flow-node:nth-child(1){transition-delay:.05s}
+.js .flow-map.in .flow-node:nth-child(2){transition-delay:.2s}
+.js .flow-map.in .flow-node:nth-child(3){transition-delay:.35s}
+.js .flow-map.in .flow-node:nth-child(4){transition-delay:.5s}
+.js .flow-map.in .flow-node:nth-child(5){transition-delay:.65s}
+.js .flow-map.in .flow-node:nth-child(6){transition-delay:.8s}
+.js .flow-map.in .flow-node:nth-child(7){transition-delay:.95s}
+.js .flow-node.in::before{transform:scale(1.12);}
+
+.flow-extras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin:34px 0 4px;}
+.flow-extras figcaption{padding:10px 16px;font-size:13px;color:var(--ink-3);border-top:1px solid var(--rule);}
+.flow-see{margin-top:22px;}
+@media(max-width:760px){.flow-extras{grid-template-columns:1fr;}}
+
+/* mini data-pipeline illustration */
+.mini-row{transform-box:fill-box;opacity:0;transform:translateX(-8px);transition:opacity .5s ease,transform .5s ease;}
+.js .flow-mini.in .mini-row{opacity:1;transform:none;}
+.js .flow-mini.in .mini-row:nth-child(2){transition-delay:.1s}
+.js .flow-mini.in .mini-row:nth-child(3){transition-delay:.2s}
+.mini-bar{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform .9s cubic-bezier(.16,.8,.24,1) .3s;}
+.js .flow-mini.in .mini-bar{transform:scaleX(1);}
+.mini-insight{opacity:0;transform:translateY(6px);transition:opacity .5s ease .9s,transform .5s ease .9s;}
+.js .flow-mini.in .mini-insight{opacity:1;transform:none;}
+
+/* AI agent illustration */
+.aic-core{transform-box:fill-box;transform-origin:center;opacity:.85;}
+.js .flow-agent.in .aic-core{animation:aicPulse 3.2s ease-in-out infinite;}
+@keyframes aicPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.aic-link{stroke-dasharray:5 4;opacity:0;transition:opacity .5s ease;}
+.js .flow-agent.in .aic-link{opacity:.8;}
+.aic-node{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.6);transition:opacity .4s ease,transform .4s ease;}
+.js .flow-agent.in .aic-node{opacity:1;transform:scale(1);}
+.js .flow-agent.in .aic-node:nth-of-type(1){transition-delay:.15s}
+.js .flow-agent.in .aic-node:nth-of-type(2){transition-delay:.28s}
+.js .flow-agent.in .aic-node:nth-of-type(3){transition-delay:.41s}
+.js .flow-agent.in .aic-node:nth-of-type(4){transition-delay:.54s}
+.js .flow-agent.in .aic-node:nth-of-type(5){transition-delay:.67s}
+.js .flow-agent.in .aic-node:nth-of-type(6){transition-delay:.8s}
+
+@media(prefers-reduced-motion:reduce){
+  .flow-map::before{transform:scaleY(1) !important;transition:none !important;}
+  .flow-map::after{display:none !important;}
+  .js .flow-node{opacity:1 !important;transform:none !important;transition:none !important;}
+  .js .flow-node::before{transform:none !important;}
+  .mini-row,.mini-bar,.mini-insight,.aic-node,.aic-link{opacity:1 !important;transform:none !important;transition:none !important;}
+  .aic-core{animation:none !important;}
 }
 
 /* ─── PROJECTS ───────────────────────────────── */
@@ -430,6 +561,11 @@ h1{
 .skill-rows dd{font-size:16px;}
 .skill-rows .core dd{font-stretch:80%;font-weight:700;font-size:1.65rem;line-height:1.2;}
 .skill-rows .now dt{color:var(--ruby);font-weight:650;}
+.skill-rows>div[data-c]{border-left:3px solid transparent;padding-left:14px;margin-left:-14px;}
+.skill-rows>div[data-c="data"]{border-left-color:var(--c-data);}
+.skill-rows>div[data-c="ai"]{border-left-color:var(--c-ai);}
+.skill-rows>div[data-c="automation"]{border-left-color:var(--c-automation);}
+@media(max-width:640px){.skill-rows>div[data-c]{margin-left:0;padding-left:10px;}}
 @media(max-width:640px){.skill-rows > div{grid-template-columns:1fr;gap:4px;}}
 
 /* ─── EDUCATION ──────────────────────────────── */
@@ -465,6 +601,162 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
 }
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:32px;}}
 @media(max-width:560px){.wrap,.nav-i{padding-left:20px;padding-right:20px;}}
+
+/* ══════════════════════════════════════════════════════════════════
+   ANIMATION LAYER — added on top of the design above, nothing here
+   changes any wording or layout. Every "start hidden" rule is scoped
+   to .js (set by an inline head script) so a no-JS visitor, or a
+   reduced-motion visitor, always sees the full page with nothing
+   missing — see the two blocks at the very end.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ─── FRONT PAGE: staggered hero entrance ─── */
+.hero-id{animation:heroUp .7s .05s cubic-bezier(.16,.8,.24,1) both;}
+h1{animation:heroUp .75s .16s cubic-bezier(.16,.8,.24,1) both;}
+.hero-skills{animation:heroUp .75s .3s cubic-bezier(.16,.8,.24,1) both;}
+.hero-actions{animation:heroUp .75s .42s cubic-bezier(.16,.8,.24,1) both;}
+.hero-flow{animation:heroUp .75s .54s cubic-bezier(.16,.8,.24,1) both;}
+@keyframes heroUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* ─── SCROLL REVEAL: role plate, results ledger, project cards, education, skills, steps ─── */
+.js .rail-head,.js .ledger li,.js .build,.js .pc,.js .edu li,.js .skill-rows>div,.js .steps li{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.16,.8,.24,1),transform .7s cubic-bezier(.16,.8,.24,1);
+}
+.js .rail-head.in,.js .ledger li.in,.js .build.in,.js .pc.in,.js .edu li.in,.js .skill-rows>div.in,.js .steps li.in{
+  opacity:1;transform:none;
+}
+.js .ledger li:nth-child(2){transition-delay:.08s}
+.js .ledger li:nth-child(3){transition-delay:.16s}
+.js .build:nth-child(2){transition-delay:.08s}
+.js .build:nth-child(3){transition-delay:.16s}
+.js .build:nth-child(4){transition-delay:.24s}
+.js .edu li:nth-child(2){transition-delay:.08s}
+.js .edu li:nth-child(3){transition-delay:.16s}
+.js .edu li:nth-child(4){transition-delay:.24s}
+.js .skill-rows>div:nth-child(2){transition-delay:.06s}
+.js .skill-rows>div:nth-child(3){transition-delay:.12s}
+.js .skill-rows>div:nth-child(4){transition-delay:.18s}
+.js .skill-rows>div:nth-child(5){transition-delay:.24s}
+.js .skill-rows>div:nth-child(6){transition-delay:.3s}
+.js .steps li:nth-child(2){transition-delay:.05s}
+.js .steps li:nth-child(3){transition-delay:.1s}
+.js .steps li:nth-child(4){transition-delay:.15s}
+.js .steps li:nth-child(5){transition-delay:.2s}
+.js .steps li:nth-child(6){transition-delay:.25s}
+.js .steps li:nth-child(7){transition-delay:.3s}
+.js .fig{display:inline-block;transform:scale(.6);transition:transform .5s cubic-bezier(.34,1.56,.64,1) .15s;}
+.js .ledger li.in .fig{transform:scale(1);}
+
+/* ─── PROJECT TASK-FLOW ANIMATION: the chip chains in "What I build" ─── */
+.js .chain li{opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease;}
+.js .chain.in li{opacity:1;transform:none;}
+.js .chain li:not(:last-child)::after{transform-origin:left center;transform:scaleX(0);transition:transform .4s ease;}
+.js .chain li:not(:last-child)::before{opacity:0;transition:opacity .2s ease;}
+.js .chain.in li:not(:last-child)::after{transform:scaleX(1);}
+.js .chain.in li:not(:last-child)::before{opacity:1;}
+.js .chain li:nth-child(1){transition-delay:.05s}
+.js .chain li:nth-child(2){transition-delay:.2s}
+.js .chain li:nth-child(3){transition-delay:.35s}
+.js .chain li:nth-child(4){transition-delay:.5s}
+.js .chain li:nth-child(5){transition-delay:.65s}
+.js .chain li:nth-child(1)::after,.js .chain li:nth-child(1)::before{transition-delay:.25s}
+.js .chain li:nth-child(2)::after,.js .chain li:nth-child(2)::before{transition-delay:.4s}
+.js .chain li:nth-child(3)::after,.js .chain li:nth-child(3)::before{transition-delay:.55s}
+.js .chain li:nth-child(4)::after,.js .chain li:nth-child(4)::before{transition-delay:.7s}
+
+/* ─── PROJECT FLOW-DIAGRAM ANIMATION: the "How it works" maps draw themselves in ─── */
+.js .line::before{transform-origin:top;transform:scaleY(0);transition:transform .7s cubic-bezier(.16,.8,.24,1);}
+.js .line.in::before{transform:scaleY(1);}
+.js .line li{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+.js .line.in li{opacity:1;transform:none;}
+.js .line li:nth-child(1){transition-delay:.12s}
+.js .line li:nth-child(2){transition-delay:.24s}
+.js .line li:nth-child(3){transition-delay:.36s}
+.js .line li:nth-child(4){transition-delay:.48s}
+.js .line li:nth-child(5){transition-delay:.6s}
+.js .line li:nth-child(6){transition-delay:.72s}
+.js .line li:nth-child(7){transition-delay:.84s}
+
+/* ─── AI / COMPUTER VISION SCAN EFFECT (Jewellery Image Similarity Search) ─── */
+.js .ill-scan .qi-ring{transform-box:fill-box;transform-origin:center;opacity:0;}
+.js .ill-scan.in .qi-ring{animation:qiPulse 2.6s ease-in-out .3s infinite;}
+.js .ill-scan .qi-scan{opacity:0;}
+.js .ill-scan.in .qi-scan{animation:qiSweep 2.6s ease-in-out .3s infinite;}
+@keyframes qiPulse{0%{transform:scale(.8);opacity:.55;}70%,100%{transform:scale(1.45);opacity:0;}}
+@keyframes qiSweep{0%{transform:translateY(0);opacity:0;}12%{opacity:.85;}50%{opacity:.85;}88%{opacity:0;}100%{transform:translateY(72px);opacity:0;}}
+.js .ill-scan .bar-fill{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform 1s cubic-bezier(.16,.8,.24,1);}
+.js .ill-scan.in .bar-fill{transform:scaleX(1);}
+
+/* ─── HERO PROBLEM-TO-IMPACT STRIP: replaces the old background motif
+   that used to sit behind the medallion and clip/overlap there. This
+   sits in normal flow under the hero buttons — always fully visible,
+   never overlapping the portrait — and animates the same problem-
+   solving story as the "How I solve business problems" section. */
+.hero-flow{margin-top:20px;max-width:480px;}
+.hero-flow-label{
+  font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:14px;
+}
+.hero-flow ol{position:relative;display:flex;justify-content:space-between;list-style:none;padding-top:2px;}
+.hero-flow-track{position:relative;}
+.hero-flow-track::before{
+  content:'';position:absolute;left:6px;right:6px;top:9px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--c-business),var(--c-data) 25%,var(--c-ai) 50%,var(--c-automation) 75%,var(--c-impact));
+}
+.hero-flow li{
+  position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:7px;
+  flex:1;text-align:center;font-size:11px;font-weight:650;color:var(--nc);
+}
+.hero-flow .hf-dot{
+  width:11px;height:11px;border-radius:50%;background:var(--nc);
+  box-shadow:0 0 0 3px var(--paper);
+}
+.hero-flow-track .pulse{
+  position:absolute;top:9px;left:0;width:8px;height:8px;margin-top:-3px;margin-left:-4px;
+  border-radius:50%;background:var(--ink);
+  box-shadow:0 0 8px 2px color-mix(in srgb,var(--ink) 30%,transparent);
+  animation:heroFlowPulse 4.6s linear infinite;
+}
+@keyframes heroFlowPulse{
+  0%{left:0%;opacity:0;}
+  6%{opacity:1;}
+  94%{opacity:1;}
+  100%{left:100%;opacity:0;}
+}
+@media(max-width:560px){
+  .hero-flow{max-width:none;}
+  .hero-flow li{font-size:9.5px;}
+}
+
+/* ─── CONTINUOUS "how it works" EXPLAINER: a slow pulse travels down
+   every flow line on a loop, always on, showing which way the process
+   moves rather than only revealing once on scroll. ─── */
+.line::after{
+  content:'';position:absolute;left:6px;top:8px;width:9px;height:9px;margin-left:-3.25px;
+  border-radius:50%;background:var(--teal);
+  box-shadow:0 0 9px 2px var(--teal-tint);
+  animation:travelDot 4.5s ease-in-out infinite;
+}
+@keyframes travelDot{
+  0%{top:8px;opacity:0;}
+  10%{opacity:.95;}
+  90%{opacity:.95;}
+  100%{top:calc(100% - 14px);opacity:0;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-id,h1,.hero-skills,.hero-actions,.hero-flow{animation:none !important;}
+  .js .rail-head,.js .ledger li,.js .build,.js .pc,.js .edu li,.js .skill-rows>div,.js .steps li,
+  .js .chain li,.js .line li,.js .fig{opacity:1 !important;transform:none !important;transition:none !important;}
+  .js .chain li:not(:last-child)::after,.js .chain li:not(:last-child)::before,.js .line::before{
+    transform:none !important;opacity:1 !important;transition:none !important;
+  }
+  .js .ill-scan .qi-ring,.js .ill-scan .qi-scan{animation:none !important;opacity:0 !important;}
+  .js .ill-scan .bar-fill{transform:scaleX(1) !important;transition:none !important;}
+  .hero-flow-track .pulse{display:none !important;}
+  .line::after{display:none !important;}
+}
 </style>
 </head>
 <body>
@@ -476,11 +768,11 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
     <a class="nav-name" href="#top">Uttam Singh</a>
     <nav aria-label="Primary">
       <ul class="nav-links">
-        <li><a href="#build">What I build</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#how">How I work</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#build" data-c="data">What I build</a></li>
+        <li><a href="#projects" data-c="business">Projects</a></li>
+        <li><a href="#how" data-c="automation">How I work</a></li>
+        <li><a href="#skills" data-c="ai">Skills</a></li>
+        <li><a href="#contact" data-c="impact">Contact</a></li>
       </ul>
     </nav>
     <div class="nav-right">
@@ -510,6 +802,19 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
         <a class="btn btn-quiet" href="https://raw.githubusercontent.com/uttam4027/portfolio/main/UttamCV.pdf" target="_blank" rel="noopener">Resume</a>
         <a class="lnk" href="https://www.linkedin.com/in/uttamdataanalytics/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="lnk" href="https://github.com/uttam4027" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="hero-flow" aria-label="How I solve a business problem: business problem, data, AI agent, automation, business impact">
+        <p class="hero-flow-label">How a problem becomes a result</p>
+        <div class="hero-flow-track">
+          <span class="pulse" aria-hidden="true"></span>
+          <ol>
+            <li style="--nc:var(--c-business)"><span class="hf-dot"></span>Business problem</li>
+            <li style="--nc:var(--c-data)"><span class="hf-dot"></span>Data</li>
+            <li style="--nc:var(--c-ai)"><span class="hf-dot"></span>AI agent</li>
+            <li style="--nc:var(--c-automation)"><span class="hf-dot"></span>Automation</li>
+            <li style="--nc:var(--c-impact)"><span class="hf-dot"></span>Business impact</li>
+          </ol>
+        </div>
       </div>
     </div>
 
@@ -563,9 +868,12 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
         <dt>Company</dt><dd>Jewelex India Pvt Ltd, Mumbai</dd>
         <dt>Since</dt><dd>July 2024</dd>
       </dl>
+      <ul class="chain chain-mini" aria-label="Working approach">
+        <li>Analyse</li><li>Automate</li><li>Build</li><li>Improve</li>
+      </ul>
     </div>
     <div class="builds">
-      <div class="build">
+      <div class="build" data-c="data">
         <h3>Analytics</h3>
         <p>Turning sales, catalogue and market data into something a team can act on.</p>
         <ul class="chain" aria-label="Analytics flow">
@@ -573,7 +881,7 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
         </ul>
         <p class="see">Examples: <a href="#p-demand">Demand planning</a>, <a href="#p-white">White space analysis</a></p>
       </div>
-      <div class="build">
+      <div class="build" data-c="automation">
         <h3>Automation</h3>
         <p>Replacing repeated manual work with a script that runs on its own and logs what it did.</p>
         <ul class="chain" aria-label="Automation flow">
@@ -581,7 +889,7 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
         </ul>
         <p class="see">Examples: <a href="#p-gst">GST documents</a>, <a href="#p-metal">Metal rates</a>, <a href="#p-diamond">Diamond data</a></p>
       </div>
-      <div class="build">
+      <div class="build" data-c="ai">
         <h3>AI applications</h3>
         <p>Putting an LLM to work on company documents and data, with the source shown next to the answer.</p>
         <ul class="chain" aria-label="AI application flow">
@@ -589,7 +897,7 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
         </ul>
         <p class="see">Examples: <a href="#p-pd">PD Smart Assistant</a>, <a href="#p-newsletter">Newsletter agent</a>, <a href="#p-hr">HR onboarding</a></p>
       </div>
-      <div class="build">
+      <div class="build" data-c="vision">
         <h3>Computer vision</h3>
         <p>Searching a large image catalogue by what products look like.</p>
         <ul class="chain" aria-label="Computer vision flow">
@@ -597,6 +905,133 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
         </ul>
         <p class="see">Example: <a href="#p-image">Jewellery image search</a></p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── HOW I SOLVE BUSINESS PROBLEMS ──────── -->
+<section class="sec flow-sec" id="flow" aria-labelledby="flow-h">
+  <div class="wrap rail">
+    <div class="rail-head">
+      <h2 id="flow-h">How I solve business problems</h2>
+      <p>I connect business requirements, data analysis and technology to build practical solutions.</p>
+    </div>
+    <div class="flow-col">
+      <ol class="flow-map" aria-label="From business problem to business impact">
+        <li class="flow-node" style="--nc:var(--c-business)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v5"/><circle cx="12" cy="16.3" r=".4" fill="currentColor" stroke="none"/><path d="M10.6 3.6 2.9 18a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.4 3.6a2 2 0 0 0-2.8 0Z"/></svg></span>
+          <div class="flow-card">
+            <b>Business problem</b>
+            <span>Manual work, slow decisions, repetitive tasks</span>
+            <em>Understand the requirement</em>
+          </div>
+        </li>
+        <li class="flow-node" style="--nc:var(--c-data)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5V12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5V5.5"/><path d="M4.5 12v6.5c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5V12"/></svg></span>
+          <div class="flow-card">
+            <b>Data</b>
+            <span>Excel, SQL, APIs, documents, images</span>
+            <em>Find the right data</em>
+          </div>
+        </li>
+        <li class="flow-node" style="--nc:var(--c-data)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M20.5 20H3.5"/></svg></span>
+          <div class="flow-card">
+            <b>Analysis</b>
+            <span>Patterns, classification, forecasting, segmentation</span>
+            <em>Identify the pattern</em>
+          </div>
+        </li>
+        <li class="flow-node" style="--nc:var(--c-ai)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 3-1 3H5l2.4 2-1 3L9 9.2 12 11l-1-3 2.4-2h-3.3Z"/><path d="M15 13v7"/><path d="M12 16.5h6"/></svg></span>
+          <div class="flow-card">
+            <b>Technology</b>
+            <span>Python, SQL, Power BI, Flask, APIs</span>
+            <em>Choose the right approach</em>
+          </div>
+        </li>
+        <li class="flow-node" style="--nc:var(--c-automation)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></span>
+          <div class="flow-card">
+            <b>AI &amp; automation</b>
+            <span>LLMs, RAG, agents, vision, scheduled automation</span>
+            <em>Automate repetitive work</em>
+          </div>
+        </li>
+        <li class="flow-node hub" style="--nc:var(--c-impact)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m8 12 3 3 5-6"/></svg></span>
+          <div class="flow-card">
+            <b>Solution</b>
+            <span>Dashboard, automation or an AI application</span>
+            <em>Validate the output</em>
+          </div>
+        </li>
+        <li class="flow-node end" style="--nc:var(--c-impact)">
+          <span class="flow-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11 13 15 21 7"/><path d="M15 7h6v6"/></svg></span>
+          <div class="flow-card">
+            <b>Business impact</b>
+            <span>Faster processing, less manual effort, better decisions</span>
+            <em>Measure the result</em>
+          </div>
+        </li>
+      </ol>
+
+      <div class="flow-extras">
+        <figure class="ill flow-mini" aria-label="Illustrative example: raw data is cleaned, analysed and turned into an insight, with sample values.">
+          <svg viewBox="0 0 300 176">
+            <g class="mini-row">
+              <text x="14" y="20" class="t3" font-size="9" font-weight="600">RAW DATA</text>
+              <rect x="14" y="28" width="60" height="18" rx="3" class="f-panel"/><text x="44" y="40.5" text-anchor="middle" class="t2" font-size="8">Excel</text>
+              <rect x="80" y="28" width="60" height="18" rx="3" class="f-panel"/><text x="110" y="40.5" text-anchor="middle" class="t2" font-size="8">SQL</text>
+              <rect x="146" y="28" width="60" height="18" rx="3" class="f-panel"/><text x="176" y="40.5" text-anchor="middle" class="t2" font-size="8">API</text>
+            </g>
+            <g class="mini-row">
+              <text x="14" y="66" class="t3" font-size="9" font-weight="600">CLEANING</text>
+              <rect x="14" y="74" width="90" height="16" rx="3" style="fill:var(--c-data);opacity:.16"/><text x="20" y="86" class="t2" font-size="7.5">Missing values, duplicates</text>
+              <rect x="112" y="74" width="94" height="16" rx="3" style="fill:var(--c-data);opacity:.16"/><text x="118" y="86" class="t2" font-size="7.5">Validation rules</text>
+            </g>
+            <g class="mini-row">
+              <text x="14" y="112" class="t3" font-size="9" font-weight="600">ANALYSIS</text>
+              <rect class="mini-bar" x="14" y="118" width="40" height="10" rx="2" style="fill:var(--c-ai)"/><text x="58" y="126.5" class="t2" font-size="7.5">Trend</text>
+              <rect class="mini-bar" x="14" y="132" width="70" height="10" rx="2" style="fill:var(--c-ai);opacity:.75"/><text x="88" y="140.5" class="t2" font-size="7.5">Segmentation</text>
+              <rect class="mini-bar" x="14" y="146" width="52" height="10" rx="2" style="fill:var(--c-ai);opacity:.55"/><text x="70" y="154.5" class="t2" font-size="7.5">Forecast</text>
+            </g>
+            <rect class="mini-insight" x="206" y="70" width="80" height="92" rx="6" style="fill:var(--c-impact);opacity:.14;stroke:var(--c-impact);stroke-width:1"/>
+            <text class="mini-insight" x="246" y="94" text-anchor="middle" class="t1" font-size="8" font-weight="700">INSIGHT</text>
+            <text class="mini-insight" x="246" y="112" text-anchor="middle" class="t2" font-size="7.2">Actionable</text>
+            <text class="mini-insight" x="246" y="123" text-anchor="middle" class="t2" font-size="7.2">business</text>
+            <text class="mini-insight" x="246" y="134" text-anchor="middle" class="t2" font-size="7.2">decision</text>
+          </svg>
+          <figcaption>Illustrative example — sample values, not project data.</figcaption>
+        </figure>
+
+        <figure class="ill flow-agent" aria-label="An AI agent receives a request, reasons about it, then uses tools such as an LLM, retrieval and APIs to produce a business result.">
+          <svg viewBox="0 0 300 176">
+            <text x="150" y="16" text-anchor="middle" class="t3" font-size="8.5" font-weight="600">BUSINESS REQUEST</text>
+            <path d="M150 22V50" class="s-rule aic-link" style="stroke:var(--c-ai)"/>
+            <circle class="aic-core" cx="150" cy="70" r="20" style="fill:var(--c-ai)" opacity=".9"/>
+            <text x="150" y="74" text-anchor="middle" class="tw" font-size="8" font-weight="700">AGENT</text>
+            <g class="s-rule aic-link" style="stroke:var(--c-ai)">
+              <path d="M132 82 82 112"/><path d="M150 90v34"/><path d="M168 82 218 112"/>
+            </g>
+            <circle class="aic-node" cx="70" cy="122" r="17" style="fill:var(--sheet);stroke:var(--c-data);stroke-width:2"/>
+            <text x="70" y="125" text-anchor="middle" class="t1" font-size="7" font-weight="700">RAG</text>
+            <circle class="aic-node" cx="150" cy="134" r="17" style="fill:var(--sheet);stroke:var(--c-business);stroke-width:2"/>
+            <text x="150" y="137" text-anchor="middle" class="t1" font-size="7" font-weight="700">LLM</text>
+            <circle class="aic-node" cx="230" cy="122" r="17" style="fill:var(--sheet);stroke:var(--c-automation);stroke-width:2"/>
+            <text x="230" y="125" text-anchor="middle" class="t1" font-size="6.6" font-weight="700">API</text>
+            <circle class="aic-node" cx="40" cy="158" r="15" style="fill:var(--sheet);stroke:var(--c-data);stroke-width:1.6"/>
+            <text x="40" y="160.5" text-anchor="middle" class="t2" font-size="6">Vector DB</text>
+            <circle class="aic-node" cx="150" cy="166" r="15" style="fill:var(--sheet);stroke:var(--c-impact);stroke-width:1.6"/>
+            <text x="150" y="168.5" text-anchor="middle" class="t2" font-size="6">Result</text>
+            <circle class="aic-node" cx="260" cy="158" r="15" style="fill:var(--sheet);stroke:var(--c-automation);stroke-width:1.6"/>
+            <text x="260" y="160.5" text-anchor="middle" class="t2" font-size="6">Docs</text>
+          </svg>
+          <figcaption>AI is not just a chatbot — it's connected to real data, tools and documents.</figcaption>
+        </figure>
+      </div>
+
+      <p class="see flow-see">See this way of working applied in: <a href="#p-demand">Demand planning</a>, <a href="#p-gst">GST document automation</a>, <a href="#p-pd">PD Smart Assistant</a>, <a href="#p-image">Image similarity search</a>.</p>
     </div>
   </div>
 </section>
@@ -812,8 +1247,9 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
       </header>
       <div class="sheet-body">
         <div class="story">
-          <div class="ill">
+          <div class="ill ill-scan">
           <svg viewBox="0 0 340 190" role="img" aria-label="Search screen: an uploaded query image and three ranked similar products from the catalogue.">
+            <defs><clipPath id="qiClip"><rect x="10" y="66" width="74" height="76" rx="4"/></clipPath></defs>
             <rect x="10" y="10" width="320" height="30" rx="5" class="f-panel-hi"/>
             <circle cx="24" cy="24" r="4.5" class="s-teal" stroke-width="1.5"/>
             <path d="M27.5 27.5L31 31" class="s-teal" stroke-width="1.5"/>
@@ -827,23 +1263,25 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
             <rect x="10" y="66" width="74" height="76" rx="4" class="f-panel-hi"/>
             <circle cx="47" cy="98" r="14" class="s-teal" stroke-width="3"/>
             <polygon points="47,74 53,81 47,88 41,81" class="f-teal"/>
+            <circle cx="47" cy="98" r="14" class="qi-ring" fill="none" stroke="var(--teal)" stroke-width="1.4"/>
+            <g clip-path="url(#qiClip)"><rect x="10" y="66" width="74" height="5" class="qi-scan" fill="var(--teal)"/></g>
             <rect x="11" y="125" width="72" height="16" class="f-teal"/>
             <text x="47" y="136" text-anchor="middle" class="tw" font-size="8" font-weight="600">Query image</text>
 
             <rect x="90" y="66" width="74" height="76" rx="4" class="f-panel"/>
             <g opacity=".85"><circle cx="127" cy="98" r="14" class="s-teal" stroke-width="3"/><polygon points="127,74 133,81 127,88 121,81" class="f-teal"/></g>
             <text x="98" y="132" class="t1" font-size="8.5" font-weight="600">Rank 1</text>
-            <rect x="98" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="98" y="136" width="52" height="3" rx="1.5" class="f-teal"/>
+            <rect x="98" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="98" y="136" width="52" height="3" rx="1.5" class="f-teal bar-fill"/>
 
             <rect x="170" y="66" width="74" height="76" rx="4" class="f-panel"/>
             <g opacity=".65"><circle cx="207" cy="98" r="13" class="s-teal" stroke-width="3"/><polygon points="207,75 212,81 207,87 202,81" class="f-teal"/></g>
             <text x="178" y="132" class="t1" font-size="8.5" font-weight="600">Rank 2</text>
-            <rect x="178" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="178" y="136" width="42" height="3" rx="1.5" class="f-teal"/>
+            <rect x="178" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="178" y="136" width="42" height="3" rx="1.5" class="f-teal bar-fill"/>
 
             <rect x="250" y="66" width="74" height="76" rx="4" class="f-panel"/>
             <g opacity=".5"><circle cx="287" cy="98" r="12" class="s-teal" stroke-width="3"/><polygon points="287,76 291,81 287,86 283,81" class="f-teal"/></g>
             <text x="258" y="132" class="t1" font-size="8.5" font-weight="600">Rank 3</text>
-            <rect x="258" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="258" y="136" width="32" height="3" rx="1.5" class="f-teal"/>
+            <rect x="258" y="136" width="58" height="3" rx="1.5" class="f-line"/><rect x="258" y="136" width="32" height="3" rx="1.5" class="f-teal bar-fill"/>
 
             <rect x="10" y="150" width="320" height="32" rx="4" class="f-panel"/>
             <text x="20" y="164" class="t2" font-size="8.5">Ranked by similarity score and grouped by SKU.</text>
@@ -1459,11 +1897,11 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
       <p>Core tools first; frameworks and models are selected based on the business problem.</p>
     </div>
     <dl class="skill-rows">
-      <div class="core"><dt>Core</dt><dd>Python, SQL, Power BI, Excel, Pandas</dd></div>
-      <div><dt>AI engineering</dt><dd>LLM APIs (OpenAI, Gemini), RAG, LangGraph, LangChain, LlamaIndex, embeddings, vector search, prompt engineering</dd></div>
-      <div><dt>Machine learning and vision</dt><dd>PyTorch, DINOv2, OpenCV, NLP, XGBoost, SARIMA and other forecasting methods</dd></div>
-      <div><dt>Backend and automation</dt><dd>Flask, Streamlit, Playwright, REST APIs, Microsoft Graph API, APScheduler, Power Automate, VBA</dd></div>
-      <div><dt>Data</dt><dd>MS SQL Server, MySQL, SQLite, Qdrant, FAISS, Power Query, DAX</dd></div>
+      <div class="core" data-c="data"><dt>Core</dt><dd>Python, SQL, Power BI, Excel, Pandas</dd></div>
+      <div data-c="ai"><dt>AI engineering</dt><dd>LLM APIs (OpenAI, Gemini), RAG, LangGraph, LangChain, LlamaIndex, embeddings, vector search, prompt engineering</dd></div>
+      <div data-c="ai"><dt>Machine learning and vision</dt><dd>PyTorch, DINOv2, OpenCV, NLP, XGBoost, SARIMA and other forecasting methods</dd></div>
+      <div data-c="automation"><dt>Backend and automation</dt><dd>Flask, Streamlit, Playwright, REST APIs, Microsoft Graph API, APScheduler, Power Automate, VBA</dd></div>
+      <div data-c="data"><dt>Data</dt><dd>MS SQL Server, MySQL, SQLite, Qdrant, FAISS, Power Query, DAX</dd></div>
       <div><dt>Also used</dt><dd>JavaScript, Tableau, Git, NumPy, Matplotlib, PyMuPDF, OpenPyXL, python-pptx, Requests</dd></div>
       <div class="now"><dt>Currently learning / building</dt><dd>FastAPI, Docker, production RAG, AI evaluation, agent architecture, cloud deployment, system design</dd></div>
     </dl>
@@ -1571,6 +2009,31 @@ footer h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:520px;}
       if(d) d.open=true;
     });
   });
+})();
+
+/* Scroll reveal: role plate, results, project cards, task-flow chains,
+   "how it works" diagrams and the vision-search scan effect all animate
+   in as they're scrolled into view. Falls back to fully visible if the
+   browser has no IntersectionObserver. */
+(function(){
+  var targets=[].slice.call(document.querySelectorAll(
+    '.rail-head,.ledger li,.build,.pc,.edu li,.skill-rows>div,.steps li,.chain,.line,.ill-scan,'+
+    '.flow-map,.flow-node,.flow-mini,.flow-agent'
+  ));
+  if(!targets.length) return;
+  if(!('IntersectionObserver' in window)){
+    targets.forEach(function(t){t.classList.add('in');});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+  targets.forEach(function(t){io.observe(t);});
 })();
 
 /* Dark mode switch: remembers the visitor's choice on this device */
