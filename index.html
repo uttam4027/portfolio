@@ -209,7 +209,7 @@ h1 .hl{color:var(--teal);}
   border:1px solid var(--rule);box-shadow:0 14px 34px -22px color-mix(in srgb,var(--ink) 55%,transparent);
   animation:fadein .9s .3s ease both;
 }
-.pcard img{width:100%;height:100%;object-fit:cover;display:block;}
+.pcard img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;}
 .photo-fallback{
   position:absolute;inset:0;align-items:center;justify-content:center;
   font-stretch:80%;font-weight:700;font-size:4rem;color:var(--ink-3);
@@ -828,8 +828,8 @@ h1{animation:heroUp .75s .16s cubic-bezier(.16,.8,.24,1) both;}
     </div>
 
     <div class="pcard">
-      <img src="photo.jpg" alt="Portrait of Uttam Singh"
-           onerror="this.onerror=function(){this.style.display='none';this.parentElement.querySelector('.photo-fallback').style.display='flex';};this.src='https://github.com/uttam4027.png';">
+      <img src="photo.png" alt="Portrait of Uttam Singh" decoding="async"
+           onerror="var d=this.dataset,l=d.next===undefined?['photo.jpg','https://github.com/uttam4027.png']:(d.next?d.next.split('|'):[]),n=l.shift();d.next=l.join('|');if(n){this.src=n;}else{this.style.display='none';this.parentElement.querySelector('.photo-fallback').style.display='flex';}">
       <div class="photo-fallback" style="display:none">US</div>
     </div>
   </div>
